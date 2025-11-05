@@ -1,0 +1,1285 @@
+/* 
+══════════════════════════════════════════════════════════════════════════════
+ОСНОВНЫЕ СТИЛИ САЙТА
+Автор: BlackBabyCat
+Версия: 2.0 (обновлено для артиста из Норильска)
+══════════════════════════════════════════════════════════════════════════════
+*/
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ЦВЕТОВ - Основная цветовая схема сайта              │
+│ Используются для легкого изменения цветов по всему сайту                  │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+:root {
+  /* Основные цвета фона */
+  --bg: #0f0f0f;                /* Основной фон сайта */
+  --bg-dark: #0a0a0a;           /* Темный фон для контрастных секций */
+  --card-bg: #151515;           /* Фон для карточек и элементов */
+  
+  /* Цвета текста */
+  --text: #e5e5e5;              /* Основной цвет текста */
+  --text-light: #a0a0a0;        /* Светлый/дополнительный текст */
+  
+  /* Брендовые цвета артиста */
+  --purple: #8b5cf6;            /* Основной фиолетовый цвет */
+  --purple-light: #a78bfa;      /* Светлый оттенок фиолетового */
+  --pink: #ec4899;              /* Розовый акцентный цвет */
+  
+  /* Дополнительные цвета */
+  --border: #2d2d44;            /* Цвет границ и разделителей */
+  --vk-color: #4C75A8;          /* Цвет ВКонтакте */
+  --telegram-color: #0088CC;    /* Цвет Telegram */
+  --youtube-color: #FF0000;     /* Цвет YouTube */
+  
+  /* Градиенты для кнопок и акцентов */
+  --gradient-primary: linear-gradient(to right, var(--purple), var(--pink));
+  --gradient-secondary: linear-gradient(to right, var(--pink), var(--purple));
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ СБРОС СТИЛЕЙ И ГЛОБАЛЬНЫЕ НАСТРОЙКИ                                       │
+│ Универсальные настройки для всех элементов                                │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* Плавная прокрутка по якорям */
+}
+
+body {
+  background-color: var(--bg); /* Основной фон */
+  color: var(--text);          /* Основной цвет текста */
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif; /* Современный шрифт */
+  line-height: 1.6;            /* Читаемость текста */
+  overflow-x: hidden;          /* Скрыть горизонтальный скролл */
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ КОНТЕЙНЕР ДЛЯ ЦЕНТРИРОВАНИЯ КОНТЕНТА                                      │
+│ Ограничивает ширину контента и центрирует его на странице                 │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.container {
+  max-width: 1200px;           /* Максимальная ширина контента */
+  margin: 0 auto;              /* Центрирование по горизонтали */
+  padding: 0 20px;             /* Отступы по бокам для адаптивности */
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ СТИЛИ СЕКЦИЙ САЙТА                                                        │
+│ Общие стили для всех основных разделов                                    │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.section {
+  padding: 80px 0;             /* Вертикальные отступы для секций */
+  border-top: 1px solid var(--border); /* Разделитель между секциями */
+}
+
+.section:first-of-type {
+  border-top: none;            /* Убрать разделитель у первой секции */
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ ЗАГОЛОВКИ СЕКЦИЙ                                                          │
+│ Стили для заголовков h2 в каждой секции                                   │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.section-title {
+  font-size: 2.5rem;           /* Размер заголовка */
+  font-weight: 700;            /* Жирность шрифта */
+  text-align: center;          /* Центрирование текста */
+  margin-bottom: 1rem;         /* Отступ снизу */
+  background: var(--gradient-primary); /* Градиентный текст */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;          /* Сделать текст прозрачным для градиента */
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ ПОДЗАГОЛОВКИ СЕКЦИЙ                                                       │
+│ Стили для описательных текстов под заголовками                           │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.section-subtitle {
+  text-align: center;          /* Центрирование текста */
+  color: var(--text-light);    /* Светлый цвет текста */
+  max-width: 600px;            /* Ограничение ширины */
+  margin: 0 auto 4rem;         /* Центрирование и отступ снизу */
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ ШАПКА САЙТА (HEADER)                                                      │
+│ Стили для навигационной панели и логотипа                                 │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.header {
+  position: fixed;             /* Фиксированное положение */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон */
+  backdrop-filter: blur(10px); /* Эффект размытия */
+  z-index: 1000;               /* Высокий z-index для перекрытия контента */
+  border-bottom: 1px solid var(--border); /* Нижняя граница */
+  transition: background 0.3s; /* Плавный переход при скролле */
+}
+
+.header.scrolled {
+  background: rgba(15, 15, 15, 0.95); /* Темный фон при скролле */
+  backdrop-filter: blur(10px);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 20px;          /* Отступы внутри контейнера */
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ ЛОГОТИП                                                                   │
+│ Стили для логотипа и названия артиста в шапке                             │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;                   /* Расстояние между иконкой и текстом */
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--purple);   /* Фиолетовый фон */
+  border-radius: 50%;          /* Круглая форма */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  flex-shrink: 0;              /* Запретить сжатие */
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: bold;
+  background: var(--gradient-primary); /* Градиентный текст */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ НАВИГАЦИОННОЕ МЕНЮ                                                        │
+│ Стили для основного меню навигации                                        │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.nav ul {
+  display: flex;               /* Горизонтальное расположение */
+  gap: 1.5rem;                 /* Расстояние между пунктами */
+  list-style: none;            /* Убрать маркеры списка */
+}
+
+.nav a {
+  color: var(--text-light);    /* Светлый цвет текста */
+  text-decoration: none;       /* Убрать подчеркивание */
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;      /* Плавный переход цвета */
+  position: relative;          /* Для подчеркивания при наведении */
+  padding: 0.5rem 0;           /* Отступы для увеличения области клика */
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--purple-light);  /* Изменить цвет при наведении */
+}
+
+.nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--purple-light); /* Подчеркивание для активного пункта */
+  border-radius: 1px;
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ МОБИЛЬНОЕ МЕНЮ                                                            │
+│ Стили для адаптивного меню на мобильных устройствах                      │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.mobile-menu-toggle {
+  display: none;               /* Скрыто на десктопе */
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+.mobile-menu {
+  display: none;               /* Скрыто по умолчанию */
+  position: fixed;
+  top: 72px;                   /* Ниже шапки */
+  left: 0;
+  right: 0;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+  max-height: calc(100vh - 72px);
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.mobile-menu.active {
+  display: block;              /* Показать при активации */
+}
+
+.mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0 20px;
+}
+
+.mobile-menu li {
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 1rem 0;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a.active {
+  color: var(--purple-light);
+  padding-left: 10px;
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ ГЛАВНАЯ СЕКЦИЯ (HERO)                                                     │
+│ Стили для главного баннера с аватаром артиста                             │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.hero {
+  padding-top: 150px;          /* Отступ сверху для фиксированной шапки */
+  padding-bottom: 80px;
+  background: linear-gradient(to bottom, var(--bg), var(--bg-dark)); /* Градиентный фон */
+  text-align: center;          /* Центрирование контента */
+  position: relative;
+  overflow: hidden;            /* Скрыть выступающие декоративные элементы */
+}
+
+/* Декоративные фоны для hero-секции */
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: 0;
+  animation: pulse 4s infinite;
+}
+
+.hero::before {
+  top: 25%;
+  left: 25%;
+  width: 256px;
+  height: 256px;
+  background: rgba(139, 92, 246, 0.1); /* Фиолетовый градиент */
+}
+
+.hero::after {
+  bottom: 25%;
+  right: 25%;
+  width: 320px;
+  height: 320px;
+  background: rgba(236, 72, 153, 0.1); /* Розовый градиент */
+  animation-delay: 1s;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;                  /* Выше декоративных элементов */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Аватар артиста */
+.hero-avatar {
+  width: 180px;                /* Размер аватара */
+  height: 180px;
+  border-radius: 20px;         /* Закругленные углы */
+  border: 4px solid rgba(139, 92, 246, 0.3); /* Фиолетовая граница */
+  margin: 0 auto 2rem;         /* Центрирование и отступ снизу */
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.25); /* Свечение */
+  object-fit: cover;           /* Корректное отображение изображения */
+  transition: transform 0.4s ease, box-shadow 0.4s ease; /* Плавные анимации */
+}
+
+.hero-avatar:hover {
+  transform: scale(1.03);      /* Увеличение при наведении */
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.4); /* Усиление свечения */
+}
+
+/* Заголовок и описание в hero-секции */
+.hero-title {
+  font-size: 2.8rem;           /* Большой размер заголовка */
+  margin-bottom: 1rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;      /* Компактное расположение букв */
+}
+
+.hero-tagline {
+  font-size: 1.4rem;           /* Размер теглайна */
+  color: var(--text-light);
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ СОЦИАЛЬНЫЕ СЕТИ                                                           │
+│ Стили для иконок социальных сетей                                         │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;                 /* Расстояние между иконками */
+  margin-top: 1.5rem;
+}
+
+.social-links a {
+  width: 56px;                 /* Размер иконки */
+  height: 56px;
+  border-radius: 16px;         /* Закругленные углы */
+  background: rgba(139, 92, 246, 0.15); /* Полупрозрачный фон */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--purple);        /* Цвет иконки */
+  text-decoration: none;
+  transition: all 0.3s ease;   /* Плавные переходы */
+  font-size: 1.4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Цвета для конкретных соцсетей */
+.social-links a[href*="vk.com"] {
+  background: rgba(76, 117, 168, 0.15);
+  color: var(--vk-color);
+}
+
+.social-links a[href*="t.me"] {
+  background: rgba(0, 136, 204, 0.15);
+  color: var(--telegram-color);
+}
+
+.social-links a[href*="youtube.com"] {
+  background: rgba(255, 0, 0, 0.15);
+  color: var(--youtube-color);
+}
+
+/* Эффекты при наведении */
+.social-links a:hover {
+  transform: translateY(-3px); /* Подъем при наведении */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.social-links a:hover[href*="vk.com"] {
+  background: var(--vk-color);
+  color: white;
+}
+
+.social-links a:hover[href*="t.me"] {
+  background: var(--telegram-color);
+  color: white;
+}
+
+.social-links a:hover[href*="youtube.com"] {
+  background: var(--youtube-color);
+  color: white;
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ СЕКЦИЯ "ОБО МНЕ"                                                          │
+│ Стили для раздела с биографией и образованием                             │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Две колонки */
+  gap: 3rem;                   /* Расстояние между колонками */
+  align-items: center;         /* Вертикальное центрирование */
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.education-title {
+  font-size: 1.6rem;
+  color: var(--purple);
+  margin: 2.5rem 0 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.education-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--purple);
+  border-radius: 3px;
+}
+
+.education-item {
+  border-left: 3px solid var(--purple); /* Левая граница */
+  padding-left: 1.25rem;
+  margin-bottom: 1.75rem;
+  padding-top: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.education-item:hover {
+  border-left-color: var(--pink); /* Изменение цвета границы при наведении */
+  transform: translateX(5px);   /* Сдвиг вправо */
+}
+
+.education-item h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+  color: var(--text);
+}
+
+.degree {
+  color: var(--purple-light);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.period {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 20px;         /* Закругленные углы */
+  display: block;
+  border: 2px solid rgba(139, 92, 246, 0.2);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.about-image img:hover {
+  transform: scale(1.02);      /* Увеличение при наведении */
+  box-shadow: 0 20px 45px rgba(139, 92, 246, 0.3);
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ СЕКЦИЯ ПОРТФОЛИО                                                          │
+│ Стили для карточек с музыкальными проектами                               │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Адаптивная сетка */
+  gap: 2.5rem;                 /* Расстояние между карточками */
+  margin-top: 2rem;
+}
+
+.portfolio-item {
+  position: relative;
+  border-radius: 20px;         /* Закругленные углы */
+  overflow: hidden;            /* Скрыть выступающее содержимое */
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-10px); /* Подъем при наведении */
+  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.25);
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: 280px;               /* Фиксированная высота изображения */
+  object-fit: cover;           /* Корректное отображение */
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.08);      /* Увеличение изображения при наведении */
+}
+
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;   /* Контент внизу */
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 10;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;                  /* Показать оверлей при наведении */
+}
+
+.portfolio-content {
+  color: white;
+  position: relative;
+  z-index: 11;                 /* Выше оверлея */
+}
+
+.portfolio-year {
+  color: var(--pink);
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(236, 72, 153, 0.2);
+  border-radius: 20px;
+}
+
+.portfolio-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: white;
+  line-height: 1.3;
+}
+
+.portfolio-content p {
+  color: var(--text-light);
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ КНОПКИ                                                                   │
+│ Стили для всех кнопок на сайте                                            │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.btn {
+  padding: 0.8rem 1.8rem;
+  background: var(--gradient-primary); /* Градиентный фон */
+  color: white;
+  border: none;
+  border-radius: 12px;         /* Закругленные углы */
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.btn:hover {
+  transform: translateY(-2px); /* Подъем при наведении */
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+.btn:active {
+  transform: translateY(1px);  /* Нажатие */
+}
+
+.btn-gradient {
+  background: var(--gradient-primary);
+}
+
+.btn-large {
+  padding: 1.1rem 2.2rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+/* Кнопки для прослушивания треков */
+.portfolio-content .btn {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.portfolio-content .btn:hover {
+  background: white;
+  color: #0f0f0f;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ СЕКЦИЯ СОБЫТИЙ                                                            │
+│ Стили для списка предстоящих выступлений                                  │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.events-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;                   /* Расстояние между событиями */
+}
+
+.event-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 2rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: var(--gradient-primary);
+}
+
+.event-item:hover {
+  transform: translateX(5px);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.event-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(139, 92, 246, 0.15);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--purple);
+  flex-shrink: 0;
+  font-size: 1.8rem;
+}
+
+.event-info > * {
+  margin-bottom: 0.35rem;
+}
+
+.event-date {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: var(--purple-light);
+}
+
+.event-venue {
+  color: white;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.event-desc {
+  color: var(--text-light);
+  font-size: 1.05rem;
+  max-width: 400px;
+}
+
+.event-city {
+  color: var(--pink);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ СЕКЦИЯ МЕДИА                                                              │
+│ Стили для вкладок с аудио, видео и фото                                    │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.media-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.media-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.tab-btn {
+  padding: 1rem 1.5rem;
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  color: var(--text-light);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.05rem;
+  font-weight: 500;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tab-btn:hover {
+  color: var(--purple-light);
+  border-color: var(--purple);
+}
+
+.tab-btn.active {
+  color: white;
+  border-color: var(--purple);
+  background: rgba(139, 92, 246, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gradient-primary);
+}
+
+.tab-btn i {
+  font-size: 1.3rem;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+.media-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.media-item {
+  padding: 1.25rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.media-item:hover {
+  border-color: var(--purple);
+  transform: translateX(5px);
+  background: rgba(139, 92, 246, 0.05);
+}
+
+.media-item i {
+  color: var(--purple);
+  font-size: 1.5rem;
+  min-width: 30px;
+}
+
+.media-link {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.media-link:hover {
+  color: var(--purple);
+  text-decoration: underline;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.photo-grid img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+  border: 1px solid var(--border);
+  transition: transform 0.4s ease;
+}
+
+.photo-grid img:hover {
+  transform: scale(1.05);
+  border-color: var(--purple);
+}
+
+.media-player-placeholder {
+  flex: 1;
+  min-width: 300px;
+  height: 300px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 2rem;
+  line-height: 1.5;
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ СЕКЦИЯ ПРЕССЫ                                                             │
+│ Стили для отзывов критиков и СМИ                                          │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.press-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.press-item {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.4s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.press-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--purple);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.press-item::before {
+  content: "\"";
+  position: absolute;
+  top: -25px;
+  left: 25px;
+  font-size: 5rem;
+  color: var(--purple);
+  opacity: 0.2;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.press-item p {
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  color: var(--text-light);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+  flex-grow: 1;
+}
+
+.press-item p::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: -5px;
+  color: var(--pink);
+  opacity: 0.7;
+  font-size: 2rem;
+  font-family: Georgia, serif;
+}
+
+.press-item p::after {
+  content: '"';
+  position: absolute;
+  bottom: -40px;
+  right: -5px;
+  color: var(--pink);
+  opacity: 0.7;
+  font-size: 2rem;
+  font-family: Georgia, serif;
+}
+
+.press-source {
+  color: var(--purple);
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.press-source::before {
+  content: '★';
+  color: #FFD700;
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ СЕКЦИЯ КОНТАКТОВ                                                          │
+│ Стили для контактной информации и формы                                   │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  margin-top: 2rem;
+}
+
+.contact-card {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+  border-color: var(--purple);
+  transform: translateY(-3px);
+}
+
+.contact-card i {
+  width: 56px;
+  height: 56px;
+  background: rgba(139, 92, 246, 0.15);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--purple);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.contact-card h3 {
+  margin-bottom: 0.4rem;
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
+.contact-card a {
+  color: var(--purple-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+  display: inline-block;
+  margin-top: 0.25rem;
+}
+
+.contact-card a:hover {
+  color: var(--purple);
+  text-decoration: underline;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 1.2rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 1rem;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--text-light);
+  opacity: 0.7;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ ФУТЕР (ПОДВАЛ)                                                            │
+│ Стили для нижней части сайта                                              │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+.footer {
+  padding: 3.5rem 0 2rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg-dark);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-text {
+  text-align: center;
+  flex: 1;
+  min-width: 300px;
+}
+
+.footer-text p {
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.footer-text p:last-child {
+  color: var(--purple-light);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-social a {
+  color: var(--text-light);
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.footer-social a:hover {
+  color: var(--purple);
+  transform: translateY(-3px);
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ АНИМАЦИИ                                                                 │
+│ Ключевые кадры для CSS-анимаций                                           │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+@keyframes pulse {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.05); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
+│ АДАПТИВНЫЙ ДИЗАЙН                                                         │
+│ Медиа-запросы для мобильных устройств и планшетов                         │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+/* Планшеты и мобильные устройства */
+@media (max-width: 900px) {
+  .about-grid,
+  .contact-container {
+    grid-template-columns: 1fr; /* Одна колонка на мобильных */
+  }
+  
+  .media-container {
+    flex-direction: column;
+  }
+  
+  .media-tabs,
+  .media-content,
+  .media-player-placeholder {
+    width: 100%;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-title {
+    font-size: 2.3rem;
+  }
+  
+  .hero-avatar {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+  .nav {
+    display: none;          /* Скрыть десктопное меню */
+  }
+  
+  .mobile-menu-toggle {
+    display: block;         /* Показать мобильное меню */
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .hero {
+    padding-top: 120px;     /* Меньше отступ сверху */
+  }
+  
+  .hero-avatar {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-tagline {
+    font-size: 1.2rem;
+    padding: 0 15px;
+  }
+  
+  .portfolio-grid,
+  .press-grid {
+    grid-template-columns: 1fr; /* Одна колонка */
+  }
+  
+  .events-list {
+    max-width: 100%;
+  }
+  
+  .event-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .event-icon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .contact-container {
+    gap: 2rem;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .btn-large {
+    font-size: 1.1rem;
+  }
+}
