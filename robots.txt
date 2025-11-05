@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blackbabycat.ru/sitemap.xml
+
+# Запрещаем индексацию служебных файлов
+Disallow: /node_modules/
+Disallow: /private/
