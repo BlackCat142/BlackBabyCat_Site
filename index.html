@@ -528,8 +528,14 @@
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         updateThemeIcon();
+        
+        // Принудительное обновление стилей
+        setTimeout(() => {
+          window.dispatchEvent(new Event('resize'));
+        }, 100);
       }
       
+      // Обработчики событий для всех кнопок переключения темы
       if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
       }
