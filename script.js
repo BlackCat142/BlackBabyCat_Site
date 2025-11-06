@@ -47,3 +47,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+// Автоматическое обновление года в футере
+document.addEventListener('DOMContentLoaded', function() {
+  const currentYearElement = document.getElementById('current-year');
+  if (currentYearElement) {
+    currentYearElement.textContent = new Date().getFullYear();
+  }
+});
