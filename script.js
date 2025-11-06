@@ -85,8 +85,8 @@ function initSite() {
 
 // === ФУНКЦИОНАЛ ПЕРЕКЛЮЧЕНИЯ ТЕМЫ ===
 function setupThemeToggle() {
-  const themeToggle = document.getElementById('theme-toggle');
-  const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+  // Находим все кнопки переключения темы
+  const themeToggles = document.querySelectorAll('.theme-toggle-btn');
   const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
   
   // Проверка сохраненной темы
@@ -105,9 +105,11 @@ function setupThemeToggle() {
     const iconElements = document.querySelectorAll('.theme-toggle-btn i');
     
     iconElements.forEach(icon => {
-      icon.className = currentTheme === 'dark' 
-        ? 'fas fa-moon' 
-        : 'fas fa-sun';
+      if (icon) {
+        icon.className = currentTheme === 'dark' 
+          ? 'fas fa-moon' 
+          : 'fas fa-sun';
+      }
     });
   }
   
@@ -128,14 +130,12 @@ function setupThemeToggle() {
     }, 100);
   }
   
-  // Обработчики событий
-  if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
-  }
-  
-  if (mobileThemeToggle) {
-    mobileThemeToggle.addEventListener('click', toggleTheme);
-  }
+  // Обработчики событий для всех кнопок переключения темы
+  themeToggles.forEach(toggle => {
+    if (toggle) {
+      toggle.addEventListener('click', toggleTheme);
+    }
+  });
   
   // Отслеживание системной темы
   prefersDarkScheme.addEventListener('change', (e) => {
@@ -349,10 +349,18 @@ function generateArtistThought() {
   return `💭 "${action} музыку, которая передаёт ${emotion} через ${theme}. Это мой путь..."`;
 }
 
-// Запускаем инициализацию при загрузке DOM
-document.addEventListener('DOMContentLoaded', initSite);
+// Проверка существования DOM перед инициализацией
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSite);
+} else {
+  initSite();
+}
 
 // Дополнительная защита: запускаем инициализацию при полной загрузке страницы
 window.addEventListener('load', () => {
   console.log('Страница полностью загружена');
+  // Принудительное обновление стилей после полной загрузки
+  setTimeout(() => {
+    window.dispatchEvent(new Event('resize'));
+  }, 100);
 });
