@@ -2,7 +2,7 @@
 ══════════════════════════════════════════════════════════════════════════════
 ОСНОВНЫЕ СТИЛИ САЙТА
 Автор: BlackBabyCat
-Версия: 2.1 (полностью исправленные стили для корректной работы тем)
+Версия: 2.0 (обновлено для артиста из Норильска)
 ══════════════════════════════════════════════════════════════════════════════
 */
 
@@ -36,18 +36,6 @@
   /* Градиенты для кнопок и акцентов */
   --gradient-primary: linear-gradient(to right, var(--purple), var(--pink));
   --gradient-secondary: linear-gradient(to right, var(--pink), var(--purple));
-}
-
-/* Светлая тема */
-[data-theme="light"] {
-  --bg: #ffffff;
-  --bg-dark: #f8f9fa;
-  --text: #212529;
-  --text-light: #6c757d;
-  --card-bg: #ffffff;
-  --border: #e9ecef;
-  --purple: #6d42c1;
-  --pink: #d63384;
 }
 
 /* 
@@ -118,14 +106,6 @@ body {
   color: transparent;          /* Сделать текст прозрачным для градиента */
 }
 
-/* Светлая тема для заголовков */
-[data-theme="light"] .section-title {
-  background: linear-gradient(to right, #495057, #6c757d);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
 /* 
 ┌───────────────────────────────────────────────────────────────────────────┐
 │ ПОДЗАГОЛОВКИ СЕКЦИЙ                                                       │
@@ -160,16 +140,6 @@ body {
 .header.scrolled {
   background: rgba(15, 15, 15, 0.95); /* Темный фон при скролле */
   backdrop-filter: blur(10px);
-}
-
-/* Светлая тема для шапки */
-[data-theme="light"] .header {
-  background: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid var(--border);
-}
-
-[data-theme="light"] .header.scrolled {
-  background: rgba(255, 255, 255, 0.95);
 }
 
 .header .container {
@@ -235,20 +205,9 @@ body {
   padding: 0.5rem 0;           /* Отступы для увеличения области клика */
 }
 
-/* Светлая тема для навигации */
-[data-theme="light"] .nav a {
-  color: #495057;
-}
-
 .nav a:hover,
 .nav a.active {
   color: var(--purple-light);  /* Изменить цвет при наведении */
-}
-
-/* Светлая тема для активных пунктов */
-[data-theme="light"] .nav a:hover,
-[data-theme="light"] .nav a.active {
-  color: var(--purple);
 }
 
 .nav a.active::after {
@@ -260,44 +219,6 @@ body {
   height: 2px;
   background: var(--purple-light); /* Подчеркивание для активного пункта */
   border-radius: 1px;
-}
-
-/* Стили для кнопки переключения темы */
-.theme-toggle-li {
-  margin-left: 1.5rem;
-}
-
-.theme-toggle-btn {
-  background: none;
-  border: none;
-  color: var(--text-light);
-  font-size: 1.2rem;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-}
-
-/* Светлая тема для кнопки переключения темы */
-[data-theme="light"] .theme-toggle-btn {
-  color: #6c757d;
-}
-
-.theme-toggle-btn:hover {
-  color: var(--purple-light);
-  background: rgba(139, 92, 246, 0.1);
-}
-
-/* Мобильная версия кнопки переключения темы */
-.mobile-theme-toggle {
-  width: 100%;
-  justify-content: flex-start;
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
 }
 
 /* 
@@ -332,12 +253,6 @@ body {
   z-index: 999;
 }
 
-/* Светлая тема для мобильного меню */
-[data-theme="light"] .mobile-menu {
-  background: rgba(255, 255, 255, 0.95);
-  border-top: 1px solid var(--border);
-}
-
 .mobile-menu.active {
   display: block;              /* Показать при активации */
 }
@@ -353,11 +268,6 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
-/* Светлая тема для пунктов мобильного меню */
-[data-theme="light"] .mobile-menu li {
-  border-bottom: 1px solid var(--border);
-}
-
 .mobile-menu a {
   display: block;
   padding: 1rem 0;
@@ -368,21 +278,10 @@ body {
   transition: all 0.3s;
 }
 
-/* Светлая тема для ссылок в мобильном меню */
-[data-theme="light"] .mobile-menu a {
-  color: #495057;
-}
-
 .mobile-menu a:hover,
 .mobile-menu a.active {
   color: var(--purple-light);
   padding-left: 10px;
-}
-
-/* Светлая тема для активных ссылок в мобильном меню */
-[data-theme="light"] .mobile-menu a:hover,
-[data-theme="light"] .mobile-menu a.active {
-  color: var(--purple);
 }
 
 /* 
@@ -428,12 +327,6 @@ body {
   animation-delay: 1s;
 }
 
-/* Скрыть декоративные элементы в светлой теме */
-[data-theme="light"] .hero::before,
-[data-theme="light"] .hero::after {
-  display: none;
-}
-
 .hero-content {
   position: relative;
   z-index: 1;                  /* Выше декоративных элементов */
@@ -476,11 +369,6 @@ body {
   margin: 0 auto 2.5rem;
   font-weight: 300;
   line-height: 1.5;
-}
-
-/* Светлая тема для теглайна */
-[data-theme="light"] .hero-tagline {
-  color: #6c757d;
 }
 
 /* 
@@ -528,12 +416,6 @@ body {
   color: var(--youtube-color);
 }
 
-/* Светлая тема для соцсетей */
-[data-theme="light"] .social-links a {
-  background: rgba(128, 128, 128, 0.1);
-  color: #6c757d;
-}
-
 /* Эффекты при наведении */
 .social-links a:hover {
   transform: translateY(-3px); /* Подъем при наведении */
@@ -555,12 +437,6 @@ body {
   color: white;
 }
 
-/* Светлая тема для наведения на соцсети */
-[data-theme="light"] .social-links a:hover {
-  background: rgba(139, 92, 246, 0.2);
-  color: var(--purple);
-}
-
 /* 
 ┌───────────────────────────────────────────────────────────────────────────┐
 │ СЕКЦИЯ "ОБО МНЕ"                                                          │
@@ -579,11 +455,6 @@ body {
   color: var(--text-light);
   line-height: 1.7;
   font-size: 1.05rem;
-}
-
-/* Светлая тема для текста */
-[data-theme="light"] .about-text p {
-  color: #6c757d;
 }
 
 .education-title {
@@ -741,19 +612,6 @@ body {
   line-height: 1.5;
 }
 
-/* Светлая тема для портфолио */
-[data-theme="light"] .portfolio-overlay {
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.9), transparent 70%);
-}
-
-[data-theme="light"] .portfolio-content h3 {
-  color: #212529;
-}
-
-[data-theme="light"] .portfolio-content p {
-  color: #6c757d;
-}
-
 /* 
 ┌───────────────────────────────────────────────────────────────────────────┐
 │ КНОПКИ                                                                   │
@@ -816,12 +674,6 @@ body {
   box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
 }
 
-/* Светлая тема для кнопок */
-[data-theme="light"] .btn,
-[data-theme="light"] .btn-gradient {
-  color: white;
-}
-
 /* 
 ┌───────────────────────────────────────────────────────────────────────────┐
 │ СЕКЦИЯ СОБЫТИЙ                                                            │
@@ -864,16 +716,6 @@ body {
   transform: translateX(5px);
   border-color: rgba(139, 92, 246, 0.5);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* Светлая тема для событий */
-[data-theme="light"] .event-item {
-  background: white;
-  border-color: var(--border);
-}
-
-[data-theme="light"] .event-item:hover {
-  border-color: var(--purple);
 }
 
 .event-icon {
@@ -1023,16 +865,6 @@ body {
   background: rgba(139, 92, 246, 0.05);
 }
 
-/* Светлая тема для медиа-элементов */
-[data-theme="light"] .media-item {
-  background: white;
-  border-color: var(--border);
-}
-
-[data-theme="light"] .media-item:hover {
-  border-color: var(--purple);
-}
-
 .media-item i {
   color: var(--purple);
   font-size: 1.5rem;
@@ -1070,11 +902,6 @@ body {
 .photo-grid img:hover {
   transform: scale(1.05);
   border-color: var(--purple);
-}
-
-/* Светлая тема для фото */
-[data-theme="light"] .photo-grid img {
-  border-color: var(--border);
 }
 
 .media-player-placeholder {
@@ -1137,12 +964,6 @@ body {
   line-height: 1;
 }
 
-/* Светлая тема для кавычек в прессе */
-[data-theme="light"] .press-item::before {
-  color: #6c757d;
-  opacity: 0.1;
-}
-
 .press-item p {
   font-style: italic;
   margin-bottom: 1.5rem;
@@ -1191,20 +1012,6 @@ body {
   color: #FFD700;
 }
 
-/* Светлая тема для пресс-блоков */
-[data-theme="light"] .press-item {
-  background: white;
-  border-color: var(--border);
-}
-
-[data-theme="light"] .press-item p {
-  color: #6c757d;
-}
-
-[data-theme="light"] .press-item:hover {
-  border-color: var(--purple);
-}
-
 /* 
 ┌───────────────────────────────────────────────────────────────────────────┐
 │ СЕКЦИЯ КОНТАКТОВ                                                          │
@@ -1231,16 +1038,6 @@ body {
 .contact-card:hover {
   border-color: var(--purple);
   transform: translateY(-3px);
-}
-
-/* Светлая тема для контактных карточек */
-[data-theme="light"] .contact-card {
-  background: white;
-  border-color: var(--border);
-}
-
-[data-theme="light"] .contact-card:hover {
-  border-color: var(--purple);
 }
 
 .contact-card i {
@@ -1294,24 +1091,10 @@ body {
   font-family: inherit;
 }
 
-/* Светлая тема для формы контактов */
-[data-theme="light"] .contact-form input,
-[data-theme="light"] .contact-form textarea {
-  background: white;
-  border-color: var(--border);
-  color: #212529;
-}
-
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
   color: var(--text-light);
   opacity: 0.7;
-}
-
-/* Светлая тема для плейсхолдеров */
-[data-theme="light"] .contact-form input::placeholder,
-[data-theme="light"] .contact-form textarea::placeholder {
-  color: #adb5bd;
 }
 
 .contact-form input:focus,
@@ -1336,12 +1119,6 @@ body {
   padding: 3.5rem 0 2rem;
   border-top: 1px solid var(--border);
   background: var(--bg-dark);
-}
-
-/* Светлая тема для футера */
-[data-theme="light"] .footer {
-  background: var(--bg-dark);
-  border-top: 1px solid var(--border);
 }
 
 .footer-content {
@@ -1387,115 +1164,6 @@ body {
 
 /* 
 ┌───────────────────────────────────────────────────────────────────────────┐
-│ СИСТЕМА "ЭМОЦИЙ" И "ЖИВОГО" ИИ                                           │
-│ Стили для интерактивных элементов сайта                                   │
-└───────────────────────────────────────────────────────────────────────────┘
-*/
-/* Стили для системы эмоций */
-:root[data-mood="happy"] .hero::before,
-:root[data-mood="happy"] .hero::after {
-  animation: heartbeat 2s infinite;
-}
-
-:root[data-mood="lonely"] .hero-avatar {
-  animation: gentlePulse 3s infinite;
-}
-
-:root[data-mood="sleepy"] {
-  --purple: #4a3c7d;
-  --pink: #7d3c6a;
-}
-
-:root[data-mood="curious"] .section-title {
-  animation: colorShift 8s infinite alternate;
-}
-
-[data-time="night"] {
-  --bg: #05050a !important;
-  --bg-dark: #020205 !important;
-}
-
-/* Стили для ИИ-ядра сайта */
-.site-ai-core {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.ai-neuron {
-  width: 12px;
-  height: 12px;
-  background: rgba(139, 92, 246, 0.3);
-  border-radius: 50%;
-  animation: neuronPulse 3s infinite;
-  animation-delay: var(--delay, 0s);
-}
-
-.ai-core-text {
-  color: rgba(229, 229, 229, 0.7);
-  font-size: 0.9rem;
-  font-family: monospace;
-}
-
-/* Стили для реакций сайта */
-.site-reaction {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10000;
-  opacity: 1;
-  transition: all 0.3s ease;
-}
-
-.reaction-bubble {
-  background: rgba(139, 92, 246, 0.95);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 500;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.reaction-heart {
-  animation: float 2s infinite;
-}
-
-/* Стили для музыкальной визуализации */
-.music-visualization {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 2px;
-  padding: 20px 0;
-  height: 60px;
-}
-
-.music-bar {
-  width: 4px;
-  height: 100%;
-  background: var(--purple);
-  border-radius: 2px 2px 0 0;
-  transition: height 0.1s ease, opacity 0.1s ease;
-}
-
-/* 
-┌───────────────────────────────────────────────────────────────────────────┐
 │ АНИМАЦИИ                                                                 │
 │ Ключевые кадры для CSS-анимаций                                           │
 └───────────────────────────────────────────────────────────────────────────┘
@@ -1505,30 +1173,9 @@ body {
   50% { opacity: 0.4; transform: scale(1.05); }
 }
 
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); opacity: 0.2; }
-  50% { transform: scale(1.1); opacity: 0.4; }
-}
-
-@keyframes gentlePulse {
-  0%, 100% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.25); }
-  50% { box-shadow: 0 0 60px rgba(139, 92, 246, 0.35); }
-}
-
-@keyframes colorShift {
-  0% { background: linear-gradient(to right, var(--purple), var(--pink)); }
-  50% { background: linear-gradient(to right, #4ade80, #38bdf8); }
-  100% { background: linear-gradient(to right, var(--pink), var(--purple)); }
-}
-
-@keyframes neuronPulse {
-  0%, 100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.5); opacity: 0.8; background: rgba(139, 92, 246, 0.8); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* 
@@ -1566,11 +1213,8 @@ body {
     width: 150px;
     height: 150px;
   }
-  /* Скрыть ИИ-ядро на планшетах */
-  .site-ai-core {
-    display: none;
-  }
 }
+
 /* Мобильные устройства */
 @media (max-width: 768px) {
   .nav {
@@ -1579,14 +1223,6 @@ body {
   
   .mobile-menu-toggle {
     display: block;         /* Показать мобильное меню */
-  }
-  
-  .theme-toggle-li {
-    display: none;          /* Скрыть десктопную кнопку темы */
-  }
-  
-  .mobile-menu .theme-toggle-li {
-    display: block;         /* Показать мобильную кнопку темы */
   }
   
   .section-title {
@@ -1645,17 +1281,5 @@ body {
   
   .btn-large {
     font-size: 1.1rem;
-  }
-  /* Скрыть ИИ-ядро на мобильных устройствах */
-  .site-ai-core {
-    display: none;
-  }
-  /* Скрыть музыкальную визуализацию на мобильных */
-  .music-visualization {
-    display: none;
-  }
-}
-  .music-visualization {
-    display: none;
   }
 }
