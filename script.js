@@ -181,3 +181,37 @@ document.addEventListener('DOMContentLoaded', function() {
   
   console.log(`✨ Сайт проснулся! Посещений: ${siteMemory.visitCount}`);
 });
+function generateArtistThought() {
+  const themes = ['звук', 'эмоции', 'Норильск', 'танец', 'ритм', 'свобода'];
+  const actions = ['создаю', 'чувствую', 'мечтаю', 'экспериментирую', 'делюсь'];
+  const emotions = ['радость', 'грусть', 'вдохновение', 'тоска', 'энергия'];
+  
+  const theme = themes[Math.floor(Math.random() * themes.length)];
+  const action = actions[Math.floor(Math.random() * actions.length)];
+  const emotion = emotions[Math.floor(Math.random() * emotions.length)];
+  
+  return `💭 "${action} музыку, которая передаёт ${emotion} через ${theme}. Это мой путь..."`;
+}
+// Имитация визуализации музыки
+function createMusicVisualization() {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  
+  const bars = 20;
+  let html = '';
+  
+  for (let i = 0; i < bars; i++) {
+    html += `<div class="music-bar" style="--index: ${i}"></div>`;
+  }
+  
+  hero.insertAdjacentHTML('beforeend', `<div class="music-visualization">${html}</div>`);
+  
+  // Анимация "музыки"
+  setInterval(() => {
+    document.querySelectorAll('.music-bar').forEach(bar => {
+      const height = Math.random() * 100;
+      bar.style.height = `${height}%`;
+      bar.style.opacity = height > 50 ? '1' : '0.5';
+    });
+  }, 100);
+}
