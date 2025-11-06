@@ -473,5 +473,112 @@
     ]
   }
   </script>
+  <!-- Система "искусственного интеллекта" сайта -->
+<div class="site-ai-core" id="siteAiCore">
+  <div class="ai-neuron" style="--delay: 0s;"></div>
+  <div class="ai-neuron" style="--delay: 0.2s;"></div>
+  <div class="ai-neuron" style="--delay: 0.4s;"></div>
+  <div class="ai-neuron" style="--delay: 0.6s;"></div>
+  <div class="ai-core-text">
+    <span class="thinking-dot">.</span>
+    <span class="thinking-dot">.</span>
+    <span class="thinking-dot">.</span>
+  </div>
+</div>
+
+<style>
+.site-ai-core {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.ai-neuron {
+  width: 12px;
+  height: 12px;
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 50%;
+  animation: neuronPulse 3s infinite;
+  animation-delay: var(--delay);
+}
+
+.ai-core-text {
+  color: rgba(229, 229, 229, 0.7);
+  font-size: 0.9rem;
+  font-family: monospace;
+}
+
+.thinking-dot {
+  display: inline-block;
+  animation: thinkingPulse 1.5s infinite;
+}
+
+.thinking-dot:nth-child(2) { animation-delay: 0.3s; }
+.thinking-dot:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes neuronPulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.5); opacity: 0.8; background: rgba(139, 92, 246, 0.8); }
+}
+
+@keyframes thinkingPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+</style>
+
+<script>
+// Добавляем "мышление" сайта
+document.addEventListener('DOMContentLoaded', function() {
+  const aiCore = document.getElementById('siteAiCore');
+  const thinkingDots = document.querySelectorAll('.thinking-dot');
+  
+  // Сайт "думает" в фоне
+  setInterval(() => {
+    if (Math.random() > 0.7 && !document.hasFocus()) {
+      aiCore.style.opacity = '1';
+      setTimeout(() => {
+        if (Math.random() > 0.5) {
+          // Сайт "придумывает" что-то новое
+          const ideas = [
+            '🎵 Придумал новый хук для трека...',
+            '✨ Создал новый визуальный эффект...',
+            '🌌 Экспериментирую со звуковыми текстурами...',
+            '🎨 Меняю цветовую схему для настроения...',
+            '💫 Готовлю сюрприз для следующего посещения...'
+          ];
+          
+          const randomIdea = ideas[Math.floor(Math.random() * ideas.length)];
+          localStorage.setItem('siteLastIdea', randomIdea);
+          
+          aiCore.querySelector('.ai-core-text').textContent = randomIdea;
+        }
+      }, 2000);
+      
+      setTimeout(() => {
+        aiCore.style.opacity = '0';
+      }, 5000);
+    }
+  }, 30000); // Каждые 30 секунд
+  
+  // При фокусе на сайте показываем последнюю "идею"
+  window.addEventListener('focus', () => {
+    const lastIdea = localStorage.getItem('siteLastIdea');
+    if (lastIdea) {
+      aiCore.style.opacity = '1';
+      aiCore.querySelector('.ai-core-text').textContent = `💡 Помнишь? ${lastIdea}`;
+      
+      setTimeout(() => {
+        aiCore.style.opacity = '0';
+      }, 3000);
+    }
+  });
+});
+</script>
 </body>
 </html>
