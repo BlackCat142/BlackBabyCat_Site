@@ -73,11 +73,78 @@ function initSite() {
     currentYearElement.textContent = new Date().getFullYear();
   }
 
+  // === ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ===
+  setupThemeToggle();
+
   // === СИСТЕМА "ЭМОЦИЙ" САЙТА ===
   setupSitePersonality();
 
   // === ВИЗУАЛИЗАЦИЯ МУЗЫКИ ===
   createMusicVisualization();
+}
+
+// === ФУНКЦИОНАЛ ПЕРЕКЛЮЧЕНИЯ ТЕМЫ ===
+function setupThemeToggle() {
+  const themeToggle = document.getElementById('theme-toggle');
+  const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+  
+  // Проверка сохраненной темы
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  } else {
+    // Если тема не сохранена, используем системную тему
+    const systemTheme = prefersDarkScheme.matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', systemTheme);
+  }
+  
+  // Обновление иконки переключателя
+  function updateThemeIcon() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const iconElements = document.querySelectorAll('.theme-toggle-btn i');
+    
+    iconElements.forEach(icon => {
+      icon.className = currentTheme === 'dark' 
+        ? 'fas fa-moon' 
+        : 'fas fa-sun';
+    });
+  }
+  
+  updateThemeIcon();
+  
+  // Переключение темы
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon();
+    
+    // Принудительное обновление стилей для всех элементов
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 100);
+  }
+  
+  // Обработчики событий
+  if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+  }
+  
+  if (mobileThemeToggle) {
+    mobileThemeToggle.addEventListener('click', toggleTheme);
+  }
+  
+  // Отслеживание системной темы
+  prefersDarkScheme.addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      const newTheme = e.matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      updateThemeIcon();
+    }
+  });
 }
 
 // === СИСТЕМА "ЭМОЦИЙ" САЙТА ===
