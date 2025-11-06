@@ -1282,14 +1282,6 @@ body {
   gap: 1.25rem;
 }
 
-/* Светлая тема для формы контактов */
-[data-theme="light"] .contact-form input,
-[data-theme="light"] .contact-form textarea {
-  background: white;
-  border-color: var(--border);
-  color: #212529;
-}
-
 .contact-form input,
 .contact-form textarea {
   padding: 1.2rem;
@@ -1300,6 +1292,14 @@ body {
   font-size: 1rem;
   transition: all 0.3s;
   font-family: inherit;
+}
+
+/* Светлая тема для формы контактов */
+[data-theme="light"] .contact-form input,
+[data-theme="light"] .contact-form textarea {
+  background: white;
+  border-color: var(--border);
+  color: #212529;
 }
 
 .contact-form input::placeholder,
@@ -1651,6 +1651,10 @@ body {
     display: none;
   }
   /* Скрыть музыкальную визуализацию на мобильных */
+  .music-visualization {
+    display: none;
+  }
+}
   .music-visualization {
     display: none;
   }
