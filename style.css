@@ -1384,18 +1384,148 @@ body {
 
 /* 
 ┌───────────────────────────────────────────────────────────────────────────┐
+│ СИСТЕМА "ЭМОЦИЙ" И "ЖИВОГО" ИИ                                           │
+│ Стили для интерактивных элементов сайта                                   │
+└───────────────────────────────────────────────────────────────────────────┘
+*/
+/* Стили для системы эмоций */
+:root[data-mood="happy"] .hero::before,
+:root[data-mood="happy"] .hero::after {
+  animation: heartbeat 2s infinite;
+}
+
+:root[data-mood="lonely"] .hero-avatar {
+  animation: gentlePulse 3s infinite;
+}
+
+:root[data-mood="sleepy"] {
+  --purple: #4a3c7d;
+  --pink: #7d3c6a;
+}
+
+:root[data-mood="curious"] .section-title {
+  animation: colorShift 8s infinite alternate;
+}
+
+[data-time="night"] {
+  --bg: #05050a !important;
+  --bg-dark: #020205 !important;
+}
+
+/* Стили для ИИ-ядра сайта */
+.site-ai-core {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ai-neuron {
+  width: 12px;
+  height: 12px;
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 50%;
+  animation: neuronPulse 3s infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.ai-core-text {
+  color: rgba(229, 229, 229, 0.7);
+  font-size: 0.9rem;
+  font-family: monospace;
+}
+
+/* Стили для реакций сайта */
+.site-reaction {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.reaction-bubble {
+  background: rgba(139, 92, 246, 0.95);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.reaction-heart {
+  animation: float 2s infinite;
+}
+
+/* Стили для музыкальной визуализации */
+.music-visualization {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  padding: 20px 0;
+  height: 60px;
+}
+
+.music-bar {
+  width: 4px;
+  height: 100%;
+  background: var(--purple);
+  border-radius: 2px 2px 0 0;
+  transition: height 0.1s ease, opacity 0.1s ease;
+}
+
+/* 
+┌───────────────────────────────────────────────────────────────────────────┐
 │ АНИМАЦИИ                                                                 │
 │ Ключевые кадры для CSS-анимаций                                           │
 └───────────────────────────────────────────────────────────────────────────┘
 */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.1); opacity: 0.4; }
+}
+
+@keyframes gentlePulse {
+  0%, 100% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.25); }
+  50% { box-shadow: 0 0 60px rgba(139, 92, 246, 0.35); }
+}
+
+@keyframes colorShift {
+  0% { background: linear-gradient(to right, var(--purple), var(--pink)); }
+  50% { background: linear-gradient(to right, #4ade80, #38bdf8); }
+  100% { background: linear-gradient(to right, var(--pink), var(--purple)); }
+}
+
+@keyframes neuronPulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.5); opacity: 0.8; background: rgba(139, 92, 246, 0.8); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
 @keyframes pulse {
   0%, 100% { opacity: 0.2; transform: scale(1); }
   50% { opacity: 0.4; transform: scale(1.05); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 /* 
@@ -1432,6 +1562,11 @@ body {
   .hero-avatar {
     width: 150px;
     height: 150px;
+  }
+  
+  /* Скрыть ИИ-ядро на планшетах */
+  .site-ai-core {
+    display: none;
   }
 }
 
@@ -1510,83 +1645,14 @@ body {
   .btn-large {
     font-size: 1.1rem;
   }
-}
-/* Система "эмоций" сайта */
-:root[data-mood="happy"] .hero::before,
-:root[data-mood="happy"] .hero::after {
-  animation: heartbeat 2s infinite;
-}
-
-:root[data-mood="lonely"] .hero-avatar {
-  animation: gentlePulse 3s infinite;
-}
-
-:root[data-mood="sleepy"] {
-  --purple: #4a3c7d;
-  --pink: #7d3c6a;
-}
-
-:root[data-mood="curious"] .section-title {
-  animation: colorShift 8s infinite alternate;
-}
-
-:root[data-time="night"] {
-  --bg: #05050a;
-  --bg-dark: #020205;
-}
-
-:root[data-time="night"] .social-links a {
-  box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
-}
-
-/* Анимации для системы эмоций */
-@keyframes heartbeat {
-  0% { transform: scale(1); opacity: 0.2; }
-  50% { transform: scale(1.1); opacity: 0.4; }
-  100% { transform: scale(1); opacity: 0.2; }
-}
-
-@keyframes gentlePulse {
-  0%, 100% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.25); }
-  50% { box-shadow: 0 0 60px rgba(139, 92, 246, 0.35); }
-}
-
-@keyframes colorShift {
-  0% { background: linear-gradient(to right, var(--purple), var(--pink)); }
-  50% { background: linear-gradient(to right, #4ade80, #38bdf8); }
-  100% { background: linear-gradient(to right, var(--pink), var(--purple)); }
-}
-
-/* Реакции сайта */
-.site-reaction {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10000;
-  opacity: 1;
-  transition: all 0.3s ease;
-}
-
-.reaction-bubble {
-  background: rgba(139, 92, 246, 0.95);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 500;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.reaction-heart {
-  animation: float 2s infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  
+  /* Скрыть ИИ-ядро на мобильных устройствах */
+  .site-ai-core {
+    display: none;
+  }
+  
+  /* Скрыть музыкальную визуализацию на мобильных */
+  .music-visualization {
+    display: none;
+  }
 }
