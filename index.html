@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#8b5cf6">
+  <meta name="theme-color" content="#8b5cf6">
   
   <!-- Ключевые SEO-теги -->
   <title>BlackBabyCat — Музыкант из Норильска | Официальный сайт</title>
@@ -63,6 +63,11 @@
           <li><a href="#медиа">Медиа</a></li>
           <li><a href="#пресса">Пресса</a></li>
           <li><a href="#контакты">Контакты</a></li>
+          <li class="theme-toggle-li">
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключить тему">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
         </ul>
       </nav>
       <button class="mobile-menu-toggle" id="mobileMenuToggle">
@@ -78,6 +83,11 @@
         <li><a href="#медиа">Медиа</a></li>
         <li><a href="#пресса">Пресса</a></li>
         <li><a href="#контакты">Контакты</a></li>
+        <li>
+          <button id="mobile-theme-toggle" class="theme-toggle-btn mobile-theme-toggle" aria-label="Переключить тему">
+            <i class="fas fa-moon"></i>
+          </button>
+        </li>
       </ul>
     </div>
   </header>
@@ -293,48 +303,48 @@
   </section>
 
   <!-- Контакты -->
-<section id="контакты" class="section contact">
-  <div class="container">
-    <h2 class="section-title">Связь с артистом</h2>
-    <p class="section-subtitle">Заинтересованы в сотрудничестве или хотите забронировать BlackBabyCat для вашего мероприятия? Напишите нам на почту</p>
-    <div class="contact-container">
-      <div class="contact-info">
-        <div class="contact-card">
-          <i class="fas fa-envelope"></i>
-          <div>
-            <h3>Электронная почта</h3>
-            <a href="mailto:blackbabycat@blackbabycat.ru">blackbabycat@blackbabycat.ru</a>
+  <section id="контакты" class="section contact">
+    <div class="container">
+      <h2 class="section-title">Связь с артистом</h2>
+      <p class="section-subtitle">Заинтересованы в сотрудничестве или хотите забронировать BlackBabyCat для вашего мероприятия? Напишите нам на почту</p>
+      <div class="contact-container">
+        <div class="contact-info">
+          <div class="contact-card">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Электронная почта</h3>
+              <a href="mailto:blackbabycat@blackbabycat.ru">blackbabycat@blackbabycat.ru</a>
+            </div>
           </div>
-        </div>
-        <div class="contact-card">
-          <i class="fas fa-map-marker-alt"></i>
-          <div>
-            <h3>Местоположение</h3>
-            <p>Норильск, Россия</p>
+          <div class="contact-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h3>Местоположение</h3>
+              <p>Норильск, Россия</p>
+            </div>
           </div>
-        </div>
-        <div class="contact-card">
-          <i class="fas fa-music"></i>
-          <div>
-            <h3>Музыкальные площадки</h3>
-            <p>Доступно на всех стриминговых платформах</p>
+          <div class="contact-card">
+            <i class="fas fa-music"></i>
+            <div>
+              <h3>Музыкальные площадки</h3>
+              <p>Доступно на всех стриминговых платформах</p>
+            </div>
           </div>
-        </div>
-        <div class="social-links contact-social">
-          <a href="https://vk.com/blackbabycat_official" target="_blank" aria-label="ВКонтакте">
-            <i class="fab fa-vk"></i>
-          </a>
-          <a href="https://t.me/BlackBabyCat" target="_blank" aria-label="Telegram">
-            <i class="fab fa-telegram"></i>
-          </a>
-          <a href="https://www.youtube.com/@BlackBabyCat" target="_blank" aria-label="YouTube">
-            <i class="fab fa-youtube"></i>
-          </a>
+          <div class="social-links contact-social">
+            <a href="https://vk.com/blackbabycat_official" target="_blank" aria-label="ВКонтакте">
+              <i class="fab fa-vk"></i>
+            </a>
+            <a href="https://t.me/BlackBabyCat" target="_blank" aria-label="Telegram">
+              <i class="fab fa-telegram"></i>
+            </a>
+            <a href="https://www.youtube.com/@BlackBabyCat" target="_blank" aria-label="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
@@ -343,10 +353,10 @@
         <div class="logo-icon">B</div>
         <span class="logo-text">BlackBabyCat</span>
       </div>
-<div class="footer-text">
-  <p>© <span id="current-year"></span> BlackBabyCat. Все права защищены.</p>
-  <p>Создание уникального звука из Норильска</p>
-</div>
+      <div class="footer-text">
+        <p>© <span id="current-year"></span> BlackBabyCat. Все права защищены.</p>
+        <p>Создание уникального звука из Норильска</p>
+      </div>
       <div class="footer-social">
         <a href="https://vk.com/blackbabycat_official" target="_blank" aria-label="ВКонтакте">
           <i class="fab fa-vk"></i>
@@ -362,6 +372,67 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Автоматическое обновление года
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentYearElement = document.getElementById('current-year');
+      if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+      }
+      
+      // Темный/светлый режим
+      const themeToggle = document.getElementById('theme-toggle');
+      const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+      
+      // Проверка сохраненной темы
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+      
+      // Обновление иконки переключателя
+      function updateThemeIcon() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const iconElements = document.querySelectorAll('.theme-toggle-btn i');
+        
+        iconElements.forEach(icon => {
+          icon.className = currentTheme === 'dark' 
+            ? 'fas fa-moon' 
+            : 'fas fa-sun';
+        });
+      }
+      
+      updateThemeIcon();
+      
+      // Переключение темы
+      function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon();
+      }
+      
+      if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+      }
+      
+      if (mobileThemeToggle) {
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+      }
+      
+      // Отслеживание системной темы
+      prefersDarkScheme.addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+          const newTheme = e.matches ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', newTheme);
+          updateThemeIcon();
+        }
+      });
+    });
+  </script>
 
   <!-- Структурированные данные для SEO -->
   <script type="application/ld+json">
@@ -403,6 +474,4 @@
   }
   </script>
 </body>
-
 </html>
-
