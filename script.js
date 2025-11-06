@@ -47,13 +47,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
-
-// Обработка формы
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Спасибо! Ваше сообщение отправлено.');
-    this.reset();
-  });
-}
