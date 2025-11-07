@@ -1020,7 +1020,7 @@ body {
 */
 .contact-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr; /* Было: 1fr 1fr */
   gap: 3.5rem;
   margin-top: 2rem;
 }
