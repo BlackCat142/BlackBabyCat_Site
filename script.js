@@ -71,18 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    // Обработка формы
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Спасибо! Ваше сообщение отправлено.');
-            this.reset();
-        });
-    }
-});
-
+    
 // Функция переключения темы
 function toggleTheme() {
     const currentTheme = document.body.getAttribute('data-theme');
