@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   
   <url>
     <loc>https://blackbabycat.ru/</loc>
@@ -11,19 +10,19 @@
     
     <!-- Изображения для индексации -->
     <image:image>
-      <image:loc>https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&amp;as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&amp;from=bu&amp;u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&amp;cs=1280x0</image:loc>
+      <image:loc>https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg</image:loc>
       <image:caption>BlackBabyCat - Официальный портрет</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://sun9-60.userapi.com/s/v1/ig2/P_o0takqAuN8glR3g_5NyH7igPK8q0aC-eSpvrqf4RIeP-or2xXFIkyEiirg39LW6JwnLzJofoxgz2cbc1A7d4Me.jpg?quality=95&amp;as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2000x2000&amp;from=bu&amp;cs=2000x0</image:loc>
+      <image:loc>https://sun9-60.userapi.com/s/v1/ig2/P_o0takqAuN8glR3g_5NyH7igPK8q0aC-eSpvrqf4RIeP-or2xXFIkyEiirg39LW6JwnLzJofoxgz2cbc1A7d4Me.jpg</image:loc>
       <image:caption>BlackBabyCat feat. CodEK$ - Детка Remix обложка</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://sun9-47.userapi.com/s/v1/ig2/CCQF2pAUuf3BN31-Pswkx3ih9FmZR9kNjUKiWVGA6E8O5Mtb_mPO6yx_WpeqKv9evHQK7BfSa7qTHJfwLT2iLJuu.jpg?quality=95&amp;as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&amp;from=bu&amp;cs=2560x0</image:loc>
+      <image:loc>https://sun9-47.userapi.com/s/v1/ig2/CCQF2pAUuf3BN31-Pswkx3ih9FmZR9kNjUKiWVGA6E8O5Mtb_mPO6yx_WpeqKv9evHQK7BfSa7qTHJfwLT2iLJuu.jpg</image:loc>
       <image:caption>Крик в никуда - обложка трека</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://sun9-59.userapi.com/s/v1/ig2/hI6RndpG5SNtGXVn6FeFyqB0YUFoEUiecdRbApTbweGcE5N-8pS1Uvil9mSB1Yz7BTg8e4-OYIyH3bcJjZ15qpAw.jpg?quality=95&amp;as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&amp;from=bu&amp;cs=2560x0</image:loc>
+      <image:loc>https://sun9-59.userapi.com/s/v1/ig2/hI6RndpG5SNtGXVn6FeFyqB0YUFoEUiecdRbApTbweGcE5N-8pS1Uvil9mSB1Yz7BTg8e4-OYIyH3bcJjZ15qpAw.jpg</image:loc>
       <image:caption>ПОСЛЕДНИЙ ДРАЙВ В НИКУДА - обложка трека</image:caption>
     </image:image>
   </url>
@@ -76,35 +75,6 @@
     <lastmod>2025-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  
-  <!-- Социальные сети -->
-  <url>
-    <loc>https://vk.com/blackbabycat_official</loc>
-    <lastmod>2025-11-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://music.yandex.ru/artist/16564725</loc>
-    <lastmod>2025-11-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.youtube.com/@BlackBabyCat</loc>
-    <lastmod>2025-11-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://t.me/BlackBabyCat</loc>
-    <lastmod>2025-11-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
   </url>
   
 </urlset>
