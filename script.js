@@ -71,7 +71,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+});
+
 // Функция переключения темы
 function toggleTheme() {
     const currentTheme = document.body.getAttribute('data-theme');
