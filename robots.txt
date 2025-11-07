@@ -13,3 +13,20 @@ Allow: /*.jpg$
 Allow: /*.jpeg$
 Allow: /*.png$
 Allow: /*.webp$
+Allow: /*.svg$
+
+# Разрешить индексацию всех CSS и JS файлов
+Allow: /*.css$
+Allow: /*.js$
+
+# Запретить индексацию служебных файлов
+Disallow: /*.php$
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.txt$
+
+# Кэширование
+Crawl-delay: 2
+
+# Указание главного зеркала
+Host: https://blackbabycat.ru
