@@ -57,3 +57,54 @@ if (contactForm) {
     this.reset();
   });
 }
+
+// Автоматическое обновление года в футере
+document.addEventListener('DOMContentLoaded', function() {
+  const currentYearElement = document.getElementById('current-year');
+  if (currentYearElement) {
+    currentYearElement.textContent = new Date().getFullYear();
+  }
+  
+  // Переключение темы
+  const themeToggle = document.getElementById('theme-toggle');
+  const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+  
+  // Проверяем сохраненную тему
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }
+  
+  // Обновляем иконку переключателя
+  function updateThemeIcon() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const iconElements = document.querySelectorAll('.theme-toggle-btn i');
+    
+    iconElements.forEach(icon => {
+      icon.className = currentTheme === 'dark' 
+        ? 'fas fa-moon' 
+        : 'fas fa-sun';
+    });
+  }
+  
+  updateThemeIcon();
+  
+  // Переключение темы
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon();
+  }
+  
+  // Обработчики событий
+  if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+  }
+  
+  if (mobileThemeToggle) {
+    mobileThemeToggle.addEventListener('click', toggleTheme);
+  }
+});
