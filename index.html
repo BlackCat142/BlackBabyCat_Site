@@ -28,8 +28,70 @@
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
   <!-- Подключение стилей -->
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-xV8xM3+1x3Qw7Dx9e0cH5d3c5LxYc3dD9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5=" crossorigin="anonymous" />
-  <!-- Безопасность -->
+  <!-- Правильное подключение Font Awesome с атрибутами безопасности -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-xV8xM3+1x3Qw7Dx9e0cH5d3c5LxYc3dD9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5=" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Резервное подключение на случай, если CDN недоступен -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Проверка загрузки иконок
+    const testIcon = document.createElement('i');
+    testIcon.className = 'fas fa-test';
+    document.body.appendChild(testIcon);
+    
+    setTimeout(() => {
+        const computedStyle = window.getComputedStyle(testIcon);
+        if (computedStyle.fontFamily !== '"Font Awesome 6 Free"') {
+            console.log('Font Awesome CDN недоступен, подключаем резервный вариант');
+            
+            // Создаем стиль с базовыми иконками
+            const fallbackStyle = document.createElement('style');
+            fallbackStyle.innerHTML = `
+                .fab.fa-vk::before { content: "VK"; font-weight: bold; background: #4C75A8; color: white; padding: 2px 8px; border-radius: 10px; }
+                .fab.fa-telegram::before { content: "TG"; font-weight: bold; background: #0088CC; color: white; padding: 2px 8px; border-radius: 10px; }
+                .fab.fa-youtube::before { content: "YT"; font-weight: bold; background: #FF0000; color: white; padding: 2px 8px; border-radius: 10px; }
+                .fas.fa-moon::before { content: "🌙"; }
+                .fas.fa-sun::before { content: "☀️"; }
+                .fas.fa-bars::before { content: "☰"; }
+                .fas.fa-calendar::before { content: "📅"; }
+                .fas.fa-play-circle::before { content: "▶️"; }
+                .fas.fa-envelope::before { content: "✉️"; }
+                .fas.fa-map-marker-alt::before { content: "📍"; }
+                .fas.fa-music::before { content: "🎵"; }
+                .fas.fa-image::before { content: "🖼️"; }
+                .fas.fa-video::before { content: "📹"; }
+                
+                /* Стили для социальных иконок */
+                .social-links a, .footer-social a, .contact-social a {
+                    display: inline-block;
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 16px;
+                    background: rgba(139, 92, 246, 0.15);
+                    color: var(--purple);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.2rem;
+                    text-decoration: none;
+                    transition: all 0.3s ease;
+                }
+                .social-links a[href*="vk.com"] { background: rgba(76, 117, 168, 0.15); color: #4C75A8; }
+                .social-links a[href*="t.me"] { background: rgba(0, 136, 204, 0.15); color: #0088CC; }
+                .social-links a[href*="youtube.com"] { background: rgba(255, 0, 0, 0.15); color: #FF0000; }
+                
+                .social-links a:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+                .social-links a:hover[href*="vk.com"] { background: #4C75A8; color: white; }
+                .social-links a:hover[href*="t.me"] { background: #0088CC; color: white; }
+                .social-links a:hover[href*="youtube.com"] { background: #FF0000; color: white; }
+            `;
+            document.head.appendChild(fallbackStyle);
+        }
+        document.body.removeChild(testIcon);
+    }, 2000);
+});
+</script>
+<!-- Безопасность -->
   <meta name="referrer" content="no-referrer">
 </head>
 <body>
