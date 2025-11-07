@@ -1,48 +1,38 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#8b5cf6">
-  
+  <meta name="theme-color" content="#8b5cf6">
   <!-- Ключевые SEO-теги -->
   <title>BlackBabyCat — Музыкант из Норильска | Официальный сайт</title>
   <meta name="description" content="Официальный сайт BlackBabyCat — музыканта и продюсера из Норильска, создающего уникальный звук, объединяющий рэп и хип-хоп в танцевальном стиле. Слушайте треки 'Детка Remix', 'Крик в никуда', 'ПОСЛЕДНИЙ ДРАЙВ В НИКУДА' и следите за выступлениями.">
   <meta name="keywords" content="BlackBabyCat, музыкант Норильск, рэп, хип-хоп, электронная музыка, Детка Remix, Крик в никуда, ПОСЛЕДНИЙ ДРАЙВ В НИКУДА, русский рэп">
-  
   <!-- Open Graph (для соцсетей) -->
   <meta property="og:title" content="BlackBabyCat — Музыкант из Норильска">
   <meta property="og:description" content="Официальный сайт артиста из Норильска. Слушайте треки 'Детка Remix', 'Крик в никуда', 'ПОСЛЕДНИЙ ДРАЙВ В НИКУДА' и следите за выступлениями.">
   <meta property="og:image" content="https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&cs=1280x0">
   <meta property="og:url" content="https://blackbabycat.ru">
   <meta property="og:type" content="website">
-  
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="BlackBabyCat — Музыкант из Норильска">
   <meta name="twitter:description" content="Официальный сайт артиста из Норильска. Уникальный звук — рэп и хип-хоп в танцевальном стиле">
   <meta name="twitter:image" content="https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&cs=1280x0">
-  
   <!-- Канонический URL -->
   <link rel="canonical" href="https://blackbabycat.ru" />
-  
   <!-- Верификация для Google Search Console -->
   <meta name="google-site-verification" content="qsA6Z21Z5kgi3PDUkFSWiWTIUa_R27Tj9m3a5OVs2N4" />
-  
   <!-- Предзагрузка ресурсов -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
-  
   <!-- Favicon -->
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-  
   <!-- Подключение стилей -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  
   <!-- Безопасность -->
   <meta name="referrer" content="no-referrer">
 </head>
@@ -61,8 +51,14 @@
           <li><a href="#портфолио">Портфолио</a></li>
           <li><a href="#события">События</a></li>
           <li><a href="#медиа">Медиа</a></li>
-          <li><a href="#пресса">Пресса</a></li>
+          <li><a href="#дресса">Пресса</a></li>
           <li><a href="#контакты">Контакты</a></li>
+          <!-- Добавляем кнопку переключения темы -->
+          <li class="theme-toggle-li">
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключить тему">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
         </ul>
       </nav>
       <button class="mobile-menu-toggle" id="mobileMenuToggle">
@@ -78,10 +74,15 @@
         <li><a href="#медиа">Медиа</a></li>
         <li><a href="#пресса">Пресса</a></li>
         <li><a href="#контакты">Контакты</a></li>
+        <!-- Кнопка переключения темы в мобильном меню -->
+        <li>
+          <button id="mobile-theme-toggle" class="theme-toggle-btn mobile-theme-toggle" aria-label="Переключить тему">
+            <i class="fas fa-moon"></i>
+          </button>
+        </li>
       </ul>
     </div>
   </header>
-
   <!-- Главная -->
   <section id="главная" class="section hero">
     <div class="container hero-content">
@@ -101,7 +102,6 @@
       </div>
     </div>
   </section>
-
   <!-- Обо мне -->
   <section id="обо-мне" class="section">
     <div class="container">
@@ -119,7 +119,7 @@
             </div>
             <div class="education-item">
               <h4>Первый релиз</h4>
-              <p class="degree">Дебютный сингл "PULL UP (Evb Remix", обозначивший начало профессиональной карьеры</p>
+              <p class="degree">Дебютный сингл "КРИПТОМАГНАТ", обозначивший начало профессиональной карьеры</p>
               <p class="period">2022</p>
             </div>
             <div class="education-item">
@@ -130,12 +130,11 @@
           </div>
         </div>
         <div class="about-image">
-          <img src="https://sun9-56.userapi.com/s/v1/ig2/IHCGixOtpt2ChySlYqrUhSdHUr-8EVUUNhUNdbEuVJq57XFz2VBprKwzggwQm1Z5dCQaujS95se3kOnWJ7vVQqAI.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&cs=1280x0" alt="Студийная сессия" />
+          <img src="https://placehold.co/800x1000/1e1e1e/8b5cf6?text=Студийная+сессия&font=montserrat" alt="Студийная сессия" />
         </div>
       </div>
     </div>
   </section>
-
   <!-- Портфолио -->
   <section id="портфолио" class="section portfolio">
     <div class="container">
@@ -178,7 +177,6 @@
       </div>
     </div>
   </section>
-
   <!-- События -->
   <section id="события" class="section">
     <div class="container">
@@ -218,7 +216,6 @@
       </div>
     </div>
   </section>
-
   <!-- Медиа -->
   <section id="медиа" class="section media">
     <div class="container">
@@ -269,7 +266,6 @@
       </div>
     </div>
   </section>
-
   <!-- Пресса -->
   <section id="пресса" class="section">
     <div class="container">
@@ -291,7 +287,6 @@
       </div>
     </div>
   </section>
-
   <!-- Контакты -->
   <section id="контакты" class="section contact">
     <div class="container">
@@ -342,7 +337,6 @@
       </div>
     </div>
   </section>
-
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-content">
@@ -351,7 +345,7 @@
         <span class="logo-text">BlackBabyCat</span>
       </div>
       <div class="footer-text">
-        <p>© 2025 BlackBabyCat. Все права защищены.</p>
+        <p>© <span id="current-year"></span> BlackBabyCat. Все права защищены.</p>
         <p>Создание уникального звука из Норильска</p>
       </div>
       <div class="footer-social">
@@ -367,9 +361,7 @@
       </div>
     </div>
   </footer>
-
   <script src="script.js"></script>
-
   <!-- Структурированные данные для SEO -->
   <script type="application/ld+json">
   {
@@ -410,6 +402,4 @@
   }
   </script>
 </body>
-
 </html>
-
