@@ -1,45 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  
   <url>
     <loc>https://blackbabycat.ru/</loc>
-    <lastmod>2024-06-15</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-11-08</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    
+    <!-- Изображения для индексации -->
+    <image:image>
+      <image:loc>https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg</image:loc>
+      <image:caption>BlackBabyCat - Официальный портрет</image:caption>
+      <image:title>BlackBabyCat официальное фото</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sun9-60.userapi.com/s/v1/ig2/P_o0takqAuN8glR3g_5NyH7igPK8q0aC-eSpvrqf4RIeP-or2xXFIkyEiirg39LW6JwnLzJofoxgz2cbc1A7d4Me.jpg</image:loc>
+      <image:caption>BlackBabyCat feat. CodEK$ - Детка Remix обложка</image:caption>
+      <image:title>Обложка трека Детка Remix</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sun9-47.userapi.com/s/v1/ig2/CCQF2pAUuf3BN31-Pswkx3ih9FmZR9kNjUKiWVGA6E8O5Mtb_mPO6yx_WpeqKv9evHQK7BfSa7qTHJfwLT2iLJuu.jpg</image:loc>
+      <image:caption>Крик в никуда - обложка трека</image:caption>
+      <image:title>Обложка трека Крик в никуда</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sun9-59.userapi.com/s/v1/ig2/hI6RndpG5SNtGXVn6FeFyqB0YUFoEUiecdRbApTbweGcE5N-8pS1Uvil9mSB1Yz7BTg8e4-OYIyH3bcJjZ15qpAw.jpg</image:loc>
+      <image:caption>ПОСЛЕДНИЙ ДРАЙВ В НИКУДА - обложка трека</image:caption>
+      <image:title>Обложка трека ПОСЛЕДНИЙ ДРАЙВ В НИКУДА</image:title>
+    </image:image>
+    
+    <!-- Видео контент (пример с реальными YouTube ID)
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>BlackBabyCat - Студийная сессия</video:title>
+      <video:description>Официальная студийная сессия музыканта BlackBabyCat из Норильска</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=dQw4w9WgXcQ</video:content_loc>
+      <video:duration>750</video:duration>
+      <video:player_loc allow_embed="yes">https://www.youtube.com/embed/dQw4w9WgXcQ</video:player_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>BlackBabyCat - Выступление в Клубе Aurora</video:title>
+      <video:description>Живое выступление BlackBabyCat в Клубе Aurora, Норильск</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=dQw4w9WgXcQ</video:content_loc>
+      <video:duration>2718</video:duration>
+      <video:player_loc allow_embed="yes">https://www.youtube.com/embed/dQw4w9WgXcQ</video:player_loc>
+    </video:video>
   </url>
+
+  -->
+  
+  <!-- Якорные ссылки для одностраничного сайта -->
   <url>
-    <loc>https://blackbabycat.ru/#обо-мне</loc>
-    <lastmod>2024-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://blackbabycat.ru/#портфолио</loc>
-    <lastmod>2024-06-15</lastmod>
+    <loc>https://blackbabycat.ru/#главная</loc>
+    <lastmod>2025-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  
   <url>
-    <loc>https://blackbabycat.ru/#события</loc>
-    <lastmod>2024-06-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://blackbabycat.ru/#медиа</loc>
-    <lastmod>2024-06-15</lastmod>
+    <loc>https://blackbabycat.ru/#обо-мне</loc>
+    <lastmod>2025-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <url>
+    <loc>https://blackbabycat.ru/#портфолио</loc>
+    <lastmod>2025-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://blackbabycat.ru/#события</loc>
+    <lastmod>2025-11-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://blackbabycat.ru/#медиа</loc>
+    <lastmod>2025-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <url>
     <loc>https://blackbabycat.ru/#пресса</loc>
-    <lastmod>2024-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://blackbabycat.ru/#контакты</loc>
-    <lastmod>2024-06-15</lastmod>
+    <lastmod>2025-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  
+  <url>
+    <loc>https://blackbabycat.ru/#контакты</loc>
+    <lastmod>2025-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Социальные сети для индексации -->
+  <url>
+    <loc>https://vk.com/blackbabycat_official</loc>
+    <lastmod>2025-11-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://music.yandex.ru/artist/16564725</loc>
+    <lastmod>2025-11-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.youtube.com/@BlackBabyCat</loc>
+    <lastmod>2025-11-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 </urlset>

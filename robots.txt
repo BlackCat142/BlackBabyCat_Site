@@ -1,9 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /tmp/
-
 Sitemap: https://blackbabycat.ru/sitemap.xml
-
-# Задержка между запросами для роботов
-Crawl-delay: 10
