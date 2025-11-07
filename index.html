@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#8b5cf6" id="themeColorMeta">
   <!-- Ключевые SEO-теги -->
   <title>BlackBabyCat — Музыкант из Норильска | Официальный сайт</title>
@@ -26,72 +27,13 @@
   <!-- Предзагрузка ресурсов -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <!-- Подключение стилей -->
   <link rel="stylesheet" href="style.css" />
-  <!-- Правильное подключение Font Awesome с атрибутами безопасности -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-xV8xM3+1x3Qw7Dx9e0cH5d3c5LxYc3dD9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5D6L9x3D9w6h5=" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-<!-- Резервное подключение на случай, если CDN недоступен -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Проверка загрузки иконок
-    const testIcon = document.createElement('i');
-    testIcon.className = 'fas fa-test';
-    document.body.appendChild(testIcon);
-    
-    setTimeout(() => {
-        const computedStyle = window.getComputedStyle(testIcon);
-        if (computedStyle.fontFamily !== '"Font Awesome 6 Free"') {
-            console.log('Font Awesome CDN недоступен, подключаем резервный вариант');
-            
-            // Создаем стиль с базовыми иконками
-            const fallbackStyle = document.createElement('style');
-            fallbackStyle.innerHTML = `
-                .fab.fa-vk::before { content: "VK"; font-weight: bold; background: #4C75A8; color: white; padding: 2px 8px; border-radius: 10px; }
-                .fab.fa-telegram::before { content: "TG"; font-weight: bold; background: #0088CC; color: white; padding: 2px 8px; border-radius: 10px; }
-                .fab.fa-youtube::before { content: "YT"; font-weight: bold; background: #FF0000; color: white; padding: 2px 8px; border-radius: 10px; }
-                .fas.fa-moon::before { content: "🌙"; }
-                .fas.fa-sun::before { content: "☀️"; }
-                .fas.fa-bars::before { content: "☰"; }
-                .fas.fa-calendar::before { content: "📅"; }
-                .fas.fa-play-circle::before { content: "▶️"; }
-                .fas.fa-envelope::before { content: "✉️"; }
-                .fas.fa-map-marker-alt::before { content: "📍"; }
-                .fas.fa-music::before { content: "🎵"; }
-                .fas.fa-image::before { content: "🖼️"; }
-                .fas.fa-video::before { content: "📹"; }
-                
-                /* Стили для социальных иконок */
-                .social-links a, .footer-social a, .contact-social a {
-                    display: inline-block;
-                    width: 56px;
-                    height: 56px;
-                    border-radius: 16px;
-                    background: rgba(139, 92, 246, 0.15);
-                    color: var(--purple);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 1.2rem;
-                    text-decoration: none;
-                    transition: all 0.3s ease;
-                }
-                .social-links a[href*="vk.com"] { background: rgba(76, 117, 168, 0.15); color: #4C75A8; }
-                .social-links a[href*="t.me"] { background: rgba(0, 136, 204, 0.15); color: #0088CC; }
-                .social-links a[href*="youtube.com"] { background: rgba(255, 0, 0, 0.15); color: #FF0000; }
-                
-                .social-links a:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-                .social-links a:hover[href*="vk.com"] { background: #4C75A8; color: white; }
-                .social-links a:hover[href*="t.me"] { background: #0088CC; color: white; }
-                .social-links a:hover[href*="youtube.com"] { background: #FF0000; color: white; }
-            `;
-            document.head.appendChild(fallbackStyle);
-        }
-        document.body.removeChild(testIcon);
-    }, 2000);
-});
-</script>
-<!-- Безопасность -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Безопасность -->
   <meta name="referrer" content="no-referrer">
 </head>
 <body>
@@ -146,13 +88,13 @@ document.addEventListener('DOMContentLoaded', function() {
       <h1 class="hero-title">BlackBabyCat</h1>
       <p class="hero-tagline">Создаю уникальный звук, объединяющий рэп и хип-хоп в танцевальном стиле</p>
       <div class="social-links">
-        <a href="https://vk.com/blackbabycat_official" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте">
+        <a href="https://vk.com/blackbabycat_official" target="_blank" aria-label="ВКонтакте">
           <i class="fab fa-vk"></i>
         </a>
-        <a href="https://t.me/BlackBabyCat" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+        <a href="https://t.me/BlackBabyCat" target="_blank" aria-label="Telegram">
           <i class="fab fa-telegram"></i>
         </a>
-        <a href="https://www.youtube.com/@BlackBabyCat" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <a href="https://www.youtube.com/@BlackBabyCat" target="_blank" aria-label="YouTube">
           <i class="fab fa-youtube"></i>
         </a>
       </div>
@@ -186,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
         <div class="about-image">
-          <img src="https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&cs=1280x0" alt="Студийная сессия" />
+          <img src="https://placehold.co/800x1000/1e1e1e/8b5cf6?text=Студийная+сессия&font=montserrat" alt="Студийная сессия" />
         </div>
       </div>
     </div>
@@ -204,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <span class="portfolio-year">2025</span>
               <h3>BlackBabyCat feat. CodEK$ - Детка Remix</h3>
               <p>Совместный трек с CodEK$, выпущенный в 2025 году</p>
-              <a href="https://band.link/detka_remix" target="_blank" rel="noopener noreferrer" class="btn">Слушать</a>
+              <a href="https://band.link/detka_remix" target="_blank" class="btn">Слушать</a>
             </div>
           </div>
         </div>
@@ -215,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <span class="portfolio-year">2025</span>
               <h3>Крик в никуда</h3>
               <p>Эмоциональный трек, исследующий темы внутренних переживаний</p>
-              <a href="https://vk.cc/cPycij" target="_blank" rel="noopener noreferrer" class="btn">Слушать</a>
+              <a href="https://vk.cc/cPycij" target="_blank" class="btn">Слушать</a>
             </div>
           </div>
         </div>
@@ -226,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <span class="portfolio-year">2025</span>
               <h3>ПОСЛЕДНИЙ ДРАЙВ В НИКУДА</h3>
               <p>Последний релиз от SQAZLY Music в жанре Electronic</p>
-              <a href="https://band.link/tldtn" target="_blank" rel="noopener noreferrer" class="btn">Слушать</a>
+              <a href="https://band.link/tldtn" target="_blank" class="btn">Слушать</a>
             </div>
           </div>
         </div>
@@ -239,38 +181,37 @@ document.addEventListener('DOMContentLoaded', function() {
       <h2 class="section-title">Предстоящие выступления</h2>
       <p class="section-subtitle">Присоединяйтесь к BlackBabyCat на этих предстоящих живых мероприятиях</p>
       <div class="events-list">
-        <div class="event-item">
-          <div class="event-icon"><i class="fas fa-calendar"></i></div>
-          <div class="event-info">
-            <div class="event-date">15 июня 2025</div>
-            <div class="event-venue">Клуб Aurora</div>
-            <div class="event-desc">Живой сет с новыми треками</div>
-            <div class="event-city">Норильск, Россия</div>
-          </div>
-          <a href="https://vk.com/blackbabycat_official" target="_blank" rel="noopener noreferrer" class="btn btn-gradient">Билеты</a>
-        </div>
-        <div class="event-item">
-          <div class="event-icon"><i class="fas fa-calendar"></i></div>
-          <div class="event-info">
-            <div class="event-date">22 июля 2025</div>
-            <div class="event-venue">Фестиваль "Северный Ритм"</div>
-            <div class="event-desc">Специальное выступление с визуальным сопровождением</div>
-            <div class="event-city">Красноярск, Россия</div>
-          </div>
-          <a href="https://vk.com/blackbabycat_official" target="_blank" rel="noopener noreferrer" class="btn btn-gradient">Билеты</a>
-        </div>
-        <div class="event-item">
-          <div class="event-icon"><i class="fas fa-calendar"></i></div>
-          <div class="event-info">
-            <div class="event-date">10 августа 2025</div>
-            <div class="event-venue">Клуб Techno Factory</div>
-            <div class="event-desc">Коллаборация с местными артистами</div>
-            <div class="event-city">Москва, Россия</div>
-          </div>
-          <a href="https://vk.com/blackbabycat_official" target="_blank" rel="noopener noreferrer" class="btn btn-gradient">Билеты</a>
-        </div>
-      </div>
+  <div class="event-item">
+    <div class="event-icon"><i class="fas fa-calendar"></i></div>
+    <div class="event-info">
+      <div class="event-date">15 июня 2025</div>
+      <div class="event-venue">Клуб Aurora</div>
+      <div class="event-desc">Живой сет с новыми треками</div>
+      <div class="event-city">Норильск, Россия</div>
     </div>
+    <a href="https://vk.com/blackbabycat_official" target="_blank" class="btn btn-gradient">Билеты</a>
+  </div>
+  <div class="event-item">
+    <div class="event-icon"><i class="fas fa-calendar"></i></div>
+    <div class="event-info">
+      <div class="event-date">22 июля 2025</div>
+      <div class="event-venue">Фестиваль "Северный Ритм"</div>
+      <div class="event-desc">Специальное выступление с визуальным сопровождением</div>
+      <div class="event-city">Красноярск, Россия</div>
+    </div>
+    <a href="https://vk.com/blackbabycat_official" target="_blank" class="btn btn-gradient">Билеты</a>
+  </div>
+  <div class="event-item">
+    <div class="event-icon"><i class="fas fa-calendar"></i></div>
+    <div class="event-info">
+      <div class="event-date">10 августа 2025</div>
+      <div class="event-venue">Клуб Techno Factory</div>
+      <div class="event-desc">Коллаборация с местными артистами</div>
+      <div class="event-city">Москва, Россия</div>
+    </div>
+    <a href="https://vk.com/blackbabycat_official" target="_blank" class="btn btn-gradient">Билеты</a>
+  </div>
+</div>
   </section>
   <!-- Медиа -->
   <section id="медиа" class="section media">
@@ -288,42 +229,36 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="media-list">
               <div class="media-item">
                 <i class="fas fa-play-circle"></i> 
-                <a href="https://band.link/detka_remix" target="_blank" rel="noopener noreferrer" class="media-link">BlackBabyCat feat. CodEK$ - Детка Remix — 3:58</a>
+                <a href="https://band.link/detka_remix" target="_blank" class="media-link">BlackBabyCat feat. CodEK$ - Детка Remix — 3:58</a>
               </div>
               <div class="media-item">
                 <i class="fas fa-play-circle"></i> 
-                <a href="https://vk.cc/cPycij" target="_blank" rel="noopener noreferrer" class="media-link">Крик в никуда — 4:12</a>
+                <a href="https://vk.cc/cPycij" target="_blank" class="media-link">Крик в никуда — 4:12</a>
               </div>
               <div class="media-item">
                 <i class="fas fa-play-circle"></i> 
-                <a href="https://band.link/tldtn" target="_blank" rel="noopener noreferrer" class="media-link">ПОСЛЕДНИЙ ДРАЙВ В НИКУДА — 3:45</a>
+                <a href="https://band.link/tldtn" target="_blank" class="media-link">ПОСЛЕДНИЙ ДРАЙВ В НИКУДА — 3:45</a>
               </div>
             </div>
           </div>
           <div class="tab-pane" id="video">
             <div class="media-list">
-              <div class="media-item">
-                <i class="fas fa-play-circle"></i> 
-                <a href="https://www.youtube.com/@BlackBabyCat" target="_blank" rel="noopener noreferrer" class="media-link">BlackBabyCat - Студийная сессия — 12:30</a>
-              </div>
-              <div class="media-item">
-                <i class="fas fa-play-circle"></i> 
-                <a href="https://www.youtube.com/@BlackBabyCat" target="_blank" rel="noopener noreferrer" class="media-link">Выступление в Клубе Aurora — 45:18</a>
-              </div>
-              <div class="media-item">
-                <i class="fas fa-play-circle"></i> 
-                <a href="https://www.youtube.com/@BlackBabyCat" target="_blank" rel="noopener noreferrer" class="media-link">Интервью о творческом пути — 28:45</a>
-              </div>
+              <div class="media-item"><i class="fas fa-play-circle"></i> BlackBabyCat - Студийная сессия — 12:30</div>
+              <div class="media-item"><i class="fas fa-play-circle"></i> Выступление в Клубе Aurora — 45:18</div>
+              <div class="media-item"><i class="fas fa-play-circle"></i> Интервью о творческом пути — 28:45</div>
             </div>
           </div>
           <div class="tab-pane" id="photos">
             <div class="photo-grid">
-              <img src="https://sun9-60.userapi.com/s/v1/ig2/P_o0takqAuN8glR3g_5NyH7igPK8q0aC-eSpvrqf4RIeP-or2xXFIkyEiirg39LW6JwnLzJofoxgz2cbc1A7d4Me.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2000x2000&from=bu&cs=2000x0" alt="Живой сет" />
-              <img src="https://sun9-47.userapi.com/s/v1/ig2/CCQF2pAUuf3BN31-Pswkx3ih9FmZR9kNjUKiWVGA6E8O5Mtb_mPO6yx_WpeqKv9evHQK7BfSa7qTHJfwLT2iLJuu.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&cs=2560x0" alt="Студия" />
-              <img src="https://sun9-59.userapi.com/s/v1/ig2/hI6RndpG5SNtGXVn6FeFyqB0YUFoEUiecdRbApTbweGcE5N-8pS1Uvil9mSB1Yz7BTg8e4-OYIyH3bcJjZ15qpAw.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&cs=2560x0" alt="Фестиваль" />
-              <img src="https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&cs=1280x0" alt="Аудитория" />
+              <img src="https://placehold.co/300x200/1e1e1e/8b5cf6?text=Живой+сет&font=montserrat" alt="Живой сет" />
+              <img src="https://placehold.co/300x200/1e1e1e/8b5cf6?text=Студия&font=montserrat" alt="Студия" />
+              <img src="https://placehold.co/300x200/1e1e1e/8b5cf6?text=Фестиваль&font=montserrat" alt="Фестиваль" />
+              <img src="https://placehold.co/300x200/1e1e1e/8b5cf6?text=Аудитория&font=montserrat" alt="Аудитория" />
             </div>
           </div>
+        </div>
+        <div class="media-player-placeholder">
+          <p>Выберите вкладку слева для просмотра контента</p>
         </div>
       </div>
     </div>
@@ -360,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <i class="fas fa-envelope"></i>
             <div>
               <h3>Электронная почта</h3>
-              <a href="mailto:blackbabycat@blackbabycat.ru" rel="noopener noreferrer">blackbabycat@blackbabycat.ru</a>
+              <a href="mailto:blackbabycat@blackbabycat.ru">blackbabycat@blackbabycat.ru</a>
             </div>
           </div>
           <div class="contact-card">
@@ -378,13 +313,13 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </div>
           <div class="social-links contact-social">
-            <a href="https://vk.com/blackbabycat_official" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте">
+            <a href="https://vk.com/blackbabycat_official" target="_blank" aria-label="ВКонтакте">
               <i class="fab fa-vk"></i>
             </a>
-            <a href="https://t.me/BlackBabyCat" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+            <a href="https://t.me/BlackBabyCat" target="_blank" aria-label="Telegram">
               <i class="fab fa-telegram"></i>
             </a>
-            <a href="https://www.youtube.com/@BlackBabyCat" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <a href="https://www.youtube.com/@BlackBabyCat" target="_blank" aria-label="YouTube">
               <i class="fab fa-youtube"></i>
             </a>
           </div>
@@ -404,13 +339,13 @@ document.addEventListener('DOMContentLoaded', function() {
         <p>Создание уникального звука из Норильска</p>
       </div>
       <div class="footer-social">
-        <a href="https://vk.com/blackbabycat_official" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте">
+        <a href="https://vk.com/blackbabycat_official" target="_blank" aria-label="ВКонтакте">
           <i class="fab fa-vk"></i>
         </a>
-        <a href="https://t.me/BlackBabyCat" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+        <a href="https://t.me/BlackBabyCat" target="_blank" aria-label="Telegram">
           <i class="fab fa-telegram"></i>
         </a>
-        <a href="https://www.youtube.com/@BlackBabyCat" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <a href="https://www.youtube.com/@BlackBabyCat" target="_blank" aria-label="YouTube">
           <i class="fab fa-youtube"></i>
         </a>
       </div>
