@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="dark">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#8b5cf6">
+  <meta name="theme-color" content="#8b5cf6" id="themeColorMeta">
   <!-- Ключевые SEO-теги -->
   <title>BlackBabyCat — Музыкант из Норильска | Официальный сайт</title>
   <meta name="description" content="Официальный сайт BlackBabyCat — музыканта и продюсера из Норильска, создающего уникальный звук, объединяющий рэп и хип-хоп в танцевальном стиле. Слушайте треки 'Детка Remix', 'Крик в никуда', 'ПОСЛЕДНИЙ ДРАЙВ В НИКУДА' и следите за выступлениями.">
@@ -51,19 +51,18 @@
           <li><a href="#портфолио">Портфолио</a></li>
           <li><a href="#события">События</a></li>
           <li><a href="#медиа">Медиа</a></li>
-          <li><a href="#дресса">Пресса</a></li>
+          <li><a href="#пресса">Пресса</a></li>
           <li><a href="#контакты">Контакты</a></li>
-          <!-- Добавляем кнопку переключения темы -->
           <li class="theme-toggle-li">
-            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключить тему">
-              <i class="fas fa-moon"></i>
+            <button id="themeToggle" class="theme-toggle-btn">
+              <i class="fas fa-moon" id="themeIcon"></i>
             </button>
           </li>
         </ul>
       </nav>
-      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+      <div class="mobile-menu-toggle" id="mobileMenuToggle">
         <i class="fas fa-bars"></i>
-      </button>
+      </div>
     </div>
     <div class="mobile-menu" id="mobileMenu">
       <ul>
@@ -74,10 +73,9 @@
         <li><a href="#медиа">Медиа</a></li>
         <li><a href="#пресса">Пресса</a></li>
         <li><a href="#контакты">Контакты</a></li>
-        <!-- Кнопка переключения темы в мобильном меню -->
-        <li>
-          <button id="mobile-theme-toggle" class="theme-toggle-btn mobile-theme-toggle" aria-label="Переключить тему">
-            <i class="fas fa-moon"></i>
+        <li class="theme-toggle-li">
+          <button id="mobileThemeToggle" class="theme-toggle-btn mobile-theme-toggle">
+            <i class="fas fa-moon" id="mobileThemeIcon"></i> Переключить тему
           </button>
         </li>
       </ul>
@@ -345,7 +343,7 @@
         <span class="logo-text">BlackBabyCat</span>
       </div>
       <div class="footer-text">
-        <p>© <span id="current-year"></span> BlackBabyCat. Все права защищены.</p>
+        <p id="copyright">© <span id="currentYear">2025</span> BlackBabyCat. Все права защищены.</p>
         <p>Создание уникального звука из Норильска</p>
       </div>
       <div class="footer-social">
