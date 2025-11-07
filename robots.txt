@@ -1,8 +1,15 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /tmp/
 
 Sitemap: https://blackbabycat.ru/sitemap.xml
 
-# Запрещаем индексацию служебных файлов
-Disallow: /node_modules/
-Disallow: /private/
+# Задержка между запросами для роботов
+Crawl-delay: 10
+
+# Разрешить индексацию всех изображений
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.webp$
