@@ -282,7 +282,6 @@ body.theme-transition {
 .theme-toggle-btn:hover {
   color: var(--purple-light);
   background: rgba(139, 92, 246, 0.1);
-  transform: rotate(20deg);
 }
 /* 
 ┌───────────────────────────────────────────────────────────────────────────┐
