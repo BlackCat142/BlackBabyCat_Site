@@ -287,23 +287,50 @@ if ('serviceWorker' in navigator) {
         });
     });
 }
-/* Стили для новых функций */
-#magic-text {
-    transition: opacity 0.3s ease;
-    font-size: 1.2rem;
-    line-height: 1.6;
-}
+// --- НОВЫЙ КОД: МАГИЧЕСКИЕ ФУНКЦИИ ---
+const witcheryData = {
+    predictions: [
+        "Твой следующий трек станет хитом, если добавишь в него немного искренности.",
+        "Звезды говорят: пора сделать коллаборацию с кем-то из Норильска.",
+        "Сегодня идеальный день для записи нового демо. Не откладывай.",
+        "Твоя энергия на пике. Направляй её в ритм и бит.",
+        "Черный кот принесет удачу в следующем релизе.",
+        "Скоро тебя ждет предложение о выступлении, которое ты долго ждал.",
+        "Магия в деталях — переслушай последний микс, там скрыт алмаз.",
+        "Твой звук уникален. Не пытайся подражать трендам, создавай их."
+    ],
+    catFacts: [
+        "Мурчание кота помогает сосредоточиться на сведении звука.",
+        "Кошки слышат ультразвук — почти как профессиональные мониторы!",
+        "Черные кошки — лучшие фамильяры для музыкантов."
+    ]
+};
 
-.pulse-magic {
-    animation: magic-glow 1s infinite alternate;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const magicBtn = document.getElementById('get-magic-btn');
+    const magicText = document.getElementById('magic-text');
+    const magicDisplay = document.getElementById('magic-display');
+    const catHelper = document.getElementById('cat-helper');
 
-@keyframes magic-glow {
-    from { box-shadow: 0 0 10px rgba(139, 92, 246, 0.4); }
-    to { box-shadow: 0 0 25px rgba(139, 92, 246, 0.8); }
-}
+    // Предсказания
+    if (magicBtn) {
+        magicBtn.addEventListener('click', () => {
+            magicText.style.opacity = '0';
+            setTimeout(() => {
+                const randomIdx = Math.floor(Math.random() * witcheryData.predictions.length);
+                magicText.innerText = witcheryData.predictions[randomIdx];
+                magicText.style.opacity = '1';
+                magicDisplay.classList.add('pulse-magic');
+                setTimeout(() => magicDisplay.classList.remove('pulse-glow'), 1000);
+            }, 300);
+        });
+    }
 
-#cat-helper:hover {
-    transform: scale(1.2) rotate(-10deg);
-    transition: 0.3s;
-}
+    // Клик по коту
+    if (catHelper) {
+        catHelper.addEventListener('click', () => {
+            const randomFact = witcheryData.catFacts[Math.floor(Math.random() * witcheryData.catFacts.length)];
+            alert("Кот TheWitcheryCat шепчет: " + randomFact);
+        });
+    }
+});
