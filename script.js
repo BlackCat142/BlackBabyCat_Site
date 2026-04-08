@@ -287,3 +287,23 @@ if ('serviceWorker' in navigator) {
         });
     });
 }
+/* Стили для новых функций */
+#magic-text {
+    transition: opacity 0.3s ease;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.pulse-magic {
+    animation: magic-glow 1s infinite alternate;
+}
+
+@keyframes magic-glow {
+    from { box-shadow: 0 0 10px rgba(139, 92, 246, 0.4); }
+    to { box-shadow: 0 0 25px rgba(139, 92, 246, 0.8); }
+}
+
+#cat-helper:hover {
+    transform: scale(1.2) rotate(-10deg);
+    transition: 0.3s;
+}
