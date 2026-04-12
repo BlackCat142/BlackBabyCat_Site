@@ -62,6 +62,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Выпадающее меню
+    const dropdownToggle = document.getElementById('dropdownToggle');
+    const dropdownContent = document.getElementById('dropdownContent');
+    if (dropdownToggle && dropdownContent) {
+        dropdownToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownToggle.classList.toggle('active');
+            dropdownContent.classList.toggle('active');
+        });
+        
+        // Закрытие выпадающего меню при клике вне его
+        document.addEventListener('click', (e) => {
+            if (!dropdownToggle.contains(e.target) && !dropdownContent.contains(e.target)) {
+                dropdownToggle.classList.remove('active');
+                dropdownContent.classList.remove('active');
+            }
+        });
+        
+        // Закрытие выпадающего меню при выборе пункта
+        dropdownContent.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                dropdownToggle.classList.remove('active');
+                dropdownContent.classList.remove('active');
+            });
+        });
+    }
+    
     // Вкладки "Медиа"
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
