@@ -1,4 +1,3 @@
-```gitignore
 # Compiled and build artifacts
 *.pyc
 __pycache__/
@@ -7,9 +6,57 @@ __pycache__/
 dist/
 build/
 target/
-*.class
-*.jar
-*.war
+
+# Dependencies
+.venv/
+venv/
+node_modules/
+.julia/
+zig*/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+.env.*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Python specific
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.so
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.pytest_cache/
+
+# Compressed files
 *.zip
 *.gz
 *.tar
@@ -32,57 +79,3 @@ target/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
-
-# Dependencies
-.venv/
-venv/
-.env
-.env.local
-.env.*
-node_modules/
-.julia/
-zig*/
-.jest/
-.nyc_output/
-coverage/
-htmlcov/
-.coverage
-.mypy_cache/
-.pytest_cache/
-.tox/
-.hypothesis/
-.gradle/
-.cargo/
-.packages/
-
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-*.swo
-*.bak
-*.~
-*~
-
-# Editors
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
-*.ds_store
-Thumbs.db
-ehthumbs.db
-Icon?
-.DS_Store
-*.swp
-*.swo
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-```

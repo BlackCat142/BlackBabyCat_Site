@@ -1597,6 +1597,16 @@ body.theme-transition {
   font-size: 0.95rem;
   font-weight: 500;
 }
+.footer-link {
+  color: var(--purple-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 0.9rem;
+}
+.footer-link:hover {
+  color: var(--pink);
+  text-decoration: underline;
+}
 .footer-social {
   display: flex;
   gap: 1.5rem;
