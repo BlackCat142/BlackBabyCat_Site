@@ -1,127 +1,128 @@
-# Конфигурационный файл проекта
+# Инструкция по использованию config.js
 
-Этот файл содержит все ссылки, URL и настройки проекта в одном месте.
+## 🎯 Назначение
 
-## Как использовать
+Файл `config.js` — это централизованное хранилище всех ссылок, названий и настроек для сайта. Теперь вы можете изменять ссылки в одном месте, и они автоматически обновятся на всём сайте.
 
-### Для HTML файлов:
-1. Откройте `config.js`
-2. Найдите нужную секцию (социальные сети, релизы, изображения и т.д.)
-3. Измените значение
-4. Обновите HTML файлы, заменив старые значения на новые из конфига
+## 📝 Как использовать
 
-**Пример:**
+### 1. Откройте файл `config.js`
+
+Найдите файл `config.js` в корне проекта и откройте его в любом текстовом редакторе.
+
+### 2. Измените нужные значения
+
+Все данные организованы в логические группы:
+
+#### Социальные сети
 ```javascript
-// В config.js измените:
 social: {
-  vk: 'https://vk.com/NEW_LINK'  // Новый ссылку
+  vk: 'https://vk.com/TheWitcheryCat',        // ВКонтакте
+  vkArtist: 'https://vk.com/artist/TheWitcheryCat',
+  telegram: 'https://t.me/TheWitcheryCat',     // Telegram
+  youtube: 'https://www.youtube.com/@TheWitcheryCat',
+  yandexMusic: 'https://music.yandex.ru/artist/16564725',
+  genius: 'https://genius.com/TheWitcheryCat'
 }
-
-// Затем в HTML файлах замените:
-// Было: <a href="https://vk.com/TheWitcheryCat">
-// Стало: <a href="https://vk.com/NEW_LINK">
 ```
 
-### Для JavaScript файлов:
-Можно подключить `config.js` перед основными скриптами:
-```html
-<script src="config.js"></script>
-<script src="script.js"></script>
-```
-
-Использовать в коде:
+#### Стриминговые платформы
 ```javascript
-// Вместо хардкода ссылок
-const vkLink = CONFIG.social.vk;
-const youtubeLink = CONFIG.social.youtube;
+streaming: {
+  yandex: 'https://music.yandex.ru/artist/16564725',
+  vk: 'https://vk.com/artist/TheWitcheryCat',
+  youtube: 'https://www.youtube.com/@TheWitcheryCat'
+}
 ```
 
-## Структура конфигурации
-
-### 📱 Социальные сети (`CONFIG.social`)
-- `vk` - ссылка на группу ВКонтакте
-- `vkArtist` - ссылка на артиста ВКонтакте
-- `telegram` - ссылка на Telegram канал
-- `youtube` - ссылка на YouTube канал
-- `yandexMusic` - ссылка на Яндекс.Музыку
-- `genius` - ссылка на Genius
-
-### 🎵 Релизы (`CONFIG.releases`)
-Каждый релиз содержит:
-- `title` - название
-- `link` - ссылка на прослушивание
-- `image` - обложка
-- `duration` - длительность
-
-Текущие релизы:
-- `detkaRemix` - Детка Remix feat. CodEK$
-- `cryIntoVoid` - Крик в никуда
-- `lastDrive` - ПОСЛЕДНИЙ ДРАЙВ В НИКУДА
-
-### 🖼️ Изображения (`CONFIG.images`)
-- `mainAvatar` - основная аватарка
-- `gallery` - массив изображений для галереи
-- `studioSession` - изображение студийной сессии
-
-### 🔗 CDN ресурсы (`CONFIG.cdn`)
-- `fontAwesome` - иконки Font Awesome
-- `vkBridge` - VK Bridge для мини-приложений
-- `youtubeEmbed` - базовый URL для встраивания YouTube
-
-### 📊 Аналитика (`CONFIG.analytics`)
-- `yandexMetrika.counterId` - ID счётчика Яндекс.Метрики
-- `yandexMetrika.tagScript` - скрипт метрики
-- `yandexMetrika.watchPixel` - пиксель для noscript
-
-### 🏷️ Schema.org (`CONFIG.schema`)
-Настройки для JSON-LD разметки:
-- `name` - название группы
-- `url` - основной URL сайта
-- `sameAs` - массив ссылок на социальные профили
-
-### 📄 Страницы (`CONFIG.pages`)
-Настройки для каждой страницы:
-- `home` - главная страница
-- `textpesen` - тексты песен
-- `moon` - лунный календарь
-
-Каждая страница имеет:
-- `title` - заголовок
-- `ogUrl` - URL для Open Graph
-- `canonical` - канонический URL
-
-## Быстрое обновление
-
-При добавлении нового релиза:
-1. Добавьте запись в `CONFIG.releases`
-2. Скопируйте структуру существующего релиза
-3. Заполните новыми данными
-4. Обновите HTML в секции с релизами
-
-## Советы
-
-✅ **Хорошо:**
-- Хранить все ссылки в одном месте
-- Использовать понятные имена ключей
-- Группировать связанные ссылки
-
-❌ **Плохо:**
-- Хардкодить ссылки в HTML/JS коде
-- Дублировать одни и те же ссылки
-- Использовать непонятные имена переменных
-
-## Пример добавления нового релиза
-
+#### Релизы и треки
 ```javascript
 releases: {
-  // ... существующие релизы
-  newSingle: {
-    title: 'Название сингла',
-    link: 'https://band.link/new-single',
-    image: 'https://example.com/image.jpg',
-    duration: '3:30'
+  detkaRemix: {
+    title: 'TheWitcheryCat feat. CodEK$ - Детка Remix',
+    link: 'https://band.link/detka_remix',
+    image: 'ссылка_на_изображение',
+    duration: '3:58'
+  },
+  cryIntoVoid: {
+    title: 'Крик в никуда',
+    link: 'https://vk.cc/cPycij',
+    image: 'ссылка_на_изображение',
+    duration: '4:12'
   }
 }
 ```
 
-Затем добавьте блок в HTML с использованием новых данных.
+#### Изображения
+```javascript
+images: {
+  mainAvatar: 'ссылка_на_главное_фото',
+  gallery: [
+    'ссылка_1',
+    'ссылка_2',
+    ...
+  ]
+}
+```
+
+### 3. Сохраните файл
+
+Просто сохраните изменения в `config.js`.
+
+### 4. Обновите страницу в браузере
+
+Откройте ваш сайт в браузере и обновите страницу (F5 или Ctrl+R). Все ссылки автоматически обновятся!
+
+## 🔧 Технические детали
+
+### Как это работает?
+
+1. Файл `config.js` подключается в `index.html` перед `script.js`
+2. При загрузке страницы скрипт считывает все элементы с атрибутами:
+   - `data-config-link` — для ссылок
+   - `data-config-text` — для текста
+   - `data-config-image` — для изображений
+3. Скрипт подставляет значения из объекта `CONFIG`
+
+### Пример использования в HTML
+
+```html
+<!-- Ссылка из раздела social.vk -->
+<a href="#" data-config-link="social.vk">ВКонтакте</a>
+
+<!-- Текст из раздела releases.detkaRemix.title -->
+<h3 data-config-text="releases.detkaRemix.title"></h3>
+
+<!-- Изображение из раздела images.mainAvatar -->
+<img src="#" data-config-image="images.mainAvatar" />
+```
+
+## ⚠️ Важно
+
+- **Не меняйте структуру объекта CONFIG** — только значения внутри
+- **Сохраняйте кавычки** вокруг строк
+- **Проверяйте ссылки** на корректность (должны начинаться с `https://`)
+- **Очищайте кэш браузера**, если изменения не применяются (Ctrl+Shift+R)
+
+## 📁 Структура CONFIG
+
+```
+CONFIG
+├── site              — Основные настройки сайта
+├── social            — Социальные сети
+├── streaming         — Стриминговые платформы
+├── releases          — Релизы и треки
+│   ├── detkaRemix
+│   ├── cryIntoVoid
+│   └── lastDrive
+├── images            — Изображения
+├── cdn               — CDN ресурсы
+├── analytics         — Метрика и аналитика
+├── schema            — Schema.org данные
+├── pages             — Настройки страниц
+└── youtube           — YouTube настройки
+```
+
+## 🎉 Готово!
+
+Теперь для обновления ссылок достаточно изменить один файл `config.js` вместо поиска по всему коду!
