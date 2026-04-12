@@ -84,6 +84,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Вкладки текстов песен
+    const lyricsTabButtons = document.querySelectorAll('.lyrics-tab-btn');
+    const lyricPanes = document.querySelectorAll('.lyric-pane');
+    lyricsTabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const target = button.dataset.lyric;
+            
+            // Убираем активный класс
+            lyricsTabButtons.forEach(btn => btn.classList.remove('active'));
+            lyricPanes.forEach(pane => pane.classList.remove('active'));
+            
+            // Добавляем активный класс
+            button.classList.add('active');
+            document.getElementById(target).classList.add('active');
+        });
+    });
+    
     // Инициализация видео превью
     initVideoPreviews();
     
@@ -177,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, observerOptions);
         
         // Наблюдаем за карточками
-        document.querySelectorAll('.portfolio-item, .press-item, .event-item, .contact-card').forEach(item => {
+        document.querySelectorAll('.portfolio-item, .press-item, .event-item, .contact-card, .lyric-pane').forEach(item => {
             observer.observe(item);
         });
     }
@@ -286,4 +303,86 @@ if ('serviceWorker' in navigator) {
             console.log('Регистрация ServiceWorker не удалась:', error);
         });
     });
+}
+
+// Функция копирования текста песни
+function copyLyrics(lyricId) {
+    const lyricPane = document.getElementById(lyricId);
+    if (!lyricPane) return;
+    
+    const lyricText = lyricPane.querySelector('.lyric-text');
+    if (!lyricText) return;
+    
+    // Получаем текст, удаляя метки [Куплет], [Припев] и лишние пробелы
+    let textToCopy = '';
+    lyricText.querySelectorAll('p').forEach(p => {
+        const content = p.textContent.trim();
+        if (content && !content.startsWith('[')) {
+            textToCopy += content + '\n';
+        } else if (content.startsWith('[')) {
+            textToCopy += '\n' + content + '\n';
+        }
+    });
+    
+    // Копируем в буфер обмена
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        // Показываем уведомление
+        showNotification('Текст скопирован в буфер обмена!');
+    }).catch(err => {
+        console.error('Не удалось скопировать текст:', err);
+        showNotification('Не удалось скопировать текст');
+    });
+}
+
+// Функция показа уведомления
+function showNotification(message) {
+    // Удаляем существующие уведомления
+    const existingNotification = document.querySelector('.lyric-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Создаём новое уведомление
+    const notification = document.createElement('div');
+    notification.className = 'lyric-notification';
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #8b5cf6;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        z-index: 10000;
+        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+        animation: slideUp 0.3s ease-out;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Добавляем анимацию появления
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Удаляем уведомление через 2 секунды
+    setTimeout(() => {
+        notification.style.animation = 'slideUp 0.3s ease-out reverse';
+        setTimeout(() => notification.remove(), 300);
+    }, 2000);
 }
