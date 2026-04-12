@@ -39,6 +39,8 @@
   <meta name="referrer" content="no-referrer">
   <!-- VK Bridge для мини-приложений ВКонтакте -->
   <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+  <!-- Конфигурационный файл со всеми ссылками -->
+  <script src="config.js"></script>
 </head>
 <body>
   <!-- Навигация -->
@@ -104,16 +106,16 @@
       <h1 class="hero-title">TheWitcheryCat</h1>
       <p class="hero-tagline">Создаю уникальный звук, объединяющий рэп и хип-хоп в танцевальном стиле</p>
       <div class="social-links">
-        <a href="https://vk.com/TheWitcheryCat" target="_blank" aria-label="ВКонтакте">
+        <a href="#" target="_blank" aria-label="ВКонтакте" data-config-link="social.vk">
           <i class="fab fa-vk"></i>
         </a>
-        <a href="https://t.me/TheWitcheryCat" target="_blank" aria-label="Telegram">
+        <a href="#" target="_blank" aria-label="Telegram" data-config-link="social.telegram">
           <i class="fab fa-telegram"></i>
         </a>
-        <a href="https://www.youtube.com/@TheWitcheryCat" target="_blank" aria-label="YouTube">
+        <a href="#" target="_blank" aria-label="YouTube" data-config-link="social.youtube">
           <i class="fab fa-youtube"></i>
         </a>
-        <a href="https://music.yandex.ru/artist/16564725" target="_blank" aria-label="Яндекс.Музыка">
+        <a href="#" target="_blank" aria-label="Яндекс.Музыка" data-config-link="social.yandexMusic">
           <i class="fas fa-music"></i>
         </a>
       </div>
@@ -151,13 +153,13 @@
           <div class="streaming-links">
             <h3>Слушайте на стримингах</h3>
             <div class="streaming-buttons">
-              <a href="https://music.yandex.ru/artist/16564725" target="_blank" class="streaming-btn yandex">
+              <a href="#" target="_blank" class="streaming-btn yandex" data-config-link="streaming.yandex">
                 <i class="fas fa-music"></i> Яндекс.Музыка
               </a>
-              <a href="https://vk.com/artist/TheWitcheryCat" target="_blank" class="streaming-btn vk">
+              <a href="#" target="_blank" class="streaming-btn vk" data-config-link="streaming.vk">
                 <i class="fab fa-vk"></i> VK Музыка
               </a>
-              <a href="https://www.youtube.com/@TheWitcheryCat" target="_blank" class="streaming-btn youtube">
+              <a href="#" target="_blank" class="streaming-btn youtube" data-config-link="streaming.youtube">
                 <i class="fab fa-youtube"></i> YouTube Music
               </a>
             </div>
@@ -176,35 +178,35 @@
       <p class="section-subtitle">Основные релизы и музыкальные проекты TheWitcheryCat</p>
       <div class="portfolio-grid">
         <div class="portfolio-item">
-          <img src="https://sun9-60.userapi.com/s/v1/ig2/P_o0takqAuN8glR3g_5NyH7igPK8q0aC-eSpvrqf4RIeP-or2xXFIkyEiirg39LW6JwnLzJofoxgz2cbc1A7d4Me.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2000x2000&from=bu&cs=2000x0" alt="TheWitcheryCat feat. CodEK$ - Детка Remix" loading="lazy" />
+          <img src="#" alt="TheWitcheryCat feat. CodEK$ - Детка Remix" loading="lazy" data-config-image="releases.detkaRemix.image" />
           <div class="portfolio-overlay">
             <div class="portfolio-content">
               <span class="portfolio-year">2025</span>
-              <h3>TheWitcheryCat feat. CodEK$ - Детка Remix</h3>
+              <h3 data-config-text="releases.detkaRemix.title">TheWitcheryCat feat. CodEK$ - Детка Remix</h3>
               <p>Совместный трек с CodEK$, выпущенный в 2025 году</p>
-              <a href="https://band.link/detka_remix" target="_blank" class="btn">Слушать</a>
+              <a href="#" target="_blank" class="btn" data-config-link="releases.detkaRemix.link">Слушать</a>
             </div>
           </div>
         </div>
         <div class="portfolio-item">
-          <img src="https://sun9-47.userapi.com/s/v1/ig2/CCQF2pAUuf3BN31-Pswkx3ih9FmZR9kNjUKiWVGA6E8O5Mtb_mPO6yx_WpeqKv9evHQK7BfSa7qTHJfwLT2iLJuu.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&cs=2560x0" alt="Крик в никуда" loading="lazy" />
+          <img src="#" alt="Крик в никуда" loading="lazy" data-config-image="releases.cryIntoVoid.image" />
           <div class="portfolio-overlay">
             <div class="portfolio-content">
               <span class="portfolio-year">2025</span>
-              <h3>Крик в никуда</h3>
+              <h3 data-config-text="releases.cryIntoVoid.title">Крик в никуда</h3>
               <p>Эмоциональный трек, исследующий темы внутренних переживаний</p>
-              <a href="https://vk.cc/cPycij" target="_blank" class="btn">Слушать</a>
+              <a href="#" target="_blank" class="btn" data-config-link="releases.cryIntoVoid.link">Слушать</a>
             </div>
           </div>
         </div>
         <div class="portfolio-item">
-          <img src="https://sun9-59.userapi.com/s/v1/ig2/hI6RndpG5SNtGXVn6FeFyqB0YUFoEUiecdRbApTbweGcE5N-8pS1Uvil9mSB1Yz7BTg8e4-OYIyH3bcJjZ15qpAw.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&cs=2560x0" alt="ПОСЛЕДНИЙ ДРАЙВ В НИКУДА" loading="lazy" />
+          <img src="#" alt="ПОСЛЕДНИЙ ДРАЙВ В НИКУДА" loading="lazy" data-config-image="releases.lastDrive.image" />
           <div class="portfolio-overlay">
             <div class="portfolio-content">
               <span class="portfolio-year">2025</span>
-              <h3>ПОСЛЕДНИЙ ДРАЙВ В НИКУДА</h3>
+              <h3 data-config-text="releases.lastDrive.title">ПОСЛЕДНИЙ ДРАЙВ В НИКУДА</h3>
               <p>Последний релиз от SQAZLY Music в жанре Electronic</p>
-              <a href="https://band.link/tldtn" target="_blank" class="btn">Слушать</a>
+              <a href="#" target="_blank" class="btn" data-config-link="releases.lastDrive.link">Слушать</a>
             </div>
           </div>
         </div>
@@ -239,7 +241,7 @@
             <div class="event-desc">Живой сет с новыми треками</div>
             <div class="event-city">Норильск, Россия</div>
           </div>
-          <a href="https://vk.com/TheWitcheryCat" target="_blank" class="btn btn-gradient tickets-btn">
+          <a href="#" target="_blank" class="btn btn-gradient tickets-btn" data-config-link="social.vk">
             <i class="fas fa-ticket-alt"></i> Билеты
           </a>
         </div>
@@ -251,7 +253,7 @@
             <div class="event-desc">Специальное выступление с визуальным сопровождением</div>
             <div class="event-city">Красноярск, Россия</div>
           </div>
-          <a href="https://vk.com/TheWitcheryCat" target="_blank" class="btn btn-gradient tickets-btn">
+          <a href="#" target="_blank" class="btn btn-gradient tickets-btn" data-config-link="social.vk">
             <i class="fas fa-ticket-alt"></i> Билеты
           </a>
         </div>
@@ -263,7 +265,7 @@
             <div class="event-desc">Коллаборация с местными артистами</div>
             <div class="event-city">Москва, Россия</div>
           </div>
-          <a href="https://vk.com/TheWitcheryCat" target="_blank" class="btn btn-gradient tickets-btn">
+          <a href="#" target="_blank" class="btn btn-gradient tickets-btn" data-config-link="social.vk">
             <i class="fas fa-ticket-alt"></i> Билеты
           </a>
         </div>
@@ -271,7 +273,7 @@
       <div class="event-subscribe">
         <h3>Хотите быть в курсе всех выступлений?</h3>
         <p>Подпишитесь на обновления и первыми узнавайте о новых концертах</p>
-        <a href="https://vk.com/TheWitcheryCat" target="_blank" class="btn btn-large">
+        <a href="#" target="_blank" class="btn btn-large" data-config-link="social.vk">
           <i class="fab fa-vk"></i> Подписаться в VK
         </a>
       </div>
@@ -293,19 +295,19 @@
             <div class="media-list">
               <div class="media-item">
                 <i class="fas fa-play-circle"></i> 
-                <a href="https://band.link/detka_remix" target="_blank" class="media-link">TheWitcheryCat feat. CodEK$ - Детка Remix — 3:58</a>
+                <a href="#" target="_blank" class="media-link" data-config-link="releases.detkaRemix.link" data-config-text-append="releases.detkaRemix.title" data-config-duration="releases.detkaRemix.duration">TheWitcheryCat feat. CodEK$ - Детка Remix — 3:58</a>
               </div>
               <div class="media-item">
                 <i class="fas fa-play-circle"></i> 
-                <a href="https://vk.cc/cPycij" target="_blank" class="media-link">Крик в никуда — 4:12</a>
+                <a href="#" target="_blank" class="media-link" data-config-link="releases.cryIntoVoid.link" data-config-text-append="releases.cryIntoVoid.title" data-config-duration="releases.cryIntoVoid.duration">Крик в никуда — 4:12</a>
               </div>
               <div class="media-item">
                 <i class="fas fa-play-circle"></i> 
-                <a href="https://band.link/tldtn" target="_blank" class="media-link">ПОСЛЕДНИЙ ДРАЙВ В НИКУДА — 3:45</a>
+                <a href="#" target="_blank" class="media-link" data-config-link="releases.lastDrive.link" data-config-text-append="releases.lastDrive.title" data-config-duration="releases.lastDrive.duration">ПОСЛЕДНИЙ ДРАЙВ В НИКУДА — 3:45</a>
               </div>
               <div class="media-item">
                 <i class="fas fa-play-circle"></i> 
-                <a href="https://music.yandex.ru/artist/16564725" target="_blank" class="media-link">Все треки на Яндекс.Музыке — Плейлист</a>
+                <a href="#" target="_blank" class="media-link" data-config-link="streaming.yandex">Все треки на Яндекс.Музыке — Плейлист</a>
               </div>
             </div>
           </div>
@@ -356,14 +358,14 @@
           </div>
           <div class="tab-pane" id="photos">
             <div class="photo-grid">
-              <img src="https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&cs=1280x0" alt="Живой сет TheWitcheryCat" loading="lazy" />
-              <img src="https://sun9-59.userapi.com/s/v1/ig2/hI6RndpG5SNtGXVn6FeFyqB0YUFoEUiecdRbApTbweGcE5N-8pS1Uvil9mSB1Yz7BTg8e4-OYIyH3bcJjZ15qpAw.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&cs=2560x0" alt="Студийная работа" loading="lazy" />
-              <img src="https://sun9-47.userapi.com/s/v1/ig2/CCQF2pAUuf3BN31-Pswkx3ih9FmZR9kNjUKiWVGA6E8O5Mtb_mPO6yx_WpeqKv9evHQK7BfSa7qTHJfwLT2iLJuu.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&cs=2560x0" alt="Фестивальное выступление" loading="lazy" />
-              <img src="https://sun9-60.userapi.com/s/v1/ig2/P_o0takqAuN8glR3g_5NyH7igPK8q0aC-eSpvrqf4RIeP-or2xXFIkyEiirg39LW6JwnLzJofoxgz2cbc1A7d4Me.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2000x2000&from=bu&cs=2000x0" alt="Аудитория на концерте" loading="lazy" />
+              <img src="#" alt="Живой сет TheWitcheryCat" loading="lazy" data-config-image="images.mainAvatar" />
+              <img src="#" alt="Студийная работа" loading="lazy" data-config-image="images.gallery.1" />
+              <img src="#" alt="Фестивальное выступление" loading="lazy" data-config-image="images.gallery.2" />
+              <img src="#" alt="Аудитория на концерте" loading="lazy" data-config-image="images.gallery.3" />
             </div>
             <div class="photo-gallery-info">
-              <p>Все фотографии доступны в <a href="https://vk.com/TheWitcheryCat" target="_blank">альбомах сообщества ВКонтакте</a></p>
-              <a href="https://vk.com/TheWitcheryCat" target="_blank" class="btn">
+              <p>Все фотографии доступны в <a href="#" target="_blank" data-config-link="social.vk">альбомах сообщества ВКонтакте</a></p>
+              <a href="#" target="_blank" class="btn" data-config-link="social.vk">
                 <i class="fab fa-vk"></i> Смотреть все фото
               </a>
             </div>
