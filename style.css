@@ -275,7 +275,7 @@ body.theme-transition {
 }
 /* Стили для кнопки переключения темы в меню */
 .theme-toggle-li {
-  margin-left: auto;           /* Автоматический отступ слева - прижимает кнопку вправо */
+  margin-left: 1rem;           /* Небольшой отступ слева для кнопки темы */
 }
 .theme-toggle-btn {
   background: none;
