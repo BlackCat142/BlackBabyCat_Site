@@ -10,7 +10,7 @@ const CONFIG = {
 
   // === Социальные сети ===
   social: {
-    vk: 'https://vk.com/TheWitcheryCat',
+    vk: 'https://vk.com/TheWitcheryCat1',
     vkArtist: 'https://vk.com/artist/TheWitcheryCat',
     telegram: 'https://t.me/TheWitcheryCat',
     youtube: 'https://www.youtube.com/@TheWitcheryCat',
