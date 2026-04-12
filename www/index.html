@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#8b5cf6" id="themeColorMeta">
+  <!-- Ключевые SEO-теги -->
+  <title>TheWitcheryCat — Музыкант из Норильска | Официальный сайт</title>
+  <meta name="description" content="Официальный сайт TheWitcheryCat — музыканта и продюсера из Норильска, создающего уникальный звук, объединяющий рэп и хип-хоп в танцевальном стиле. Слушайте треки 'Детка Remix', 'Крик в никуда', 'ПОСЛЕДНИЙ ДРАЙВ В НИКУДА' и следите за выступлениями.">
+  <meta name="keywords" content="TheWitcheryCat, музыкант Норильск, рэп, хип-хоп, электронная музыка, Детка Remix, Крик в никуда, ПОСЛЕДНИЙ ДРАЙВ В НИКУДА, русский рэп">
+  <!-- Open Graph (для соцсетей) -->
+  <meta property="og:title" content="TheWitcheryCat — Музыкант из Норильска">
+  <meta property="og:description" content="Официальный сайт артиста из Норильска. Слушайте треки 'Детка Remix', 'Крик в никуда', 'ПОСЛЕДНИЙ ДРАЙВ В НИКУДА' и следите за выступлениями.">
+  <meta property="og:image" content="https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&cs=1280x0">
+  <meta property="og:url" content="https://TheWitcheryCat.ru">
+  <meta property="og:type" content="website">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TheWitcheryCat — Музыкант из Норильска">
+  <meta name="twitter:description" content="Официальный сайт артиста из Норильска. Уникальный звук — рэп и хип-хоп в танцевальном стиле">
+  <meta name="twitter:image" content="https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&cs=1280x0">
+  <!-- Канонический URL -->
+  <link rel="canonical" href="https://TheWitcheryCat.ru" />
+  <!-- Верификация для Google Search Console -->
+  <meta name="google-site-verification" content="qsA6Z21Z5kgi3PDUkFSWiWTIUa_R27Tj9m3a5OVs2N4" />
+  <!-- Предзагрузка ресурсов -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://www.youtube.com">
+  <link rel="preconnect" href="https://i.ytimg.com">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
+  <!-- Favicon -->
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <!-- Подключение стилей -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Безопасность -->
+  <meta name="referrer" content="no-referrer">
+  <!-- VK Bridge для мини-приложений ВКонтакте -->
+  <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+</head>
+<body>
+  <!-- Навигация -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <div class="logo-icon">B</div>
+        <span class="logo-text">TheWitcheryCat</span>
+      </div>
+      <nav class="nav" id="mainNav">
+        <ul>
+          <li><a href="index.html#главная">Главная</a></li>
+          <li><a href="index.html#обо-мне">Обо мне</a></li>
+          <li><a href="index.html#портфолио">Портфолио</a></li>
+          <li><a href="index.html#события">События</a></li>
+          <li><a href="index.html#медиа">Медиа</a></li>
+          <li><a href="textpesen.html">Тексты</a></li>
+          <li><a href="moon.html">Лунный календарь</a></li>
+          <li><a href="index.html#пресса">Пресса</a></li>
+          <li><a href="index.html#контакты">Контакты</a></li>
+          <li class="theme-toggle-li">
+            <button id="themeToggle" class="theme-toggle-btn">
+              <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="index.html#главная">Главная</a></li>
+        <li><a href="index.html#обо-мне">Обо мне</a></li>
+        <li><a href="index.html#портфолио">Портфолио</a></li>
+        <li><a href="index.html#события">События</a></li>
+        <li><a href="index.html#медиа">Медиа</a></li>
+        <li><a href="textpesen.html">Тексты</a></li>
+        <li><a href="moon.html">Лунный календарь</a></li>
+        <li><a href="index.html#пресса">Пресса</a></li>
+        <li><a href="index.html#контакты">Контакты</a></li>
+        <li class="theme-toggle-li">
+          <button id="mobileThemeToggle" class="theme-toggle-btn mobile-theme-toggle">
+            <i class="fas fa-moon" id="mobileThemeIcon"></i> Переключить тему
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <!-- Главная -->
+  <section id="главная" class="section hero">
+    <div class="container hero-content">
+      <img src="https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&cs=1280x0" alt="TheWitcheryCat" class="hero-avatar" loading="lazy" />
+      <h1 class="hero-title">TheWitcheryCat</h1>
+      <p class="hero-tagline">Создаю уникальный звук, объединяющий рэп и хип-хоп в танцевальном стиле</p>
+      <div class="social-links">
+        <a href="https://vk.com/TheWitcheryCat" target="_blank" aria-label="ВКонтакте">
+          <i class="fab fa-vk"></i>
+        </a>
+        <a href="https://t.me/TheWitcheryCat" target="_blank" aria-label="Telegram">
+          <i class="fab fa-telegram"></i>
+        </a>
+        <a href="https://www.youtube.com/@TheWitcheryCat" target="_blank" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://music.yandex.ru/artist/16564725" target="_blank" aria-label="Яндекс.Музыка">
+          <i class="fas fa-music"></i>
+        </a>
+      </div>
+      <div class="hero-badge">
+        <i class="fas fa-fire"></i> НОВЫЙ ТРЕК: "АНТИ-ТРЕND 28.02.2026"
+      </div>
+    </div>
+  </section>
+  <!-- Обо мне -->
+  <section id="обо-мне" class="section">
+    <div class="container">
+      <h2 class="section-title">Творческий путь</h2>
+      <p class="section-subtitle">Узнайте о пути, который сформировал уникальный художественный голос TheWitcheryCat</p>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>TheWitcheryCat — музыкант и продюсер из Норильска, создающий уникальный звук, объединяющий рэп и хип-хоп в танцевальном стиле. В 2025 году артист представил несколько значимых работ: совместный трек "TheWitcheryCat feat. CodEK$ - Детка Remix", а также сольные проекты "Крик в никуда" и "ПОСЛЕДНИЙ ДРАЙВ В НИКУДА". Его творчество фокусируется на честном выражении своих мыслей и эмоций через звук и слово, избегая шаблонов и клише.</p>
+          <h3 class="education-title">Музыкальное развитие</h3>
+          <div class="education-list">
+            <div class="education-item">
+              <h4>Ранние годы</h4>
+              <p class="degree">Начал увлекаться музыкой и звукозаписью в Норильске</p>
+              <p class="period">Подростковые годы</p>
+            </div>
+            <div class="education-item">
+              <h4>Первый релиз</h4>
+              <p class="degree">Дебютный сингл "PULL UP (EVB Remix)", обозначивший начало профессиональной карьеры</p>
+              <p class="period">2022</p>
+            </div>
+            <div class="education-item">
+              <h4>Современные проекты</h4>
+              <p class="degree">Работа над синглом "АНТИ-ТРЕND" и другими треками</p>
+              <p class="period">2023-2026</p>
+            </div>
+          </div>
+          <div class="streaming-links">
+            <h3>Слушайте на стримингах</h3>
+            <div class="streaming-buttons">
+              <a href="https://music.yandex.ru/artist/16564725" target="_blank" class="streaming-btn yandex">
+                <i class="fas fa-music"></i> Яндекс.Музыка
+              </a>
+              <a href="https://vk.com/artist/TheWitcheryCat" target="_blank" class="streaming-btn vk">
+                <i class="fab fa-vk"></i> VK Музыка
+              </a>
+              <a href="https://www.youtube.com/@TheWitcheryCat" target="_blank" class="streaming-btn youtube">
+                <i class="fab fa-youtube"></i> YouTube Music
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="https://music-bandlink.s3.yandex.net/img/bandlinks/vZms3_08XRcYon_370x370.jpeg" alt="Студийная сессия TheWitcheryCat" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Портфолио -->
+  <section id="портфолио" class="section portfolio">
+    <div class="container">
+      <h2 class="section-title">Избранные работы</h2>
+      <p class="section-subtitle">Основные релизы и музыкальные проекты TheWitcheryCat</p>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="https://sun9-60.userapi.com/s/v1/ig2/P_o0takqAuN8glR3g_5NyH7igPK8q0aC-eSpvrqf4RIeP-or2xXFIkyEiirg39LW6JwnLzJofoxgz2cbc1A7d4Me.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2000x2000&from=bu&cs=2000x0" alt="TheWitcheryCat feat. CodEK$ - Детка Remix" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-content">
+              <span class="portfolio-year">2025</span>
+              <h3>TheWitcheryCat feat. CodEK$ - Детка Remix</h3>
+              <p>Совместный трек с CodEK$, выпущенный в 2025 году</p>
+              <a href="https://band.link/detka_remix" target="_blank" class="btn">Слушать</a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://sun9-47.userapi.com/s/v1/ig2/CCQF2pAUuf3BN31-Pswkx3ih9FmZR9kNjUKiWVGA6E8O5Mtb_mPO6yx_WpeqKv9evHQK7BfSa7qTHJfwLT2iLJuu.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&cs=2560x0" alt="Крик в никуда" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-content">
+              <span class="portfolio-year">2025</span>
+              <h3>Крик в никуда</h3>
+              <p>Эмоциональный трек, исследующий темы внутренних переживаний</p>
+              <a href="https://vk.cc/cPycij" target="_blank" class="btn">Слушать</a>
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://sun9-59.userapi.com/s/v1/ig2/hI6RndpG5SNtGXVn6FeFyqB0YUFoEUiecdRbApTbweGcE5N-8pS1Uvil9mSB1Yz7BTg8e4-OYIyH3bcJjZ15qpAw.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&cs=2560x0" alt="ПОСЛЕДНИЙ ДРАЙВ В НИКУДА" loading="lazy" />
+          <div class="portfolio-overlay">
+            <div class="portfolio-content">
+              <span class="portfolio-year">2025</span>
+              <h3>ПОСЛЕДНИЙ ДРАЙВ В НИКУДА</h3>
+              <p>Последний релиз от SQAZLY Music в жанре Electronic</p>
+              <a href="https://band.link/tldtn" target="_blank" class="btn">Слушать</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-stats">
+        <div class="stat-item">
+          <span class="stat-number">15+</span>
+          <span class="stat-label">Треков выпущено</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">50K+</span>
+          <span class="stat-label">Прослушиваний</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Коллаборации</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- События -->
+  <section id="события" class="section">
+    <div class="container">
+      <h2 class="section-title">Предстоящие выступления</h2>
+      <p class="section-subtitle">Присоединяйтесь к TheWitcheryCat на этих предстоящих живых мероприятиях</p>
+      <div class="events-list">
+        <div class="event-item">
+          <div class="event-icon"><i class="fas fa-calendar"></i></div>
+          <div class="event-info">
+            <div class="event-date">15 июня 2025</div>
+            <div class="event-venue">Клуб Aurora</div>
+            <div class="event-desc">Живой сет с новыми треками</div>
+            <div class="event-city">Норильск, Россия</div>
+          </div>
+          <a href="https://vk.com/TheWitcheryCat" target="_blank" class="btn btn-gradient tickets-btn">
+            <i class="fas fa-ticket-alt"></i> Билеты
+          </a>
+        </div>
+        <div class="event-item">
+          <div class="event-icon"><i class="fas fa-calendar"></i></div>
+          <div class="event-info">
+            <div class="event-date">22 июля 2025</div>
+            <div class="event-venue">Фестиваль "Северный Ритм"</div>
+            <div class="event-desc">Специальное выступление с визуальным сопровождением</div>
+            <div class="event-city">Красноярск, Россия</div>
+          </div>
+          <a href="https://vk.com/TheWitcheryCat" target="_blank" class="btn btn-gradient tickets-btn">
+            <i class="fas fa-ticket-alt"></i> Билеты
+          </a>
+        </div>
+        <div class="event-item">
+          <div class="event-icon"><i class="fas fa-calendar"></i></div>
+          <div class="event-info">
+            <div class="event-date">10 августа 2025</div>
+            <div class="event-venue">Клуб Techno Factory</div>
+            <div class="event-desc">Коллаборация с местными артистами</div>
+            <div class="event-city">Москва, Россия</div>
+          </div>
+          <a href="https://vk.com/TheWitcheryCat" target="_blank" class="btn btn-gradient tickets-btn">
+            <i class="fas fa-ticket-alt"></i> Билеты
+          </a>
+        </div>
+      </div>
+      <div class="event-subscribe">
+        <h3>Хотите быть в курсе всех выступлений?</h3>
+        <p>Подпишитесь на обновления и первыми узнавайте о новых концертах</p>
+        <a href="https://vk.com/TheWitcheryCat" target="_blank" class="btn btn-large">
+          <i class="fab fa-vk"></i> Подписаться в VK
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- Медиа -->
+  <section id="медиа" class="section media">
+    <div class="container">
+      <h2 class="section-title">Творческие выражения</h2>
+      <p class="section-subtitle">Исследуйте аудиоэксперименты, визуальные путешествия и запечатленные моменты TheWitcheryCat</p>
+      <div class="media-container">
+        <div class="media-tabs">
+          <button class="tab-btn active" data-tab="audio"><i class="fas fa-music"></i> Аудио</button>
+          <button class="tab-btn" data-tab="video"><i class="fas fa-video"></i> Видео</button>
+          <button class="tab-btn" data-tab="photos"><i class="fas fa-image"></i> Фото</button>
+        </div>
+        <div class="media-content">
+          <div class="tab-pane active" id="audio">
+            <div class="media-list">
+              <div class="media-item">
+                <i class="fas fa-play-circle"></i> 
+                <a href="https://band.link/detka_remix" target="_blank" class="media-link">TheWitcheryCat feat. CodEK$ - Детка Remix — 3:58</a>
+              </div>
+              <div class="media-item">
+                <i class="fas fa-play-circle"></i> 
+                <a href="https://vk.cc/cPycij" target="_blank" class="media-link">Крик в никуда — 4:12</a>
+              </div>
+              <div class="media-item">
+                <i class="fas fa-play-circle"></i> 
+                <a href="https://band.link/tldtn" target="_blank" class="media-link">ПОСЛЕДНИЙ ДРАЙВ В НИКУДА — 3:45</a>
+              </div>
+              <div class="media-item">
+                <i class="fas fa-play-circle"></i> 
+                <a href="https://music.yandex.ru/artist/16564725" target="_blank" class="media-link">Все треки на Яндекс.Музыке — Плейлист</a>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="video">
+            <div class="video-container">
+              <div class="video-item">
+                <div class="video-preview" data-video-id="Начало ID видео">
+                  <img src="Ссылка на обложку видео" alt="TheWitcheryCat - Студийная сессия" loading="lazy" class="video-thumbnail" />
+                  <div class="video-overlay">
+                    <i class="fas fa-play-circle"></i>
+                  </div>
+                  <div class="video-info">
+                    <h3>TheWitcheryCat - Студийная сессия</h3>
+                    <p>12:30</p>
+                  </div>
+                </div>
+              </div>
+              <div class="video-item">
+                <div class="video-preview" data-video-id="Начало ID видео">
+                  <img src="Ссылка на обложку видео" alt="Выступление в Клубе Aurora" loading="lazy" class="video-thumbnail" />
+                  <div class="video-overlay">
+                    <i class="fas fa-play-circle"></i>
+                  </div>
+                  <div class="video-info">
+                    <h3>Выступление в Клубе Aurora</h3>
+                    <p>45:18</p>
+                  </div>
+                </div>
+              </div>
+              <div class="video-item">
+                <div class="video-preview" data-video-id="Начало ID видео">
+                  <img src="Ссылка на обложку видео" alt="Интервью о творческом пути" loading="lazy" class="video-thumbnail" />
+                  <div class="video-overlay">
+                    <i class="fas fa-play-circle"></i>
+                  </div>
+                  <div class="video-info">
+                    <h3>Интервью о творческом пути</h3>
+                    <p>28:45</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="video-player-container" id="videoPlayerContainer">
+              <div class="video-player-placeholder">
+                <p>Выберите видео для воспроизведения</p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="photos">
+            <div class="photo-grid">
+              <img src="https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&cs=1280x0" alt="Живой сет TheWitcheryCat" loading="lazy" />
+              <img src="https://sun9-59.userapi.com/s/v1/ig2/hI6RndpG5SNtGXVn6FeFyqB0YUFoEUiecdRbApTbweGcE5N-8pS1Uvil9mSB1Yz7BTg8e4-OYIyH3bcJjZ15qpAw.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&cs=2560x0" alt="Студийная работа" loading="lazy" />
+              <img src="https://sun9-47.userapi.com/s/v1/ig2/CCQF2pAUuf3BN31-Pswkx3ih9FmZR9kNjUKiWVGA6E8O5Mtb_mPO6yx_WpeqKv9evHQK7BfSa7qTHJfwLT2iLJuu.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&cs=2560x0" alt="Фестивальное выступление" loading="lazy" />
+              <img src="https://sun9-60.userapi.com/s/v1/ig2/P_o0takqAuN8glR3g_5NyH7igPK8q0aC-eSpvrqf4RIeP-or2xXFIkyEiirg39LW6JwnLzJofoxgz2cbc1A7d4Me.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2000x2000&from=bu&cs=2000x0" alt="Аудитория на концерте" loading="lazy" />
+            </div>
+            <div class="photo-gallery-info">
+              <p>Все фотографии доступны в <a href="https://vk.com/TheWitcheryCat" target="_blank">альбомах сообщества ВКонтакте</a></p>
+              <a href="https://vk.com/TheWitcheryCat" target="_blank" class="btn">
+                <i class="fab fa-vk"></i> Смотреть все фото
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Пресса -->
+  <section id="пресса" class="section">
+    <div class="container">
+      <h2 class="section-title">Отзывы и признание</h2>
+      <p class="section-subtitle">Что пишут о творчестве TheWitcheryCat</p>
+      <div class="press-grid">
+        <blockquote class="press-item">
+          <p>"TheWitcheryCat создает уникальный звук, объединяющий рэп и хип-хоп в танцевальном стиле. Его музыка находит отклик у слушателей благодаря честному самовыражению."</p>
+          <div class="press-source">Музыкальный портал • ★★★★☆</div>
+        </blockquote>
+        <blockquote class="press-item">
+          <p>"Артист из Норильска доказывает, что даже в удаленных регионах можно создавать актуальную музыку, которая будет слышна по всему миру."</p>
+          <div class="press-source">Культурный журнал • ★★★★</div>
+        </blockquote>
+        <blockquote class="press-item">
+          <p>"Каждый релиз TheWitcheryCat — это новое путешествие в мир эмоций и переживаний, где артист исследует темы личного роста и социальных реалий."</p>
+          <div class="press-source">Музыкальный блог • ★★★★★</div>
+        </blockquote>
+      </div>
+      <div class="press-articles">
+        <h3>Статьи и интервью</h3>
+        <div class="articles-grid">
+          <a href="https://vk.com/TheWitcheryCat" target="_blank" class="article-item">
+            <div class="article-icon"><i class="fas fa-microphone-alt"></i></div>
+            <div class="article-content">
+              <h4>Эксклюзивное интервью для музыкального портала</h4>
+              <p>О творческом пути и новых проектах</p>
+            </div>
+          </a>
+          <a href="https://vk.com/TheWitcheryCat" target="_blank" class="article-item">
+            <div class="article-icon"><i class="fas fa-newspaper"></i></div>
+            <div class="article-content">
+              <h4>Статья о северных артистах в культурном журнале</h4>
+              <p>Как TheWitcheryCat представляет Норильск на музыкальной сцене</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Контакты -->
+  <section id="контакты" class="section contact">
+    <div class="container">
+      <h2 class="section-title">Давайте создадим вместе</h2>
+      <p class="section-subtitle">Заинтересованы в сотрудничестве или хотите забронировать TheWitcheryCat для вашего мероприятия? Свяжитесь с нами ниже.</p>
+      <div class="contact-container">
+        <div class="contact-info">
+          <div class="contact-card">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Электронная почта</h3>
+              <a href="mailto:TheWitcheryCat@TheWitcheryCat.ru">TheWitcheryCat@TheWitcheryCat.ru</a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h3>Местоположение</h3>
+              <p>Норильск, Россия</p>
+            </div>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-music"></i>
+            <div>
+              <h3>Музыкальные площадки</h3>
+              <p>Доступно на всех стриминговых платформах</p>
+            </div>
+          </div>
+          <div class="social-links contact-social">
+            <a href="https://vk.com/TheWitcheryCat" target="_blank" aria-label="ВКонтакте">
+              <i class="fab fa-vk"></i>
+            </a>
+            <a href="https://t.me/TheWitcheryCat" target="_blank" aria-label="Telegram">
+              <i class="fab fa-telegram"></i>
+            </a>
+            <a href="https://www.youtube.com/@TheWitcheryCat" target="_blank" aria-label="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://music.yandex.ru/artist/16564725" target="_blank" aria-label="Яндекс.Музыка">
+              <i class="fas fa-music"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="logo">
+        <div class="logo-icon">B</div>
+        <span class="logo-text">TheWitcheryCat</span>
+      </div>
+      <div class="footer-text">
+        <p id="copyright">© <span id="currentYear">2025</span> TheWitcheryCat. Все права защищены.</p>
+        <p>Создание уникального звука из Норильска</p>
+      </div>
+      <div class="footer-social">
+        <a href="https://vk.com/TheWitcheryCat" target="_blank" aria-label="ВКонтакте">
+          <i class="fab fa-vk"></i>
+        </a>
+        <a href="https://t.me/TheWitcheryCat" target="_blank" aria-label="Telegram">
+          <i class="fab fa-telegram"></i>
+        </a>
+        <a href="https://www.youtube.com/@TheWitcheryCat" target="_blank" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://music.yandex.ru/artist/16564725" target="_blank" aria-label="Яндекс.Музыка">
+          <i class="fas fa-music"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+  <!-- Структурированные данные для SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "TheWitcheryCat",
+    "url": "https://TheWitcheryCat.ru",
+    "logo": "https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&cs=1280x0",
+    "image": "https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&cs=1280x0",
+    "description": "Музыкант и продюсер из Норильска, создающий уникальный звук, объединяющий рэп и хип-хоп в танцевальном стиле",
+    "genre": ["Hip-Hop", "Rap", "Electronic"],
+    "foundingLocation": "Норильск, Россия",
+    "sameAs": [
+      "https://vk.com/TheWitcheryCat",
+      "https://t.me/TheWitcheryCat",
+      "https://www.youtube.com/@TheWitcheryCat",
+      "https://music.yandex.ru/artist/16564725"
+    ],
+    "album": [
+      {
+        "@type": "MusicAlbum",
+        "name": "Детка Remix (feat. CodEK$)",
+        "url": "https://band.link/detka_remix",
+        "datePublished": "2025-01-15"
+      },
+      {
+        "@type": "MusicAlbum",
+        "name": "Крик в никуда",
+        "url": "https://vk.cc/cPycij",
+        "datePublished": "2025-02-20"
+      },
+      {
+        "@type": "MusicAlbum",
+        "name": "ПОСЛЕДНИЙ ДРАЙВ В НИКУДА",
+        "url": "https://band.link/tldtn",
+        "datePublished": "2025-03-10"
+      }
+    ]
+  }
+  </script>
+  <!-- Yandex.Metrica counter -->
+  <script type="text/javascript" >
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(99999999, "init", {
+      clickmap:true,
+      trackLinks:true,
+      accurateTrackBounce:true,
+      webvisor:true
+    });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/99999999" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrica counter -->
+
+  <!-- Инициализация VK Bridge для мини-приложений ВКонтакте -->
+  <script>
+    // Инициализация VK Bridge
+    if (window.vkBridge) {
+      vkBridge.send('VKWebAppInit');
+      
+      // Отправка информации о клиенте
+      vkBridge.subscribe(function(event) {
+        console.log('VK Bridge событие:', event);
+      });
+      
+      // Установка цветов темы в соответствии с темой ВКонтакте
+      vkBridge.send('VKWebAppSetViewSettings', {
+        status_bar_style: 'dark',
+        action_bar_color: '#0f0f0f'
+      }).then(function(data) {
+        console.log('Настройки темы установлены:', data);
+      }).catch(function(error) {
+        console.log('Ошибка установки темы:', error);
+      });
+    }
+  </script>
+</body>
+</html>

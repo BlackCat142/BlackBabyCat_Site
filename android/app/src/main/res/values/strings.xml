@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">TheWitcheryCat</string>
+    <string name="title_activity_main">TheWitcheryCat</string>
+    <string name="package_name">com.thewitcherycat.app</string>
+    <string name="custom_url_scheme">com.thewitcherycat.app</string>
+</resources>
