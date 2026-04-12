@@ -139,6 +139,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Плавная прокрутка к якорям
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+            const currentHref = this.getAttribute('href');
+            // Не обрабатываем ссылки, которые были обновлены на внешние URL
+            if (currentHref && !currentHref.startsWith('#')) {
+                return; // Позволяем обычному переходу работать
+            }
+            
             e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
