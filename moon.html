@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#8b5cf6" id="themeColorMeta">
+  <title>Лунный Календарь — TheWitcheryCat</title>
+  <meta name="description" content="Интерактивный лунный календарь с фазами луны и дневник намерений. Планируйте ритуалы и цели по лунным циклам.">
+  <meta name="keywords" content="лунный календарь, фазы луны, дневник намерений, ритуалы, магия луны">
+  <link rel="canonical" href="https://TheWitcheryCat.ru/moon.html" />
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* Стили для страницы Лунного Календаря */
+    .moon-hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .moon-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238b5cf6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.3;
+    }
+    
+    .moon-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: var(--purple-light);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .moon-hero p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .current-moon-section {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 40px 20px;
+      margin: -30px auto 40px;
+      max-width: 800px;
+      box-shadow: 0 10px 40px rgba(139, 92, 246, 0.2);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .moon-display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .moon-phase-visual {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f5f5f5 0%, #d4d4d4 100%);
+      box-shadow: 0 0 60px rgba(139, 92, 246, 0.4), inset 0 0 40px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s ease;
+    }
+    
+    .moon-phase-visual.new-moon {
+      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    }
+    
+    .moon-phase-visual.waxing-crescent {
+      background: linear-gradient(135deg, #1a1a1a 0%, #1a1a1a 50%, #f5f5f5 50%, #d4d4d4 100%);
+    }
+    
+    .moon-phase-visual.first-quarter {
+      background: linear-gradient(to right, #1a1a1a 50%, #f5f5f5 50%);
+    }
+    
+    .moon-phase-visual.waxing-gibbous {
+      background: linear-gradient(135deg, #f5f5f5 0%, #d4d4d4 75%, #1a1a1a 75%);
+    }
+    
+    .moon-phase-visual.full-moon {
+      background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+      box-shadow: 0 0 80px rgba(139, 92, 246, 0.6), inset 0 0 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .moon-phase-visual.waning-gibbous {
+      background: linear-gradient(135deg, #1a1a1a 0%, #f5f5f5 25%, #d4d4d4 100%);
+    }
+    
+    .moon-phase-visual.last-quarter {
+      background: linear-gradient(to right, #f5f5f5 50%, #1a1a1a 50%);
+    }
+    
+    .moon-phase-visual.waning-crescent {
+      background: linear-gradient(135deg, #f5f5f5 0%, #d4d4d4 50%, #1a1a1a 50%);
+    }
+    
+    .moon-info {
+      text-align: center;
+    }
+    
+    .moon-phase-name {
+      font-size: 1.8rem;
+      color: var(--purple-light);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .moon-date {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 15px;
+    }
+    
+    .moon-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      width: 100%;
+      margin-top: 20px;
+    }
+    
+    .moon-detail-item {
+      background: var(--bg-dark);
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    
+    .moon-detail-label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 5px;
+    }
+    
+    .moon-detail-value {
+      font-size: 1.2rem;
+      color: var(--purple-light);
+      font-weight: 600;
+    }
+    
+    .moon-recommendation {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+      border-left: 4px solid var(--purple);
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      text-align: left;
+    }
+    
+    .moon-recommendation h3 {
+      color: var(--purple-light);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .moon-recommendation p {
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    /* Календарь */
+    .calendar-section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .calendar-title {
+      font-size: 1.8rem;
+      color: var(--purple-light);
+    }
+    
+    .calendar-nav {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .calendar-nav button {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .calendar-nav button:hover {
+      background: var(--purple);
+      border-color: var(--purple);
+      color: white;
+    }
+    
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .calendar-weekday {
+      text-align: center;
+      font-weight: 600;
+      color: var(--text-light);
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+    
+    .calendar-day {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-dark);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      position: relative;
+    }
+    
+    .calendar-day:hover {
+      border-color: var(--purple);
+      transform: translateY(-2px);
+    }
+    
+    .calendar-day.today {
+      border-color: var(--purple);
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
+    }
+    
+    .calendar-day.selected {
+      border-color: var(--pink);
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%);
+    }
+    
+    .calendar-day.other-month {
+      opacity: 0.3;
+    }
+    
+    .calendar-day-number {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    
+    .calendar-day-phase {
+      font-size: 0.7rem;
+      color: var(--text-light);
+    }
+    
+    .calendar-day .phase-icon {
+      font-size: 1.2rem;
+      margin-bottom: 3px;
+    }
+    
+    /* Дневник намерений */
+    .journal-section {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .journal-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .journal-header h2 {
+      font-size: 2rem;
+      color: var(--purple-light);
+      margin-bottom: 10px;
+    }
+    
+    .journal-header p {
+      color: var(--text-light);
+    }
+    
+    .journal-form {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-weight: 500;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .btn-submit {
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+    }
+    
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+    
+    .entries-list {
+      margin-top: 40px;
+    }
+    
+    .entries-list h3 {
+      color: var(--purple-light);
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+    
+    .entry-card {
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .entry-card:hover {
+      border-color: var(--purple);
+      transform: translateX(5px);
+    }
+    
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .entry-date {
+      color: var(--purple-light);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .entry-moon-phase {
+      background: var(--purple);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+    }
+    
+    .entry-title {
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    
+    .entry-text {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    
+    .entry-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .entry-action-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-light);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+    }
+    
+    .entry-action-btn:hover {
+      border-color: var(--pink);
+      color: var(--pink);
+    }
+    
+    .entry-action-btn.delete:hover {
+      border-color: #ef4444;
+      color: #ef4444;
+    }
+    
+    .no-entries {
+      text-align: center;
+      color: var(--text-light);
+      padding: 40px 20px;
+      font-style: italic;
+    }
+    
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      .moon-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .moon-phase-visual {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .calendar-grid {
+        gap: 5px;
+        padding: 10px;
+      }
+      
+      .calendar-day-number {
+        font-size: 0.9rem;
+      }
+      
+      .calendar-day .phase-icon {
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .moon-details {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .calendar-grid {
+        grid-template-columns: repeat(7, 1fr);
+        font-size: 0.8rem;
+      }
+    }
+    
+    /* Навигация назад */
+    .back-nav {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--purple-light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+    }
+    
+    .back-btn:hover {
+      border-color: var(--purple);
+      background: rgba(139, 92, 246, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Навигация -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <div class="logo-icon">B</div>
+        <span class="logo-text">TheWitcheryCat</span>
+      </div>
+      <nav class="nav" id="mainNav">
+        <ul>
+          <li><a href="index.html#главная">Главная</a></li>
+          <li><a href="index.html#обо-мне">Обо мне</a></li>
+          <li><a href="index.html#портфолио">Портфолио</a></li>
+          <li><a href="index.html#события">События</a></li>
+          <li><a href="index.html#медиа">Медиа</a></li>
+          <li><a href="textpesen.html">Тексты</a></li>
+          <li><a href="index.html#пресса">Пресса</a></li>
+          <li><a href="index.html#контакты">Контакты</a></li>
+          <li class="theme-toggle-li">
+            <button id="themeToggle" class="theme-toggle-btn">
+              <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="index.html#главная">Главная</a></li>
+        <li><a href="index.html#обо-мне">Обо мне</a></li>
+        <li><a href="index.html#портфолио">Портфолио</a></li>
+        <li><a href="index.html#события">События</a></li>
+        <li><a href="index.html#медиа">Медиа</a></li>
+        <li><a href="textpesen.html">Тексты</a></li>
+        <li><a href="index.html#пресса">Пресса</a></li>
+        <li><a href="index.html#контакты">Контакты</a></li>
+        <li class="theme-toggle-li">
+          <button id="mobileThemeToggle" class="theme-toggle-btn mobile-theme-toggle">
+            <i class="fas fa-moon" id="mobileThemeIcon"></i> Переключить тему
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero секция -->
+  <section class="moon-hero">
+    <h1>🌙 Лунный Календарь</h1>
+    <p>Отслеживайте фазы луны и записывайте свои намерения в правильные лунные дни</p>
+  </section>
+
+  <!-- Текущая фаза луны -->
+  <section class="current-moon-section">
+    <div class="moon-display">
+      <div class="moon-phase-visual" id="currentMoonVisual"></div>
+      <div class="moon-info">
+        <h2 class="moon-phase-name" id="currentPhaseName">Полнолуние</h2>
+        <p class="moon-date" id="currentDate"></p>
+        <div class="moon-details">
+          <div class="moon-detail-item">
+            <div class="moon-detail-label">Возраст луны</div>
+            <div class="moon-detail-value" id="moonAge">14.2 дня</div>
+          </div>
+          <div class="moon-detail-item">
+            <div class="moon-detail-label">Освещённость</div>
+            <div class="moon-detail-value" id="moonIllumination">98%</div>
+          </div>
+          <div class="moon-detail-item">
+            <div class="moon-detail-label">Знак зодиака</div>
+            <div class="moon-detail-value" id="moonSign">♏ Скорпион</div>
+          </div>
+        </div>
+        <div class="moon-recommendation">
+          <h3>✨ Рекомендации на сегодня</h3>
+          <p id="moonRecommendation">Идеальное время для завершения дел, подведения итогов и отпускания старого. Энергия достигает пика — используйте её для мощных ритуалов и реализации задуманного.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Навигация назад -->
+  <div class="back-nav">
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> На главную
+    </a>
+  </div>
+
+  <!-- Календарь -->
+  <section class="calendar-section">
+    <div class="calendar-header">
+      <h2 class="calendar-title" id="calendarMonthYear">Декабрь 2025</h2>
+      <div class="calendar-nav">
+        <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+        <button id="todayBtn">Сегодня</button>
+        <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <div class="calendar-grid" id="calendarGrid">
+      <!-- Дни будут сгенерированы JavaScript -->
+    </div>
+  </section>
+
+  <!-- Дневник намерений -->
+  <section class="journal-section">
+    <div class="journal-header">
+      <h2>📔 Дневник Намерений</h2>
+      <p>Записывайте свои цели и желания в соответствии с лунными циклами</p>
+    </div>
+    
+    <form class="journal-form" id="journalForm">
+      <div class="form-group">
+        <label for="entryDate">Дата *</label>
+        <input type="date" id="entryDate" required />
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="moonPhaseSelect">Фаза луны</label>
+          <select id="moonPhaseSelect">
+            <option value="new-moon">🌑 Новолуние</option>
+            <option value="waxing-crescent">🌒 Растущая луна</option>
+            <option value="first-quarter">🌓 Первая четверть</option>
+            <option value="waxing-gibbous">🌔 Прибывающая луна</option>
+            <option value="full-moon">🌕 Полнолуние</option>
+            <option value="waning-gibbous">🌖 Убывающая луна</option>
+            <option value="last-quarter">🌷 Последняя четверть</option>
+            <option value="waning-crescent">🌘 Стареющая луна</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="intentionType">Тип намерения</label>
+          <select id="intentionType">
+            <option value="goal">🎯 Цель</option>
+            <option value="ritual">✨ Ритуал</option>
+            <option value="meditation">🧘 Медитация</option>
+            <option value="affirmation">💫 Аффирмация</option>
+            <option value="gratitude">🙏 Благодарность</option>
+            <option value="release">🔓 Отпускание</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="entryTitle">Заголовок *</label>
+        <input type="text" id="entryTitle" placeholder="Краткое название вашего намерения" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="entryText">Ваше намерение *</label>
+        <textarea id="entryText" placeholder="Опишите подробно ваше намерение, цель или желание..." required></textarea>
+      </div>
+      
+      <button type="submit" class="btn-submit">
+        <i class="fas fa-save"></i> Сохранить намерение
+      </button>
+    </form>
+    
+    <div class="entries-list">
+      <h3>Ваши записи</h3>
+      <div id="entriesContainer">
+        <p class="no-entries">Пока нет записей. Создайте первое намерение!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="logo">
+        <div class="logo-icon">B</div>
+        <span class="logo-text">TheWitcheryCat</span>
+      </div>
+      <div class="footer-text">
+        <p id="copyright">© <span id="currentYear">2025</span> TheWitcheryCat. Все права защищены.</p>
+        <p>Создание уникального звука из Норильска</p>
+      </div>
+      <div class="footer-social">
+        <a href="https://vk.com/TheWitcheryCat" target="_blank" aria-label="ВКонтакте">
+          <i class="fab fa-vk"></i>
+        </a>
+        <a href="https://t.me/TheWitcheryCat" target="_blank" aria-label="Telegram">
+          <i class="fab fa-telegram"></i>
+        </a>
+        <a href="https://www.youtube.com/@TheWitcheryCat" target="_blank" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://music.yandex.ru/artist/16564725" target="_blank" aria-label="Яндекс.Музыка">
+          <i class="fas fa-music"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="moon-calendar.js"></script>
+</body>
+</html>
