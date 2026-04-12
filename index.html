@@ -37,6 +37,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- Безопасность -->
   <meta name="referrer" content="no-referrer">
+  <!-- VK Bridge для мини-приложений ВКонтакте -->
+  <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
 </head>
 <body>
   <!-- Навигация -->
@@ -533,5 +535,28 @@
   </script>
   <noscript><div><img src="https://mc.yandex.ru/watch/99999999" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <!-- /Yandex.Metrica counter -->
+
+  <!-- Инициализация VK Bridge для мини-приложений ВКонтакте -->
+  <script>
+    // Инициализация VK Bridge
+    if (window.vkBridge) {
+      vkBridge.send('VKWebAppInit');
+      
+      // Отправка информации о клиенте
+      vkBridge.subscribe(function(event) {
+        console.log('VK Bridge событие:', event);
+      });
+      
+      // Установка цветов темы в соответствии с темой ВКонтакте
+      vkBridge.send('VKWebAppSetViewSettings', {
+        status_bar_style: 'dark',
+        action_bar_color: '#0f0f0f'
+      }).then(function(data) {
+        console.log('Настройки темы установлены:', data);
+      }).catch(function(error) {
+        console.log('Ошибка установки темы:', error);
+      });
+    }
+  </script>
 </body>
 </html>
