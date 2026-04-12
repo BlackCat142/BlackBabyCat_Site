@@ -2036,3 +2036,43 @@ body.theme-transition {
 [data-theme="light"] .genius-card:hover {
   box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
 }
+
+/* Упрощённый футер для страницы текстов песен */
+.footer-content-simple {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.footer-social-simple {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.footer-social-simple a {
+  color: var(--text-light);
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.footer-social-simple a:hover {
+  color: var(--accent-color);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .footer-content-simple {
+    gap: 1rem;
+  }
+  
+  .footer-social-simple {
+    gap: 1rem;
+  }
+  
+  .footer-social-simple a {
+    font-size: 1.3rem;
+  }
+}
