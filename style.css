@@ -189,6 +189,16 @@ body.theme-transition {
   align-items: center;
   padding: 1rem 20px;          /* Отступы внутри контейнера */
 }
+/* Увеличиваем расстояние между логотипом и меню на ПК */
+@media (min-width: 769px) {
+  .header .container {
+    justify-content: flex-start;
+    gap: 3rem;
+  }
+  .logo {
+    margin-right: auto;
+  }
+}
 /* 
 ┌───────────────────────────────────────────────────────────────────────────┐
 │ ЛОГОТИП                                                                   │
@@ -229,17 +239,18 @@ body.theme-transition {
 */
 .nav ul {
   display: flex;               /* Горизонтальное расположение */
-  gap: 1.5rem;                 /* Расстояние между пунктами */
+  gap: 1rem;                   /* Расстояние между пунктами - уменьшено для размещения всех элементов */
   list-style: none;            /* Убрать маркеры списка */
 }
 .nav a {
   color: var(--text-light);    /* Светлый цвет текста */
   text-decoration: none;       /* Убрать подчеркивание */
-  font-size: 1rem;
+  font-size: 0.95rem;          /* Немного уменьшен размер шрифта для размещения длинных названий */
   font-weight: 500;
   transition: var(--transition-normal); /* Плавный переход цвета */
   position: relative;          /* Для подчеркивания при наведении */
-  padding: 0.5rem 0;           /* Отступы для увеличения области клика */
+  padding: 0.5rem 0.3rem;      /* Добавлены боковые отступы для лучшей читаемости */
+  white-space: nowrap;         /* Запретить перенос текста */
 }
 .nav a:hover,
 .nav a.active {
