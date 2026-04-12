@@ -563,6 +563,7 @@
           <li><a href="index.html#события">События</a></li>
           <li><a href="index.html#медиа">Медиа</a></li>
           <li><a href="textpesen.html">Тексты</a></li>
+           <li><a href="moon.html">Лунный календарь</a></li>
           <li><a href="index.html#пресса">Пресса</a></li>
           <li><a href="index.html#контакты">Контакты</a></li>
           <li class="theme-toggle-li">
@@ -584,6 +585,7 @@
         <li><a href="index.html#события">События</a></li>
         <li><a href="index.html#медиа">Медиа</a></li>
         <li><a href="textpesen.html">Тексты</a></li>
+         <li><a href="moon.html">Лунный календарь</a></li>
         <li><a href="index.html#пресса">Пресса</a></li>
         <li><a href="index.html#контакты">Контакты</a></li>
         <li class="theme-toggle-li">
@@ -649,69 +651,6 @@
     </div>
     <div class="calendar-grid" id="calendarGrid">
       <!-- Дни будут сгенерированы JavaScript -->
-    </div>
-  </section>
-
-  <!-- Дневник намерений -->
-  <section class="journal-section">
-    <div class="journal-header">
-      <h2>📔 Дневник Намерений</h2>
-      <p>Записывайте свои цели и желания в соответствии с лунными циклами</p>
-    </div>
-    
-    <form class="journal-form" id="journalForm">
-      <div class="form-group">
-        <label for="entryDate">Дата *</label>
-        <input type="date" id="entryDate" required />
-      </div>
-      
-      <div class="form-row">
-        <div class="form-group">
-          <label for="moonPhaseSelect">Фаза луны</label>
-          <select id="moonPhaseSelect">
-            <option value="new-moon">🌑 Новолуние</option>
-            <option value="waxing-crescent">🌒 Растущая луна</option>
-            <option value="first-quarter">🌓 Первая четверть</option>
-            <option value="waxing-gibbous">🌔 Прибывающая луна</option>
-            <option value="full-moon">🌕 Полнолуние</option>
-            <option value="waning-gibbous">🌖 Убывающая луна</option>
-            <option value="last-quarter">🌷 Последняя четверть</option>
-            <option value="waning-crescent">🌘 Стареющая луна</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="intentionType">Тип намерения</label>
-          <select id="intentionType">
-            <option value="goal">🎯 Цель</option>
-            <option value="ritual">✨ Ритуал</option>
-            <option value="meditation">🧘 Медитация</option>
-            <option value="affirmation">💫 Аффирмация</option>
-            <option value="gratitude">🙏 Благодарность</option>
-            <option value="release">🔓 Отпускание</option>
-          </select>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <label for="entryTitle">Заголовок *</label>
-        <input type="text" id="entryTitle" placeholder="Краткое название вашего намерения" required />
-      </div>
-      
-      <div class="form-group">
-        <label for="entryText">Ваше намерение *</label>
-        <textarea id="entryText" placeholder="Опишите подробно ваше намерение, цель или желание..." required></textarea>
-      </div>
-      
-      <button type="submit" class="btn-submit">
-        <i class="fas fa-save"></i> Сохранить намерение
-      </button>
-    </form>
-    
-    <div class="entries-list">
-      <h3>Ваши записи</h3>
-      <div id="entriesContainer">
-        <p class="no-entries">Пока нет записей. Создайте первое намерение!</p>
-      </div>
     </div>
   </section>
 
