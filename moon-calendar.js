@@ -47,45 +47,31 @@
 
   // === ФАЗЫ ЛУНЫ ===
   
-  // Вычисление фазы луны (упрощённый алгоритм)
-  function getMoonPhase(date) {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    
-    // Алгоритм Конвея для вычисления возраста луны
-    let c = e = jd = b = 0;
-    
-    if (month < 3) {
-      year--;
-      month += 12;
-    }
-    
-    ++month;
-    c = 365.25 * year;
-    e = 30.6 * month;
-    jd = c + e + day - 694039.09;
-    jd /= 29.5305882;
-    b = parseInt(jd);
-    jd -= b;
-    b = Math.round(jd * 8);
-    
-    if (b >= 8) b = 0;
-    
-    const phases = ['new-moon', 'waxing-crescent', 'first-quarter', 'waxing-gibbous', 
-                    'full-moon', 'waning-gibbous', 'last-quarter', 'waning-crescent'];
-    
-    return phases[b];
-  }
-
-  // Вычисление возраста луны в днях
+  // Вычисление возраста луны в днях (основной метод)
   function getMoonAge(date) {
-    const knownNewMoon = new Date(2000, 0, 6, 18, 14); // Известное новолуние
+    const knownNewMoon = new Date(2000, 0, 6, 18, 14); // Известное новолуние 6 января 2000 в 18:14 UTC
     const diffTime = date.getTime() - knownNewMoon.getTime();
     const diffDays = diffTime / (1000 * 60 * 60 * 24);
-    const synodicMonth = 29.53058867;
-    const age = diffDays % synodicMonth;
-    return age < 0 ? age + synodicMonth : age;
+    const synodicMonth = 29.53058867; // Средняя продолжительность лунного месяца
+    let age = diffDays % synodicMonth;
+    if (age < 0) age += synodicMonth;
+    return age;
+  }
+
+  // Вычисление фазы луны на основе возраста (более точный метод)
+  function getMoonPhase(date) {
+    const age = getMoonAge(date);
+    
+    // Границы фаз по возрасту луны в днях
+    // Каждая фаза занимает примерно 1/8 лунного цикла (~3.69 дней)
+    if (age < 1.845 || age > 27.685) return 'new-moon';         // Новолуние 🌑
+    if (age < 5.535) return 'waxing-crescent';                   // Растущий серп 🌒
+    if (age < 9.225) return 'first-quarter';                     // Первая четверть 🌓
+    if (age < 12.915) return 'waxing-gibbous';                   // Прибывающая 🌔
+    if (age < 16.605) return 'full-moon';                        // Полнолуние 🌕
+    if (age < 20.295) return 'waning-gibbous';                   // Убывающая 🌖
+    if (age < 23.985) return 'last-quarter';                     // Последняя четверть 🌗
+    return 'waning-crescent';                                    // Стареющая 🌘
   }
 
   // Вычисление освещённости луны (в процентах)
@@ -178,9 +164,31 @@
       todayBtn.addEventListener('click', () => {
         currentDate = new Date();
         renderCalendar(currentDate);
+        initMoonDisplay(); // Обновить отображение текущей фазы луны
       });
     }
   }
+
+  // Автоматическое обновление фазы луны при загрузке и каждый день
+  function scheduleDailyMoonUpdate() {
+    // Вычислить время до полуночи
+    const now = new Date();
+    const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 1);
+    const msUntilMidnight = tomorrow.getTime() - now.getTime();
+    
+    // Запланировать обновление после полуночи
+    setTimeout(() => {
+      initMoonDisplay();
+      renderCalendar(currentDate);
+      // Рекурсивно планировать следующее обновление
+      scheduleDailyMoonUpdate();
+    }, msUntilMidnight);
+  }
+  
+  // Запустить ежедневное обновление после первой инициализации
+  document.addEventListener('DOMContentLoaded', function() {
+    scheduleDailyMoonUpdate();
+  });
 
   function renderCalendar(date) {
     const grid = document.getElementById('calendarGrid');

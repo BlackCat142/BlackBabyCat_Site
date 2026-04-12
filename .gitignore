@@ -1,1 +1,47 @@
-Nothing should be ignored in this case. The added files (`rituals_data.js`, `moon-calendar.js`, `moon.html`) and modified files (`index.html`, `.gitignore`) are all source code and configuration files that should be tracked in version control. There are no build artifacts, dependencies, temporary files, or other items that need to be ignored based on the provided file changes.
+# Compiled and build artifacts
+*.pyc
+__pycache__/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.out
+
+# Dependencies
+node_modules/
+venv/
+.venv/
+.env
+.env.local
+*.env.*
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Editors
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Build directories
+dist/
+build/
+target/
+.gradle/
+
+# Python cache
+.mypy_cache/
+.pytest_cache/
