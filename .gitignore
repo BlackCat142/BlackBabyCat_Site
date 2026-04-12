@@ -38,17 +38,10 @@ coverage/
 htmlcov/
 .coverage
 
-# Build directories
+# Distribution / packaging
 dist/
 build/
-target/
-.gradle/
-
-# Python specific
-.mypy_cache/
-.pytest_cache/
-
-# Compressed files
+*.tar.gz
 *.zip
 *.gz
 *.tar
@@ -67,8 +60,4 @@ target/
 *.Z
 *.lz
 *.lzo
-*.tar.gz
-*.tar.bz2
-*.tar.xz
-*.tar.zst
 ```

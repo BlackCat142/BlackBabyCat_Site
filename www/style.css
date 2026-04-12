@@ -239,17 +239,17 @@ body.theme-transition {
 */
 .nav ul {
   display: flex;               /* Горизонтальное расположение */
-  gap: 1rem;                   /* Расстояние между пунктами - уменьшено для размещения всех элементов */
+  gap: 1.5rem;                 /* Увеличенное расстояние между пунктами для лучшей читаемости */
   list-style: none;            /* Убрать маркеры списка */
 }
 .nav a {
   color: var(--text-light);    /* Светлый цвет текста */
   text-decoration: none;       /* Убрать подчеркивание */
-  font-size: 0.95rem;          /* Немного уменьшен размер шрифта для размещения длинных названий */
+  font-size: 1rem;             /* Увеличенный размер шрифта для лучшей читаемости */
   font-weight: 500;
   transition: var(--transition-normal); /* Плавный переход цвета */
   position: relative;          /* Для подчеркивания при наведении */
-  padding: 0.5rem 0.3rem;      /* Добавлены боковые отступы для лучшей читаемости */
+  padding: 0.5rem 0.5rem;      /* Увеличенные боковые отступы для лучшей читаемости */
   white-space: nowrap;         /* Запретить перенос текста */
 }
 .nav a:hover,
@@ -275,7 +275,7 @@ body.theme-transition {
 }
 /* Стили для кнопки переключения темы в меню */
 .theme-toggle-li {
-  margin-left: 1.5rem;
+  margin-left: auto;           /* Автоматический отступ слева - прижимает кнопку вправо */
 }
 .theme-toggle-btn {
   background: none;
@@ -355,6 +355,16 @@ body.theme-transition {
   color: var(--purple-light);
   padding-left: 10px;
   transform: translateX(5px);
+}
+/* Разделитель в мобильном меню */
+.mobile-menu-divider {
+  padding: 0.75rem 0;
+  color: var(--text-light);
+  font-size: 0.85rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  opacity: 0.6;
+  letter-spacing: 1px;
 }
 /* Стили для кнопки переключения темы в мобильном меню */
 .mobile-theme-toggle {
