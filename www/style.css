@@ -275,7 +275,7 @@ body.theme-transition {
 }
 /* Стили для кнопки переключения темы в меню */
 .theme-toggle-li {
-  margin-left: auto;           /* Автоматический отступ слева - прижимает кнопку вправо */
+  margin-left: 1rem;           /* Небольшой отступ слева для кнопки темы */
 }
 
 /* Выпадающее меню */
@@ -314,7 +314,7 @@ body.theme-transition {
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
+  right: 0;
   background: rgba(21, 21, 21, 0.98);
   backdrop-filter: blur(10px);
   min-width: 220px;
@@ -324,16 +324,6 @@ body.theme-transition {
   z-index: 1001;
   overflow: hidden;
   animation: dropdownFade 0.2s ease;
-}
-
-/* Показываем выпадающее меню при наведении на ПК */
-@media (min-width: 769px) {
-  .dropdown-menu-item:hover .dropdown-content {
-    display: block;
-  }
-  .dropdown-menu-item:hover .dropdown-toggle i {
-    transform: rotate(180deg);
-  }
 }
 
 @keyframes dropdownFade {
@@ -349,6 +339,13 @@ body.theme-transition {
 
 .dropdown-content.active {
   display: block;
+}
+
+/* Показываем меню при наведении на ПК */
+@media (min-width: 769px) {
+  .dropdown-menu-item:hover .dropdown-content {
+    display: block;
+  }
 }
 
 .dropdown-content a {
