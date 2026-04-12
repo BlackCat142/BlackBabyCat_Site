@@ -690,5 +690,47 @@
 
   <script src="script.js"></script>
   <script src="moon-calendar.js"></script>
+
+  <!-- Уведомление о cookies -->
+  <div id="cookieNotice" class="cookie-notice">
+    <div class="cookie-notice-content">
+      <p class="cookie-notice-text">
+        <i class="fas fa-cookie-bite"></i>
+        Мы используем файлы cookie для улучшения работы сайта и анализа трафика. 
+        Продолжая использовать сайт, вы соглашаетесь с нашей 
+        <a href="#политика-confidentiality" class="cookie-notice-link">политикой конфиденциальности</a>.
+      </p>
+      <button id="cookieAcceptBtn" class="cookie-accept-btn">
+        <i class="fas fa-check"></i> Принять
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Логика уведомления о cookies
+    (function() {
+      const cookieNotice = document.getElementById('cookieNotice');
+      const cookieAcceptBtn = document.getElementById('cookieAcceptBtn');
+      
+      // Проверяем, было ли уже принято согласие
+      if (!localStorage.getItem('cookiesAccepted')) {
+        // Показываем уведомление с небольшой задержкой
+        setTimeout(function() {
+          cookieNotice.classList.add('cookie-notice-visible');
+        }, 1000);
+      }
+      
+      // Обработчик кнопки принятия
+      if (cookieAcceptBtn) {
+        cookieAcceptBtn.addEventListener('click', function() {
+          localStorage.setItem('cookiesAccepted', 'true');
+          cookieNotice.classList.remove('cookie-notice-visible');
+          setTimeout(function() {
+            cookieNotice.style.display = 'none';
+          }, 300);
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
