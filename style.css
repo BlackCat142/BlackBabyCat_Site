@@ -1569,10 +1569,12 @@ body.theme-transition {
     display: block;         /* Показать мобильное меню */
   }
   .section-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-top: 10px;       /* Добавить отступ сверху для мобильных устройств */
   }
   .section-subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    padding: 0 15px;        /* Добавить боковые отступы */
   }
   .hero {
     padding-top: 120px;     /* Меньше отступ сверху */
