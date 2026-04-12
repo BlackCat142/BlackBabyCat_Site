@@ -1,0 +1,21 @@
+{
+  "name": "TheWitcheryCat",
+  "short_name": "TheWitcheryCat",
+  "description": "Официальный сайт музыканта из Норильска",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#8b5cf6",
+  "icons": [
+    {
+      "src": "icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
