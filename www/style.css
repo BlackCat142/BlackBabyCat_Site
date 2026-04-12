@@ -314,7 +314,7 @@ body.theme-transition {
   display: none;
   position: absolute;
   top: 100%;
-  right: 0;
+  left: 0;
   background: rgba(21, 21, 21, 0.98);
   backdrop-filter: blur(10px);
   min-width: 220px;
@@ -324,6 +324,16 @@ body.theme-transition {
   z-index: 1001;
   overflow: hidden;
   animation: dropdownFade 0.2s ease;
+}
+
+/* Показываем выпадающее меню при наведении на ПК */
+@media (min-width: 769px) {
+  .dropdown-menu-item:hover .dropdown-content {
+    display: block;
+  }
+  .dropdown-menu-item:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+  }
 }
 
 @keyframes dropdownFade {
