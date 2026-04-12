@@ -489,45 +489,65 @@
   </footer>
   <script src="script.js"></script>
   <!-- Структурированные данные для SEO -->
-  <script type="application/ld+json">
-  {
+  <script id="schema-json-ld" type="application/ld+json">
+{}
+</script>
+<script>
+// Динамическое обновление JSON-LD из CONFIG
+function initSchemaJSONLD() {
+  if (typeof CONFIG === 'undefined') return;
+  
+  const schemaScript = document.getElementById('schema-json-ld');
+  if (!schemaScript) return;
+  
+  const schemaData = {
     "@context": "https://schema.org",
     "@type": "MusicGroup",
-    "name": "TheWitcheryCat",
-    "url": "https://TheWitcheryCat.ru",
-    "logo": "https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&cs=1280x0",
-    "image": "https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440,2560x2560&from=bu&u=64nx7i4nasnmWjmToTD4O-cgQgwqt2L8SR09hzdsCwc&cs=1280x0",
+    "name": CONFIG.schema.name,
+    "url": CONFIG.site.baseUrl,
+    "logo": CONFIG.images.mainAvatar,
+    "image": CONFIG.images.mainAvatar,
     "description": "Музыкант и продюсер из Норильска, создающий уникальный звук, объединяющий рэп и хип-хоп в танцевальном стиле",
     "genre": ["Hip-Hop", "Rap", "Electronic"],
     "foundingLocation": "Норильск, Россия",
     "sameAs": [
-      "${CONFIG.social.vk}",
-      "${CONFIG.social.telegram}",
-      "${CONFIG.social.youtube}",
-      "${CONFIG.social.yandexMusic}"
+      CONFIG.social.vk,
+      CONFIG.social.telegram,
+      CONFIG.social.youtube,
+      CONFIG.social.yandexMusic
     ],
     "album": [
       {
         "@type": "MusicAlbum",
-        "name": "Детка Remix (feat. CodEK$)",
-        "url": "https://band.link/detka_remix",
+        "name": CONFIG.releases.detkaRemix.title,
+        "url": CONFIG.releases.detkaRemix.link,
         "datePublished": "2025-01-15"
       },
       {
         "@type": "MusicAlbum",
-        "name": "Крик в никуда",
-        "url": "https://vk.cc/cPycij",
+        "name": CONFIG.releases.cryIntoVoid.title,
+        "url": CONFIG.releases.cryIntoVoid.link,
         "datePublished": "2025-02-20"
       },
       {
         "@type": "MusicAlbum",
-        "name": "ПОСЛЕДНИЙ ДРАЙВ В НИКУДА",
-        "url": "https://band.link/tldtn",
+        "name": CONFIG.releases.lastDrive.title,
+        "url": CONFIG.releases.lastDrive.link,
         "datePublished": "2025-03-10"
       }
     ]
-  }
-  </script>
+  };
+  
+  schemaScript.textContent = JSON.stringify(schemaData, null, 2);
+}
+
+// Запускаем после загрузки CONFIG
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSchemaJSONLD);
+} else {
+  initSchemaJSONLD();
+}
+</script>
   <!-- Yandex.Metrica counter -->
   <script type="text/javascript" >
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
