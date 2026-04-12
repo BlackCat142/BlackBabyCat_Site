@@ -1694,3 +1694,197 @@ body.theme-transition {
 [data-theme="light"] .video-player-placeholder {
   background: white;
 }
+
+/* Стили для вкладки "Тексты песен" */
+.lyrics-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.lyrics-tabs {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+}
+
+.lyrics-tab-btn {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.lyrics-tab-btn:hover {
+  color: var(--purple);
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.lyrics-tab-btn.active {
+  background: linear-gradient(135deg, var(--purple), #a78bfa);
+  color: white;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.lyrics-content {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  padding: 2rem;
+  min-height: 400px;
+}
+
+.lyric-pane {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.lyric-pane.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lyric-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--purple);
+}
+
+.lyric-header h3 {
+  font-size: 1.5rem;
+  color: var(--text);
+  margin: 0;
+}
+
+.lyric-badge {
+  background: linear-gradient(135deg, var(--purple), #a78bfa);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.lyric-text {
+  line-height: 1.8;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  white-space: pre-line;
+}
+
+.lyric-text p {
+  margin: 0.5rem 0;
+}
+
+.lyric-text .verse {
+  color: var(--purple);
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.lyric-text .chorus {
+  color: #a78bfa;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.lyric-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-small {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--purple);
+  color: var(--purple);
+}
+
+.btn-outline:hover {
+  background: var(--purple);
+  color: white;
+}
+
+/* Адаптивность для текстов песен */
+@media (max-width: 768px) {
+  .lyrics-tabs {
+    gap: 0.5rem;
+  }
+  
+  .lyrics-tab-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .lyrics-content {
+    padding: 1.5rem;
+  }
+  
+  .lyric-header h3 {
+    font-size: 1.2rem;
+  }
+  
+  .lyric-text {
+    font-size: 0.95rem;
+  }
+  
+  .lyric-actions {
+    flex-direction: column;
+  }
+  
+  .btn-small {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Светлая тема для текстов песен */
+[data-theme="light"] .lyrics-tabs {
+  background: rgba(139, 92, 246, 0.05);
+}
+
+[data-theme="light"] .lyrics-content {
+  background: rgba(139, 92, 246, 0.03);
+}
+
+[data-theme="light"] .lyric-text {
+  color: #4b5563;
+}
