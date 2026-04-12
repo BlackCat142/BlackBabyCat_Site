@@ -1,4 +1,9 @@
 // script.js
+// Проверка наличия CONFIG (из config.js)
+if (typeof CONFIG === 'undefined') {
+  console.warn('CONFIG не найден. Убедитесь, что config.js подключен перед script.js');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Автоматическое обновление года в футере
     const currentYearSpan = document.getElementById('currentYear');
@@ -412,4 +417,71 @@ function showNotification(message) {
         notification.style.animation = 'slideUp 0.3s ease-out reverse';
         setTimeout(() => notification.remove(), 300);
     }, 2000);
+}
+
+// === Инициализация ссылок из CONFIG ===
+function initConfigLinks() {
+    if (typeof CONFIG === 'undefined') {
+        console.warn('CONFIG не найден. Пропускаем инициализацию ссылок.');
+        return;
+    }
+    
+    // Функция для получения вложенного значения из объекта по пути (например, "social.vk")
+    function getConfigValue(path) {
+        return path.split('.').reduce((obj, key) => obj && obj[key] !== undefined ? obj[key] : null, CONFIG);
+    }
+    
+    // Обновляем все ссылки с атрибутом data-config-link
+    document.querySelectorAll('[data-config-link]').forEach(el => {
+        const path = el.getAttribute('data-config-link');
+        const value = getConfigValue(path);
+        if (value) {
+            el.href = value;
+        }
+    });
+    
+    // Обновляем все тексты с атрибутом data-config-text
+    document.querySelectorAll('[data-config-text]').forEach(el => {
+        const path = el.getAttribute('data-config-text');
+        const value = getConfigValue(path);
+        if (value) {
+            el.textContent = value;
+        }
+    });
+    
+    // Обновляем все изображения с атрибутом data-config-image
+    document.querySelectorAll('[data-config-image]').forEach(el => {
+        const path = el.getAttribute('data-config-image');
+        const value = getConfigValue(path);
+        if (value) {
+            el.src = value;
+        }
+    });
+    
+    // Обновляем ссылки с текстом и длительностью (для медиа-треков)
+    document.querySelectorAll('[data-config-text-append][data-config-duration]').forEach(el => {
+        const titlePath = el.getAttribute('data-config-text-append');
+        const durationPath = el.getAttribute('data-config-duration');
+        const linkPath = el.getAttribute('data-config-link');
+        
+        const title = getConfigValue(titlePath);
+        const duration = getConfigValue(durationPath);
+        const link = getConfigValue(linkPath);
+        
+        if (title && duration) {
+            el.textContent = `${title} — ${duration}`;
+        }
+        if (link) {
+            el.href = link;
+        }
+    });
+    
+    console.log('✅ Конфигурационные ссылки и данные загружены из config.js');
+}
+
+// Запускаем инициализацию после загрузки DOM
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initConfigLinks);
+} else {
+    initConfigLinks();
 }
