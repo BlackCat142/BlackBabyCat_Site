@@ -1717,7 +1717,7 @@ body.theme-transition {
   background: transparent;
   border: 2px solid transparent;
   border-radius: 8px;
-  color: var(--text-secondary);
+  color: var(--text-light);
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
@@ -1791,7 +1791,7 @@ body.theme-transition {
 .lyric-text {
   line-height: 1.8;
   font-size: 1.05rem;
-  color: var(--text-secondary);
+  color: var(--text-light);
   margin-bottom: 2rem;
   white-space: pre-line;
 }
@@ -1887,4 +1887,32 @@ body.theme-transition {
 
 [data-theme="light"] .lyric-text {
   color: #4b5563;
+}
+
+/* Уведомление о копировании текста */
+.lyric-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #8b5cf6;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 10000;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
