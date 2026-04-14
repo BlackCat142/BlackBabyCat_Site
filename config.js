@@ -11,7 +11,7 @@ const CONFIG = {
   // === Социальные сети ===
   social: {
     vk: 'https://vk.com/TheWitcheryCat',
-    vkArtist: 'https://vk.com/artist/TheWitcheryCat',
+    vkArtist: 'https://vk.com/artist/thewitcherycat',
     telegram: 'https://t.me/TheWitcheryCat',
     youtube: 'https://www.youtube.com/@TheWitcheryCat',
     yandexMusic: 'https://music.yandex.ru/artist/16564725',
@@ -21,7 +21,7 @@ const CONFIG = {
   // === Стриминговые платформы (кнопки) ===
   streaming: {
     yandex: 'https://music.yandex.ru/artist/16564725',
-    vk: 'https://vk.com/artist/TheWitcheryCat',
+    vk: 'https://vk.com/artist/thewitcherycat',
     youtube: 'https://www.youtube.com/@TheWitcheryCat'
   },
 
