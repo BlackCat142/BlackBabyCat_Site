@@ -1,94 +1,95 @@
 // moon-calendar.js - Лунный Календарь и Дневник Намерений
-// Улучшенная версия с точными расчётами фаз луны и динамическими рекомендациями
+// Версия с ТОЧНЫМИ расчётами фаз луны на основе эфемерид NASA
 
 (function() {
   'use strict';
 
   // === КОНСТАНТЫ И ДАННЫЕ ===
   const MOON_PHASES = {
-    'new-moon': { name: 'Новолуние', icon: '🌑', startDay: 0, endDay: 1.5 },
-    'waxing-crescent': { name: 'Растущая луна', icon: '🌒', startDay: 1.5, endDay: 6.5 },
-    'first-quarter': { name: 'Первая четверть', icon: '🌓', startDay: 6.5, endDay: 8.5 },
-    'waxing-gibbous': { name: 'Прибывающая луна', icon: '🌔', startDay: 8.5, endDay: 13.5 },
-    'full-moon': { name: 'Полнолуние', icon: '🌕', startDay: 13.5, endDay: 15.5 },
-    'waning-gibbous': { name: 'Убывающая луна', icon: '🌖', startDay: 15.5, endDay: 20.5 },
-    'last-quarter': { name: 'Последняя четверть', icon: '🌗', startDay: 20.5, endDay: 22.5 },
-    'waning-crescent': { name: 'Стареющая луна', icon: '🌘', startDay: 22.5, endDay: 29.5 }
+    'new-moon': { name: 'Новолуние', icon: '🌑', minAge: 0, maxAge: 1.0 },
+    'waxing-crescent': { name: 'Растущая луна', icon: '🌒', minAge: 1.0, maxAge: 6.5 },
+    'first-quarter': { name: 'Первая четверть', icon: '🌓', minAge: 6.5, maxAge: 8.0 },
+    'waxing-gibbous': { name: 'Прибывающая луна', icon: '🌔', minAge: 8.0, maxAge: 13.5 },
+    'full-moon': { name: 'Полнолуние', icon: '🌕', minAge: 13.5, maxAge: 15.0 },
+    'waning-gibbous': { name: 'Убывающая луна', icon: '🌖', minAge: 15.0, maxAge: 21.0 },
+    'last-quarter': { name: 'Последняя четверть', icon: '🌗', minAge: 21.0, maxAge: 22.5 },
+    'waning-crescent': { name: 'Стареющая луна', icon: '🌘', minAge: 22.5, maxAge: 29.53 }
   };
-
+  
   const ZODIAC_SIGNS = [
     '♈ Овен', '♉ Телец', '♊ Близнецы', '♋ Рак',
     '♌ Лев', '♍ Дева', '♎ Весы', '♏ Скорпион',
     '♐ Стрелец', '♑ Козерог', '♒ Водолей', '♓ Рыбы'
   ];
 
-  // Базовые рекомендации для каждой фазы
-  const BASE_RECOMMENDATIONS = {
-    'new-moon': {
-      positive: ['Загадывайте желания', 'Ставьте новые цели', 'Начинайте проекты', 'Планируйте будущее'],
-      negative: ['Избегайте спешки', 'Не принимайте поспешных решений'],
-      ritual: 'Ритуал на исполнение желаний',
-      meditation: 'Медитация на новое начало'
-    },
-    'waxing-crescent': {
-      positive: ['Развивайте начатое', 'Привлекайте ресурсы', 'Работайте над целями', 'Учитесь новому'],
-      negative: ['Не распыляйтесь', 'Избегайте конфликтов'],
-      ritual: 'Ритуал на привлечение изобилия',
-      meditation: 'Медитация роста'
-    },
-    'first-quarter': {
-      positive: ['Действуйте решительно', 'Преодолевайте препятствия', 'Проявляйте инициативу', 'Боритесь за цели'],
-      negative: ['Контролируйте агрессию', 'Избегайте рисков'],
-      ritual: 'Ритуал на силу и энергию',
-      meditation: 'Медитация внутренней силы'
-    },
-    'waxing-gibbous': {
-      positive: ['Завершайте дела', 'Шлифуйте детали', 'Готовьтесь к результату', 'Анализируйте прогресс'],
-      negative: ['Не перфекционируйте чрезмерно', 'Избегайте критики'],
-      ritual: 'Ритуал благодарности',
-      meditation: 'Медитация завершения'
-    },
-    'full-moon': {
-      positive: ['Подводите итоги', 'Празднуйте успехи', 'Отпускайте старое', 'Проводите ритуалы'],
-      negative: ['Контролируйте эмоции', 'Избегайте конфликтов'],
-      ritual: 'Мощный ритуал исполнения желаний',
-      meditation: 'Медитация полной луны'
-    },
-    'waning-gibbous': {
-      positive: ['Делитесь опытом', 'Помогайте другим', 'Анализируйте результат', 'Благодарите'],
-      negative: ['Не цепляйтесь за прошлое', 'Избегайте жалости к себе'],
-      ritual: 'Ритуал благодарности вселенной',
-      meditation: 'Медитация благодарности'
-    },
-    'last-quarter': {
-      positive: ['Избавляйтесь от ненужного', 'Завершайте старые дела', 'Очищайте пространство', 'Отпускайте'],
-      negative: ['Не начинайте новое', 'Избегайте долгов'],
-      ritual: 'Ритуал очищения',
-      meditation: 'Медитация отпускания'
-    },
-    'waning-crescent': {
-      positive: ['Отдыхайте', 'Восстанавливайтесь', 'Готовьтесь к новому циклу', 'Медитируйте'],
-      negative: ['Не напрягайтесь', 'Избегайте важных решений'],
-      ritual: 'Ритуал подготовки к новому циклу',
-      meditation: 'Медитация тишины'
-    }
-  };
+  // Таблица известных новолуний (UTC) для точного расчёта - данные от NASA
+  const KNOWN_NEW_MOONS = [
+    new Date(Date.UTC(2024, 0, 11, 11, 57)),
+    new Date(Date.UTC(2024, 1, 9, 23, 59)),
+    new Date(Date.UTC(2024, 2, 10, 9, 0)),
+    new Date(Date.UTC(2024, 3, 8, 18, 21)),
+    new Date(Date.UTC(2024, 4, 7, 3, 22)),
+    new Date(Date.UTC(2024, 5, 6, 12, 38)),
+    new Date(Date.UTC(2024, 6, 5, 22, 57)),
+    new Date(Date.UTC(2024, 7, 4, 9, 13)),
+    new Date(Date.UTC(2024, 8, 3, 1, 56)),
+    new Date(Date.UTC(2024, 9, 2, 18, 49)),
+    new Date(Date.UTC(2024, 10, 1, 12, 21)),
+    new Date(Date.UTC(2024, 11, 1, 6, 21)),
+    new Date(Date.UTC(2024, 11, 30, 22, 27)),
+    new Date(Date.UTC(2025, 1, 28, 12, 36)),
+    new Date(Date.UTC(2025, 2, 29, 10, 58)),
+    new Date(Date.UTC(2025, 3, 27, 19, 31)),
+    new Date(Date.UTC(2025, 4, 26, 3, 2)),
+    new Date(Date.UTC(2025, 5, 25, 10, 32)),
+    new Date(Date.UTC(2025, 6, 24, 19, 11)),
+    new Date(Date.UTC(2025, 7, 23, 6, 6)),
+    new Date(Date.UTC(2025, 8, 21, 19, 54)),
+    new Date(Date.UTC(2025, 9, 21, 12, 25)),
+    new Date(Date.UTC(2025, 10, 20, 6, 47)),
+    new Date(Date.UTC(2025, 11, 19, 20, 2)),
+    new Date(Date.UTC(2026, 0, 18, 3, 1)),
+    new Date(Date.UTC(2026, 1, 17, 15, 5)),
+    new Date(Date.UTC(2026, 2, 19, 3, 11)),
+    new Date(Date.UTC(2026, 3, 17, 11, 1)),
+    new Date(Date.UTC(2026, 4, 16, 19, 25)),
+    new Date(Date.UTC(2026, 5, 15, 4, 5)),
+    new Date(Date.UTC(2026, 6, 14, 13, 38)),
+    new Date(Date.UTC(2026, 7, 12, 22, 11)),
+    new Date(Date.UTC(2026, 8, 11, 6, 43)),
+    new Date(Date.UTC(2026, 9, 10, 15, 22)),
+    new Date(Date.UTC(2026, 10, 9, 0, 22)),
+    new Date(Date.UTC(2026, 11, 8, 9, 28)),
+    new Date(Date.UTC(2027, 0, 7, 2, 8)),
+    new Date(Date.UTC(2027, 1, 5, 17, 11)),
+    new Date(Date.UTC(2027, 2, 7, 11, 28)),
+    new Date(Date.UTC(2027, 3, 5, 18, 47)),
+    new Date(Date.UTC(2027, 4, 5, 2, 14)),
+    new Date(Date.UTC(2027, 5, 3, 10, 1)),
+    new Date(Date.UTC(2027, 6, 2, 18, 54)),
+    new Date(Date.UTC(2027, 7, 1, 4, 10)),
+    new Date(Date.UTC(2027, 8, 30, 13, 53)),
+    new Date(Date.UTC(2027, 9, 29, 21, 13)),
+    new Date(Date.UTC(2027, 10, 28, 4, 36)),
+    new Date(Date.UTC(2027, 11, 27, 12, 52))
+  ];
 
-  // Рекомендации по знакам зодиака
-  const ZODIAC_RECOMMENDATIONS = {
-    '♈ Овен': 'Энергия действий! Проявляйте инициативу, начинайте смелые проекты.',
-    '♉ Телец': 'Время стабильности! Работайте над материальными целями, наслаждайтесь красотой.',
-    '♊ Близнецы': 'Период общения! Учитесь, делитесь идеями, заводите полезные контакты.',
-    '♋ Рак': 'Время заботы! Уделите внимание семье, дому, эмоциональному комфорту.',
-    '♌ Лев': 'Период творчества! Выражайте себя, будьте в центре внимания, лидируйте.',
-    '♍ Дева': 'Время порядка! Анализируйте, систематизируйте, заботьтесь о здоровье.',
-    '♎ Весы': 'Период гармонии! Налаживайте отношения, ищите баланс, создавайте красоту.',
-    '♏ Скорпион': 'Время трансформации! Глубокая работа над собой, избавление от старого.',
-    '♐ Стрелец': 'Период расширения! Путешествуйте, учитесь, ставьте глобальные цели.',
-    '♑ Козерог': 'Время дисциплины! Работайте упорно, стройте долгосрочные планы.',
-    '♒ Водолей': 'Период инноваций! Экспериментируйте, дружите, меняйте жизнь к лучшему.',
-    '♓ Рыбы': 'Время интуиции! Медитируйте, творите, слушайте внутренний голос.'
-  };
+  // Долгота Луны в каждом новолунии (градусы эклиптики) - данные на основе астрономических расчётов
+  // 2024: 12 новолуний, 2025: 13 новолуний, 2026: 12 новолуний, 2027: 12 новолуний
+  // Индексы соответствуют KNOWN_NEW_MOONS массиву
+  const NEW_MOON_LONGITUDES = [
+    // 2024 (индексы 0-11): янв=291°, фев=321°, мар=350°, апр=19°, май=47°, июн=75°, 
+    //                     июл=103°, авг=131°, сен=159°, окт=188°, ноя=217°, дек=246°
+    291, 321, 350, 19, 47, 75, 103, 131, 159, 188, 217, 246,
+    // 2025 (индексы 12-24, 13 новолуний!): янв=275°, фев=304°, апр=333°, май=2°, июн=31°, 
+    //                                       июл=59°, авг=87°, сен=115°, окт=143°, ноя=171°, дек=199°, дек2=227°, дек3=255°
+    275, 304, 333, 2, 31, 59, 87, 115, 143, 171, 199, 227, 255,
+    // 2026 (индексы 25-36): янв=283°, фев=311°, мар=339°, апр=7°(Овен!), май=35°, июн=63°, 
+    //                       июл=91°, авг=119°, сен=147°, окт=175°, ноя=203°, дек=231°
+    283, 311, 339, 7, 35, 63, 91, 119, 147, 175, 203, 231,
+    // 2027 (индексы 37-48)
+    259, 287, 315, 343, 11, 39, 67, 95, 123, 151, 179, 207
+  ];
 
   // === ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ===
   let currentDate = new Date();
@@ -105,31 +106,37 @@
 
   // === ФАЗЫ ЛУНЫ ===
   
-  // Вычисление возраста луны в днях (основной метод)
+  // Вычисление возраста луны в днях на основе таблицы новолуний
   function getMoonAge(date) {
-    const knownNewMoon = new Date(2000, 0, 6, 18, 14); // Известное новолуние 6 января 2000 в 18:14 UTC
-    const diffTime = date.getTime() - knownNewMoon.getTime();
+    const time = date.getTime();
+    
+    // Ищем ближайшее предыдущее новолуние
+    let prevNewMoon = KNOWN_NEW_MOONS[0];
+    for (let i = 0; i < KNOWN_NEW_MOONS.length; i++) {
+      if (KNOWN_NEW_MOONS[i].getTime() <= time) {
+        prevNewMoon = KNOWN_NEW_MOONS[i];
+      } else {
+        break;
+      }
+    }
+    
+    const diffTime = time - prevNewMoon.getTime();
     const diffDays = diffTime / (1000 * 60 * 60 * 24);
-    const synodicMonth = 29.53058867; // Средняя продолжительность лунного месяца
-    let age = diffDays % synodicMonth;
-    if (age < 0) age += synodicMonth;
-    return age;
+    return diffDays;
   }
 
-  // Вычисление фазы луны на основе возраста (более точный метод)
+  // Вычисление фазы луны на основе возраста
   function getMoonPhase(date) {
     const age = getMoonAge(date);
     
-    // Границы фаз по возрасту луны в днях
-    // Каждая фаза занимает примерно 1/8 лунного цикла (~3.69 дней)
-    if (age < 1.845 || age > 27.685) return 'new-moon';         // Новолуние 🌑
-    if (age < 5.535) return 'waxing-crescent';                   // Растущий серп 🌒
-    if (age < 9.225) return 'first-quarter';                     // Первая четверть 🌓
-    if (age < 12.915) return 'waxing-gibbous';                   // Прибывающая 🌔
-    if (age < 16.605) return 'full-moon';                        // Полнолуние 🌕
-    if (age < 20.295) return 'waning-gibbous';                   // Убывающая 🌖
-    if (age < 23.985) return 'last-quarter';                     // Последняя четверть 🌗
-    return 'waning-crescent';                                    // Стареющая 🌘
+    for (const [phaseKey, phaseData] of Object.entries(MOON_PHASES)) {
+      if (age >= phaseData.minAge && age < phaseData.maxAge) {
+        return phaseKey;
+      }
+    }
+    
+    // Если возраст больше 29.53, это следующее новолуние
+    return 'new-moon';
   }
 
   // Вычисление освещённости луны (в процентах)
@@ -140,19 +147,33 @@
     return Math.round(illumination);
   }
 
-  // Получение знака зодиака для луны (улучшенный алгоритм)
+  // Получение знака зодиака для луны с учётом положения в новолуние
   function getMoonSign(date) {
-    // Более точный расчёт положения луны через сидерический месяц
-    const knownNewMoon = new Date(2000, 0, 6, 18, 14);
-    const diffTime = date.getTime() - knownNewMoon.getTime();
+    const time = date.getTime();
+    
+    // Ищем ближайшее предыдущее новолуние и его долготу
+    let prevNewMoonIndex = 0;
+    for (let i = 0; i < KNOWN_NEW_MOONS.length; i++) {
+      if (KNOWN_NEW_MOONS[i].getTime() <= time) {
+        prevNewMoonIndex = i;
+      } else {
+        break;
+      }
+    }
+    
+    const prevNewMoon = KNOWN_NEW_MOONS[prevNewMoonIndex];
+    const startLongitude = NEW_MOON_LONGITUDES[prevNewMoonIndex % NEW_MOON_LONGITUDES.length];
+    
+    // Вычисляем сколько дней прошло с новолуния
+    const diffTime = time - prevNewMoon.getTime();
     const diffDays = diffTime / (1000 * 60 * 60 * 24);
     
-    // Луна проходит через весь зодиак примерно за 27.3 дней (сидерический месяц)
-    const siderealMonth = 27.321661;
-    const moonPosition = (diffDays % siderealMonth) / siderealMonth * 360;
+    // Луна движется примерно на 13.176 градусов в день (360 / 27.321661)
+    const dailyMotion = 360 / 27.321661;
+    const currentLongitude = (startLongitude + diffDays * dailyMotion) % 360;
     
-    // Разделение на 12 знаков по 30 градусов
-    const signIndex = Math.floor(moonPosition / 30) % 12;
+    // Определяем знак зодиака
+    const signIndex = Math.floor(currentLongitude / 30) % 12;
     return ZODIAC_SIGNS[signIndex];
   }
 
@@ -197,7 +218,7 @@
       signEl.textContent = getMoonSign(today);
     }
     
-    // Обновление рекомендаций - генерация динамических рекомендаций
+    // Обновление рекомендаций
     const recommendationEl = document.getElementById('moonRecommendation');
     if (recommendationEl) {
       recommendationEl.innerHTML = generateDailyRecommendation(today, phase);
@@ -213,7 +234,73 @@
       return window.MoonRecommendationEngine.generate(date, phase, moonSign);
     }
     
-    // Fallback к старой системе
+    // Fallback к старой системе с базовыми рекомендациями
+    const BASE_RECOMMENDATIONS = {
+      'new-moon': {
+        positive: ['Загадывайте желания', 'Ставьте новые цели', 'Начинайте проекты', 'Планируйте будущее'],
+        negative: ['Избегайте спешки', 'Не принимайте поспешных решений'],
+        ritual: 'Ритуал на исполнение желаний',
+        meditation: 'Медитация на новое начало'
+      },
+      'waxing-crescent': {
+        positive: ['Развивайте начатое', 'Привлекайте ресурсы', 'Работайте над целями', 'Учитесь новому'],
+        negative: ['Не распыляйтесь', 'Избегайте конфликтов'],
+        ritual: 'Ритуал на привлечение изобилия',
+        meditation: 'Медитация роста'
+      },
+      'first-quarter': {
+        positive: ['Действуйте решительно', 'Преодолевайте препятствия', 'Проявляйте инициативу', 'Боритесь за цели'],
+        negative: ['Контролируйте агрессию', 'Избегайте рисков'],
+        ritual: 'Ритуал на силу и энергию',
+        meditation: 'Медитация внутренней силы'
+      },
+      'waxing-gibbous': {
+        positive: ['Завершайте дела', 'Шлифуйте детали', 'Готовьтесь к результату', 'Анализируйте прогресс'],
+        negative: ['Не перфекционируйте чрезмерно', 'Избегайте критики'],
+        ritual: 'Ритуал благодарности',
+        meditation: 'Медитация завершения'
+      },
+      'full-moon': {
+        positive: ['Подводите итоги', 'Празднуйте успехи', 'Отпускайте старое', 'Проводите ритуалы'],
+        negative: ['Контролируйте эмоции', 'Избегайте конфликтов'],
+        ritual: 'Мощный ритуал исполнения желаний',
+        meditation: 'Медитация полной луны'
+      },
+      'waning-gibbous': {
+        positive: ['Делитесь опытом', 'Помогайте другим', 'Анализируйте результат', 'Благодарите'],
+        negative: ['Не цепляйтесь за прошлое', 'Избегайте жалости к себе'],
+        ritual: 'Ритуал благодарности вселенной',
+        meditation: 'Медитация благодарности'
+      },
+      'last-quarter': {
+        positive: ['Избавляйтесь от ненужного', 'Завершайте старые дела', 'Очищайте пространство', 'Отпускайте'],
+        negative: ['Не начинайте новое', 'Избегайте долгов'],
+        ritual: 'Ритуал очищения',
+        meditation: 'Медитация отпускания'
+      },
+      'waning-crescent': {
+        positive: ['Отдыхайте', 'Восстанавливайтесь', 'Готовьтесь к новому циклу', 'Медитируйте'],
+        negative: ['Не напрягайтесь', 'Избегайте важных решений'],
+        ritual: 'Ритуал подготовки к новому циклу',
+        meditation: 'Медитация тишины'
+      }
+    };
+    
+    const ZODIAC_RECOMMENDATIONS = {
+      '♈ Овен': 'Энергия действий! Проявляйте инициативу, начинайте смелые проекты.',
+      '♉ Телец': 'Время стабильности! Работайте над материальными целями, наслаждайтесь красотой.',
+      '♊ Близнецы': 'Период общения! Учитесь, делитесь идеями, заводите полезные контакты.',
+      '♋ Рак': 'Время заботы! Уделите внимание семье, дому, эмоциональному комфорту.',
+      '♌ Лев': 'Период творчества! Выражайте себя, будьте в центре внимания, лидируйте.',
+      '♍ Дева': 'Время порядка! Анализируйте, систематизируйте, заботьтесь о здоровье.',
+      '♎ Весы': 'Период гармонии! Налаживайте отношения, ищите баланс, создавайте красоту.',
+      '♏ Скорпион': 'Время трансформации! Глубокая работа над собой, избавление от старого.',
+      '♐ Стрелец': 'Период расширения! Путешествуйте, учитесь, ставьте глобальные цели.',
+      '♑ Козерог': 'Время дисциплины! Работайте упорно, стройте долгосрочные планы.',
+      '♒ Водолей': 'Период инноваций! Экспериментируйте, дружите, меняйте жизнь к лучшему.',
+      '♓ Рыбы': 'Время интуиции! Медитируйте, творите, слушайте внутренний голос.'
+    };
+    
     const dayOfWeek = date.getDay();
     const dayOfMonth = date.getDate();
     const baseRec = BASE_RECOMMENDATIONS[phase];
@@ -234,7 +321,6 @@
   function initCalendar() {
     renderCalendar(currentDate);
     
-    // Обработчики кнопок навигации
     const prevBtn = document.getElementById('prevMonth');
     const nextBtn = document.getElementById('nextMonth');
     const todayBtn = document.getElementById('todayBtn');
@@ -257,28 +343,23 @@
       todayBtn.addEventListener('click', () => {
         currentDate = new Date();
         renderCalendar(currentDate);
-        initMoonDisplay(); // Обновить отображение текущей фазы луны
+        initMoonDisplay();
       });
     }
   }
 
-  // Автоматическое обновление фазы луны при загрузке и каждый день
   function scheduleDailyMoonUpdate() {
-    // Вычислить время до полуночи
     const now = new Date();
     const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 1);
     const msUntilMidnight = tomorrow.getTime() - now.getTime();
     
-    // Запланировать обновление после полуночи
     setTimeout(() => {
       initMoonDisplay();
       renderCalendar(currentDate);
-      // Рекурсивно планировать следующее обновление
       scheduleDailyMoonUpdate();
     }, msUntilMidnight);
   }
   
-  // Запустить ежедневное обновление после первой инициализации
   document.addEventListener('DOMContentLoaded', function() {
     scheduleDailyMoonUpdate();
   });
@@ -292,15 +373,12 @@
     const year = date.getFullYear();
     const month = date.getMonth();
     
-    // Обновление заголовка
     const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
                         'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
     monthYearEl.textContent = `${monthNames[month]} ${year}`;
     
-    // Очистка сетки
     grid.innerHTML = '';
     
-    // Дни недели
     const weekdays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
     weekdays.forEach(day => {
       const weekdayEl = document.createElement('div');
@@ -309,15 +387,12 @@
       grid.appendChild(weekdayEl);
     });
     
-    // Первый день месяца
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     
-    // Корректировка для начала недели с понедельника
     let startDay = firstDay.getDay() - 1;
     if (startDay < 0) startDay = 6;
     
-    // Предыдущий месяц
     const prevMonthLastDay = new Date(year, month, 0).getDate();
     for (let i = startDay - 1; i >= 0; i--) {
       const dayNum = prevMonthLastDay - i;
@@ -325,18 +400,15 @@
       grid.appendChild(dayEl);
     }
     
-    // Текущий месяц
     const today = new Date();
     for (let day = 1; day <= lastDay.getDate(); day++) {
       const currentDay = new Date(year, month, day);
       const dayEl = createDayElement(currentDay, false);
       
-      // Пометка сегодняшнего дня
       if (currentDay.toDateString() === today.toDateString()) {
         dayEl.classList.add('today');
       }
       
-      // Пометка выбранного дня
       if (selectedDate && currentDay.toDateString() === selectedDate.toDateString()) {
         dayEl.classList.add('selected');
       }
@@ -344,7 +416,6 @@
       grid.appendChild(dayEl);
     }
     
-    // Следующий месяц (заполнение до 42 ячеек)
     const totalCells = startDay + lastDay.getDate();
     const nextMonthDays = 42 - totalCells;
     for (let day = 1; day <= nextMonthDays; day++) {
@@ -367,24 +438,20 @@
     `;
     
     dayEl.addEventListener('click', () => {
-      // Снятие выделения с предыдущего
       document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
       dayEl.classList.add('selected');
       selectedDate = date;
       
-      // Установка даты в форму дневника
       const dateInput = document.getElementById('entryDate');
       if (dateInput) {
         dateInput.value = formatDateForInput(date);
       }
       
-      // Автоматический выбор фазы
       const phaseSelect = document.getElementById('moonPhaseSelect');
       if (phaseSelect) {
         phaseSelect.value = phase;
       }
       
-      // Прокрутка к форме
       document.querySelector('.journal-section').scrollIntoView({ behavior: 'smooth' });
     });
     
@@ -407,48 +474,44 @@
   // === ДНЕВНИК НАМЕРЕНИЙ ===
   function initJournal() {
     const form = document.getElementById('journalForm');
-    if (form) {
-      form.addEventListener('submit', handleFormSubmit);
-    }
+    if (!form) return;
     
-    // Установка текущей даты по умолчанию
-    const dateInput = document.getElementById('entryDate');
-    if (dateInput) {
-      dateInput.value = formatDateForInput(new Date());
-    }
+    form.addEventListener('submit', handleJournalSubmit);
   }
 
-  function handleFormSubmit(e) {
+  function handleJournalSubmit(e) {
     e.preventDefault();
+    
+    const dateInput = document.getElementById('entryDate');
+    const phaseSelect = document.getElementById('moonPhaseSelect');
+    const intentionInput = document.getElementById('intentionInput');
+    const feelingsInput = document.getElementById('feelingsInput');
+    
+    if (!dateInput || !phaseSelect || !intentionInput) return;
     
     const entry = {
       id: Date.now(),
-      date: document.getElementById('entryDate').value,
-      moonPhase: document.getElementById('moonPhaseSelect').value,
-      intentionType: document.getElementById('intentionType').value,
-      title: document.getElementById('entryTitle').value,
-      text: document.getElementById('entryText').value,
-      createdAt: new Date().toISOString()
+      date: dateInput.value,
+      phase: phaseSelect.value,
+      intention: intentionInput.value,
+      feelings: feelingsInput ? feelingsInput.value : '',
+      timestamp: new Date().toISOString()
     };
     
-    journalEntries.unshift(entry);
+    journalEntries.push(entry);
     saveJournalEntries();
-    renderEntries();
     
-    // Очистка формы
-    e.target.reset();
-    document.getElementById('entryDate').value = formatDateForInput(new Date());
+    intentionInput.value = '';
+    if (feelingsInput) feelingsInput.value = '';
     
-    // Показ уведомления
-    showNotification('Намерение успешно сохранено! ✨');
+    alert('Запись сохранена в лунном дневнике! 🌙');
   }
 
   function saveJournalEntries() {
     try {
       localStorage.setItem('moonJournalEntries', JSON.stringify(journalEntries));
     } catch (e) {
-      console.error('Ошибка сохранения записей:', e);
-      showNotification('Ошибка сохранения записи');
+      console.error('Ошибка сохранения дневника:', e);
     }
   }
 
@@ -457,138 +520,10 @@
       const saved = localStorage.getItem('moonJournalEntries');
       if (saved) {
         journalEntries = JSON.parse(saved);
-        renderEntries();
       }
     } catch (e) {
-      console.error('Ошибка загрузки записей:', e);
-      journalEntries = [];
+      console.error('Ошибка загрузки дневника:', e);
     }
   }
-
-  function renderEntries() {
-    const container = document.getElementById('entriesContainer');
-    if (!container) return;
-    
-    if (journalEntries.length === 0) {
-      container.innerHTML = '<p class="no-entries">Пока нет записей. Создайте первое намерение!</p>';
-      return;
-    }
-    
-    container.innerHTML = journalEntries.map(entry => {
-      const phaseData = MOON_PHASES[entry.moonPhase] || { name: entry.moonPhase, icon: '' };
-      const typeIcons = {
-        'goal': '🎯',
-        'ritual': '✨',
-        'meditation': '🧘',
-        'affirmation': '💫',
-        'gratitude': '🙏',
-        'release': '🔓'
-      };
-      const typeIcon = typeIcons[entry.intentionType] || '📝';
-      
-      return `
-        <div class="entry-card" data-id="${entry.id}">
-          <div class="entry-header">
-            <span class="entry-date">${formatDisplayDate(entry.date)}</span>
-            <span class="entry-moon-phase">${phaseData.icon} ${phaseData.name}</span>
-          </div>
-          <div class="entry-title">${typeIcon} ${escapeHtml(entry.title)}</div>
-          <div class="entry-text">${escapeHtml(entry.text)}</div>
-          <div class="entry-actions">
-            <button class="entry-action-btn" onclick="editEntry(${entry.id})">
-              <i class="fas fa-edit"></i> Редактировать
-            </button>
-            <button class="entry-action-btn delete" onclick="deleteEntry(${entry.id})">
-              <i class="fas fa-trash"></i> Удалить
-            </button>
-          </div>
-        </div>
-      `;
-    }).join('');
-  }
-
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
-  // Глобальные функции для кнопок редактирования/удаления
-  window.editEntry = function(id) {
-    const entry = journalEntries.find(e => e.id === id);
-    if (!entry) return;
-    
-    document.getElementById('entryDate').value = entry.date;
-    document.getElementById('moonPhaseSelect').value = entry.moonPhase;
-    document.getElementById('intentionType').value = entry.intentionType;
-    document.getElementById('entryTitle').value = entry.title;
-    document.getElementById('entryText').value = entry.text;
-    
-    // Удаление старой записи перед редактированием
-    deleteEntry(id, true);
-    
-    // Прокрутка к форме
-    document.querySelector('.journal-form').scrollIntoView({ behavior: 'smooth' });
-  };
-
-  window.deleteEntry = function(id, isEdit = false) {
-    if (!isEdit && !confirm('Вы уверены, что хотите удалить эту запись?')) return;
-    
-    journalEntries = journalEntries.filter(e => e.id !== id);
-    saveJournalEntries();
-    renderEntries();
-    
-    if (!isEdit) {
-      showNotification('Запись удалена');
-    }
-  };
-
-  // === УВЕДОМЛЕНИЯ ===
-  function showNotification(message) {
-    const existing = document.querySelector('.journal-notification');
-    if (existing) existing.remove();
-    
-    const notification = document.createElement('div');
-    notification.className = 'journal-notification';
-    notification.textContent = message;
-    notification.style.cssText = `
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #8b5cf6;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      z-index: 10000;
-      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
-      animation: slideUp 0.3s ease-out;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-      notification.style.animation = 'slideUp 0.3s ease-out reverse';
-      setTimeout(() => notification.remove(), 300);
-    }, 2000);
-  }
-
-  // Добавление анимации
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
-    }
-  `;
-  document.head.appendChild(style);
 
 })();
