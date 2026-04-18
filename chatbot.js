@@ -251,21 +251,27 @@ function initChatWidget() {
           <div class="message bot-message">
             <div class="message-content">
               Привет! 👋 Я виртуальный ассистент TheWitcheryCat. 
-              Спрашивай о творчестве, треках или лунном календаре! 🎵
+              Выбери тему, чтобы узнать больше! 🎵
             </div>
           </div>
         </div>
         
-        <div class="chat-input-container">
-          <input 
-            type="text" 
-            id="chat-input" 
-            class="chat-input" 
-            placeholder="Спроси о чём-нибудь..." 
-            autocomplete="off"
-          />
-          <button id="chat-send-btn" class="chat-send-btn" aria-label="Отправить">
-            <i class="fas fa-paper-plane"></i>
+        <div class="chat-buttons-container">
+          <button class="chat-option-btn" data-topic="about">
+            <i class="fas fa-microphone-alt"></i>
+            <span>Творчество 🎤</span>
+          </button>
+          <button class="chat-option-btn" data-topic="tracks">
+            <i class="fas fa-music"></i>
+            <span>Треки 🎵</span>
+          </button>
+          <button class="chat-option-btn" data-topic="social">
+            <i class="fas fa-share-alt"></i>
+            <span>Соцсети 📱</span>
+          </button>
+          <button class="chat-option-btn" data-topic="moon">
+            <i class="fas fa-moon"></i>
+            <span>Лунный календарь 🌙</span>
           </button>
         </div>
         
@@ -288,47 +294,44 @@ function initChatWidget() {
   const closeBtn = document.getElementById('chat-close-btn');
   const chatWindow = document.getElementById('chat-window');
   const messagesContainer = document.getElementById('chat-messages');
-  const inputField = document.getElementById('chat-input');
-  const sendBtn = document.getElementById('chat-send-btn');
   const loadingIndicator = document.getElementById('chat-loading');
+  const optionBtns = document.querySelectorAll('.chat-option-btn');
   
   // Открытие/закрытие чата
   toggleBtn.addEventListener('click', () => {
     chatWindow.classList.toggle('hidden');
-    if (!chatWindow.classList.contains('hidden')) {
-      setTimeout(() => inputField.focus(), 300);
-    }
   });
   
   closeBtn.addEventListener('click', () => {
     chatWindow.classList.add('hidden');
   });
   
-  // Отправка сообщения
-  async function sendMessage() {
-    const message = inputField.value.trim();
-    if (!message) return;
-    
-    // Добавляем сообщение пользователя
-    addMessage(message, 'user');
-    inputField.value = '';
-    
-    // Показываем индикатор загрузки
-    loadingIndicator.classList.remove('hidden');
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    
-    // Получаем ответ от бота
-    const response = await bot.generateResponse(message);
-    
-    // Скрываем индикатор и показываем ответ
-    loadingIndicator.classList.add('hidden');
-    addMessage(response, 'bot');
-  }
-  
-  // Обработчики событий
-  sendBtn.addEventListener('click', sendMessage);
-  inputField.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage();
+  // Обработчик кнопок с темами
+  optionBtns.forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const topic = btn.getAttribute('data-topic');
+      const topicMessages = {
+        about: 'расскажи о творчестве',
+        tracks: 'расскажи про треки',
+        social: 'расскажи про соцсети',
+        moon: 'расскажи про лунный календарь'
+      };
+      
+      // Добавляем сообщение от имени пользователя
+      const userMsg = btn.querySelector('span').textContent;
+      addMessage(userMsg, 'user');
+      
+      // Показываем индикатор загрузки
+      loadingIndicator.classList.remove('hidden');
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      
+      // Получаем ответ от бота
+      const response = await bot.generateResponse(topicMessages[topic]);
+      
+      // Скрываем индикатор и показываем ответ
+      loadingIndicator.classList.add('hidden');
+      addMessage(response, 'bot');
+    });
   });
   
   // Функция добавления сообщения
