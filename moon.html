@@ -23,6 +23,7 @@
   <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style-moon-rec.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- VK Bridge для мини-приложений ВКонтакте -->
   <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
@@ -569,11 +570,11 @@
         <span class="logo-text">TheWitcheryCat</span>
       </div>
       <nav class="nav" id="mainNav">
-        <ul class="nav-main-list">
+        <ul>
           <li><a href="index.html#главная">Главная</a></li>
           <li><a href="index.html#обо-мне">Обо мне</a></li>
           <li><a href="index.html#портфолио">Портфолио</a></li>
-          <li><a href="index.html#контакты">Контакты</a></li>
+          <li><a href="index.html#события">События</a></li>
           <li class="dropdown-menu-item">
             <button class="dropdown-toggle" id="dropdownToggle">
               Меню <i class="fas fa-chevron-down"></i>
@@ -583,7 +584,7 @@
               <a href="textpesen.html">Тексты песен</a>
               <a href="moon.html">Лунный календарь</a>
               <a href="index.html#пресса">Пресса</a>
-              <a href="index.html#события">События</a>
+              <a href="index.html#контакты">Контакты</a>
             </div>
           </li>
           <li class="theme-toggle-li">
@@ -647,7 +648,7 @@
         </div>
         <div class="moon-recommendation">
           <h3>✨ Рекомендации на сегодня</h3>
-          <p id="moonRecommendation">Идеальное время для завершения дел, подведения итогов и отпускания старого. Энергия достигает пика — используйте её для мощных ритуалов и реализации задуманного.</p>
+          <p id="moonRecommendation" style="line-height: 1.8;">Загрузка рекомендаций...</p>
         </div>
       </div>
     </div>
@@ -689,6 +690,7 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="recommendations-engine.js"></script>
   <script src="moon-calendar.js"></script>
 
   <!-- Уведомление о cookies -->
