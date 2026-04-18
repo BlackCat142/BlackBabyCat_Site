@@ -1,18 +1,19 @@
 // moon-calendar.js - Лунный Календарь и Дневник Намерений
+// Улучшенная версия с точными расчётами фаз луны и динамическими рекомендациями
 
 (function() {
   'use strict';
 
   // === КОНСТАНТЫ И ДАННЫЕ ===
   const MOON_PHASES = {
-    'new-moon': { name: 'Новолуние', icon: '🌑' },
-    'waxing-crescent': { name: 'Растущая луна', icon: '🌒' },
-    'first-quarter': { name: 'Первая четверть', icon: '🌓' },
-    'waxing-gibbous': { name: 'Прибывающая луна', icon: '🌔' },
-    'full-moon': { name: 'Полнолуние', icon: '🌕' },
-    'waning-gibbous': { name: 'Убывающая луна', icon: '🌖' },
-    'last-quarter': { name: 'Последняя четверть', icon: '🌗' },
-    'waning-crescent': { name: 'Стареющая луна', icon: '🌘' }
+    'new-moon': { name: 'Новолуние', icon: '🌑', startDay: 0, endDay: 1.5 },
+    'waxing-crescent': { name: 'Растущая луна', icon: '🌒', startDay: 1.5, endDay: 6.5 },
+    'first-quarter': { name: 'Первая четверть', icon: '🌓', startDay: 6.5, endDay: 8.5 },
+    'waxing-gibbous': { name: 'Прибывающая луна', icon: '🌔', startDay: 8.5, endDay: 13.5 },
+    'full-moon': { name: 'Полнолуние', icon: '🌕', startDay: 13.5, endDay: 15.5 },
+    'waning-gibbous': { name: 'Убывающая луна', icon: '🌖', startDay: 15.5, endDay: 20.5 },
+    'last-quarter': { name: 'Последняя четверть', icon: '🌗', startDay: 20.5, endDay: 22.5 },
+    'waning-crescent': { name: 'Стареющая луна', icon: '🌘', startDay: 22.5, endDay: 29.5 }
   };
 
   const ZODIAC_SIGNS = [
@@ -21,15 +22,72 @@
     '♐ Стрелец', '♑ Козерог', '♒ Водолей', '♓ Рыбы'
   ];
 
-  const RECOMMENDATIONS = {
-    'new-moon': 'Время новых начинаний! Загадывайте желания, ставьте цели, начинайте новые проекты. Идеально для закладки фундамента будущих достижений.',
-    'waxing-crescent': 'Период роста и развития. Продолжайте начатое, привлекайте ресурсы, работайте над своими целями постепенно.',
-    'first-quarter': 'Время действий и решительности. Преодолевайте препятствия, принимайте важные решения, проявляйте инициативу.',
-    'waxing-gibbous': 'Завершающая стадия роста. Доводите дела до конца, шлифуйте детали, готовьтесь к результату.',
-    'full-moon': 'Пик энергии! Идеальное время для ритуалов, подведения итогов, празднования успехов и отпускания старого.',
-    'waning-gibbous': 'Время благодарности и分享. Делитесь опытом, помогайте другим, анализируйте полученный результат.',
-    'last-quarter': 'Период отпускания. Избавляйтесь от ненужного, завершайте старые дела, очищайте пространство.',
-    'waning-crescent': 'Время отдыха и восстановления. Отпустите прошлое, готовьтесь к новому циклу, медитируйте.'
+  // Базовые рекомендации для каждой фазы
+  const BASE_RECOMMENDATIONS = {
+    'new-moon': {
+      positive: ['Загадывайте желания', 'Ставьте новые цели', 'Начинайте проекты', 'Планируйте будущее'],
+      negative: ['Избегайте спешки', 'Не принимайте поспешных решений'],
+      ritual: 'Ритуал на исполнение желаний',
+      meditation: 'Медитация на новое начало'
+    },
+    'waxing-crescent': {
+      positive: ['Развивайте начатое', 'Привлекайте ресурсы', 'Работайте над целями', 'Учитесь новому'],
+      negative: ['Не распыляйтесь', 'Избегайте конфликтов'],
+      ritual: 'Ритуал на привлечение изобилия',
+      meditation: 'Медитация роста'
+    },
+    'first-quarter': {
+      positive: ['Действуйте решительно', 'Преодолевайте препятствия', 'Проявляйте инициативу', 'Боритесь за цели'],
+      negative: ['Контролируйте агрессию', 'Избегайте рисков'],
+      ritual: 'Ритуал на силу и энергию',
+      meditation: 'Медитация внутренней силы'
+    },
+    'waxing-gibbous': {
+      positive: ['Завершайте дела', 'Шлифуйте детали', 'Готовьтесь к результату', 'Анализируйте прогресс'],
+      negative: ['Не перфекционируйте чрезмерно', 'Избегайте критики'],
+      ritual: 'Ритуал благодарности',
+      meditation: 'Медитация завершения'
+    },
+    'full-moon': {
+      positive: ['Подводите итоги', 'Празднуйте успехи', 'Отпускайте старое', 'Проводите ритуалы'],
+      negative: ['Контролируйте эмоции', 'Избегайте конфликтов'],
+      ritual: 'Мощный ритуал исполнения желаний',
+      meditation: 'Медитация полной луны'
+    },
+    'waning-gibbous': {
+      positive: ['Делитесь опытом', 'Помогайте другим', 'Анализируйте результат', 'Благодарите'],
+      negative: ['Не цепляйтесь за прошлое', 'Избегайте жалости к себе'],
+      ritual: 'Ритуал благодарности вселенной',
+      meditation: 'Медитация благодарности'
+    },
+    'last-quarter': {
+      positive: ['Избавляйтесь от ненужного', 'Завершайте старые дела', 'Очищайте пространство', 'Отпускайте'],
+      negative: ['Не начинайте новое', 'Избегайте долгов'],
+      ritual: 'Ритуал очищения',
+      meditation: 'Медитация отпускания'
+    },
+    'waning-crescent': {
+      positive: ['Отдыхайте', 'Восстанавливайтесь', 'Готовьтесь к новому циклу', 'Медитируйте'],
+      negative: ['Не напрягайтесь', 'Избегайте важных решений'],
+      ritual: 'Ритуал подготовки к новому циклу',
+      meditation: 'Медитация тишины'
+    }
+  };
+
+  // Рекомендации по знакам зодиака
+  const ZODIAC_RECOMMENDATIONS = {
+    '♈ Овен': 'Энергия действий! Проявляйте инициативу, начинайте смелые проекты.',
+    '♉ Телец': 'Время стабильности! Работайте над материальными целями, наслаждайтесь красотой.',
+    '♊ Близнецы': 'Период общения! Учитесь, делитесь идеями, заводите полезные контакты.',
+    '♋ Рак': 'Время заботы! Уделите внимание семье, дому, эмоциональному комфорту.',
+    '♌ Лев': 'Период творчества! Выражайте себя, будьте в центре внимания, лидируйте.',
+    '♍ Дева': 'Время порядка! Анализируйте, систематизируйте, заботьтесь о здоровье.',
+    '♎ Весы': 'Период гармонии! Налаживайте отношения, ищите баланс, создавайте красоту.',
+    '♏ Скорпион': 'Время трансформации! Глубокая работа над собой, избавление от старого.',
+    '♐ Стрелец': 'Период расширения! Путешествуйте, учитесь, ставьте глобальные цели.',
+    '♑ Козерог': 'Время дисциплины! Работайте упорно, стройте долгосрочные планы.',
+    '♒ Водолей': 'Период инноваций! Экспериментируйте, дружите, меняйте жизнь к лучшему.',
+    '♓ Рыбы': 'Время интуиции! Медитируйте, творите, слушайте внутренний голос.'
   };
 
   // === ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ===
@@ -82,10 +140,19 @@
     return Math.round(illumination);
   }
 
-  // Получение знака зодиака для луны (приблизительно)
+  // Получение знака зодиака для луны (улучшенный алгоритм)
   function getMoonSign(date) {
-    const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-    const signIndex = Math.floor((dayOfYear % 365) / 30.44) % 12;
+    // Более точный расчёт положения луны через сидерический месяц
+    const knownNewMoon = new Date(2000, 0, 6, 18, 14);
+    const diffTime = date.getTime() - knownNewMoon.getTime();
+    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+    
+    // Луна проходит через весь зодиак примерно за 27.3 дней (сидерический месяц)
+    const siderealMonth = 27.321661;
+    const moonPosition = (diffDays % siderealMonth) / siderealMonth * 360;
+    
+    // Разделение на 12 знаков по 30 градусов
+    const signIndex = Math.floor(moonPosition / 30) % 12;
     return ZODIAC_SIGNS[signIndex];
   }
 
@@ -130,11 +197,37 @@
       signEl.textContent = getMoonSign(today);
     }
     
-    // Обновление рекомендаций
+    // Обновление рекомендаций - генерация динамических рекомендаций
     const recommendationEl = document.getElementById('moonRecommendation');
     if (recommendationEl) {
-      recommendationEl.textContent = RECOMMENDATIONS[phase];
+      recommendationEl.innerHTML = generateDailyRecommendation(today, phase);
     }
+  }
+
+  // === ГЕНЕРАЦИЯ ДИНАМИЧЕСКИХ РЕКОМЕНДАЦИЙ ===
+  function generateDailyRecommendation(date, phase) {
+    const moonSign = getMoonSign(date);
+    
+    // Используем новый движок рекомендаций если он доступен
+    if (window.MoonRecommendationEngine) {
+      return window.MoonRecommendationEngine.generate(date, phase, moonSign);
+    }
+    
+    // Fallback к старой системе
+    const dayOfWeek = date.getDay();
+    const dayOfMonth = date.getDate();
+    const baseRec = BASE_RECOMMENDATIONS[phase];
+    
+    const positiveIndex = (dayOfWeek + dayOfMonth) % baseRec.positive.length;
+    const negativeIndex = dayOfWeek % baseRec.negative.length;
+    
+    let recommendation = `<strong>🌙 Фаза:</strong> ${MOON_PHASES[phase].icon} ${MOON_PHASES[phase].name}<br><br>`;
+    recommendation += `<strong>✨ Благоприятно:</strong> ${baseRec.positive[positiveIndex]}. ${ZODIAC_RECOMMENDATIONS[moonSign]}<br><br>`;
+    recommendation += `<strong>⚠️ Избегать:</strong> ${baseRec.negative[negativeIndex]}.<br><br>`;
+    recommendation += `<strong>🕯️ Ритуал:</strong> ${baseRec.ritual}.<br><br>`;
+    recommendation += `<strong>🧘 Медитация:</strong> ${baseRec.meditation}.`;
+    
+    return recommendation;
   }
 
   // === КАЛЕНДАРЬ ===

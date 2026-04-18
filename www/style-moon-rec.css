@@ -1,0 +1,18 @@
+/* Стили для рекомендаций */
+.rec-section {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  font-size: 0.95rem;
+}
+
+.rec-section:last-child {
+  border-bottom: none;
+}
+
+.moon-recommendation p {
+  line-height: 1.8 !important;
+}
+
+#moonRecommendation strong {
+  color: var(--purple-light);
+}
