@@ -6,14 +6,14 @@
 
   // === КОНСТАНТЫ И ДАННЫЕ ===
   const MOON_PHASES = {
-    'new-moon': { name: 'Новолуние', icon: '🌑', minAge: 0, maxAge: 1.0 },
-    'waxing-crescent': { name: 'Растущая луна', icon: '🌒', minAge: 1.0, maxAge: 6.5 },
-    'first-quarter': { name: 'Первая четверть', icon: '🌓', minAge: 6.5, maxAge: 8.0 },
-    'waxing-gibbous': { name: 'Прибывающая луна', icon: '🌔', minAge: 8.0, maxAge: 13.5 },
-    'full-moon': { name: 'Полнолуние', icon: '🌕', minAge: 13.5, maxAge: 15.0 },
-    'waning-gibbous': { name: 'Убывающая луна', icon: '🌖', minAge: 15.0, maxAge: 21.0 },
-    'last-quarter': { name: 'Последняя четверть', icon: '🌗', minAge: 21.0, maxAge: 22.5 },
-    'waning-crescent': { name: 'Стареющая луна', icon: '🌘', minAge: 22.5, maxAge: 29.53 }
+    'new-moon': { name: 'Новолуние', icon: '🌑', minAge: 0, maxAge: 1.5 },
+    'waxing-crescent': { name: 'Растущая луна', icon: '🌒', minAge: 1.5, maxAge: 6.5 },
+    'first-quarter': { name: 'Первая четверть', icon: '🌓', minAge: 6.5, maxAge: 8.5 },
+    'waxing-gibbous': { name: 'Прибывающая луна', icon: '🌔', minAge: 8.5, maxAge: 13.5 },
+    'full-moon': { name: 'Полнолуние', icon: '🌕', minAge: 13.5, maxAge: 15.5 },
+    'waning-gibbous': { name: 'Убывающая луна', icon: '🌖', minAge: 15.5, maxAge: 21.5 },
+    'last-quarter': { name: 'Последняя четверть', icon: '🌗', minAge: 21.5, maxAge: 23.0 },
+    'waning-crescent': { name: 'Стареющая луна', icon: '🌘', minAge: 23.0, maxAge: 29.53 }
   };
   
   const ZODIAC_SIGNS = [
