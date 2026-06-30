@@ -25,7 +25,7 @@
 4. Оплатить лицензионный сбор
 
 # 💡 Официальные ресурсы:
-- 🌐 Официальный сайт: https://blackbabycat.ru
+- 🌐 Официальный сайт: https://thewitcherycat.ru
 - 📧 Email: Cat@TheWitcheryCat.ru
 - 📱 VK: https://vk.com/TheWitcheryCat
 - 🎵 YouTube: https://www.youtube.com/@TheWitcheryCat
