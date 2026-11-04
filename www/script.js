@@ -325,13 +325,13 @@ function openTickets(url) {
 }
 
 
-// Проверка поддержки service workers для PWA
-if ('serviceWorker' in navigator) {
+// Service worker: офлайн-режим и установка сайта как приложения (PWA).
+// Не включаем внутри мобильного приложения (Capacitor) — там файлы и так лежат на устройстве.
+if ('serviceWorker' in navigator && !window.Capacitor &&
+    (location.protocol === 'https:' || location.hostname === 'localhost')) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js').then(registration => {
-            console.log('ServiceWorker зарегистрирован:', registration.scope);
-        }).catch(error => {
-            console.log('Регистрация ServiceWorker не удалась:', error);
+        navigator.serviceWorker.register('/service-worker.js').catch(error => {
+            console.warn('Service worker не зарегистрирован:', error);
         });
     });
 }

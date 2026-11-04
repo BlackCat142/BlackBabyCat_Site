@@ -32,7 +32,7 @@
   <!-- Favicon -->
   <link rel="icon" href="icons/favicon.ico" sizes="any">
   <link rel="icon" href="icons/favicon-32x32.png" type="image/png" sizes="32x32">
-  <link rel="icon" href="icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
   <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
   <!-- Подключение стилей -->
   <link rel="stylesheet" href="style.css" />
@@ -51,7 +51,7 @@
   <header class="header">
     <div class="container">
       <div class="logo">
-        <div class="logo-icon">B</div>
+        <img class="logo-icon" src="icons/logo.png" alt="Логотип TheWitcheryCat" width="40" height="40">
         <span class="logo-text">TheWitcheryCat</span>
       </div>
       <nav class="nav" id="mainNav">
@@ -224,18 +224,20 @@
 
       </div>
       <div class="portfolio-stats">
+<!-- ADMIN:stats -->
         <div class="stat-item">
           <span class="stat-number">15+</span>
           <span class="stat-label">Треков выпущено</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number">50K+</span>
+          <span class="stat-number">300K+</span>
           <span class="stat-label">Прослушиваний</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number">3</span>
+          <span class="stat-number">4+</span>
           <span class="stat-label">Коллаборации</span>
         </div>
+      <!-- /ADMIN:stats -->
       </div>
     </div>
   </section>
@@ -463,7 +465,7 @@
   <footer class="footer">
     <div class="container footer-content">
       <div class="logo">
-        <div class="logo-icon">B</div>
+        <img class="logo-icon" src="icons/logo.png" alt="Логотип TheWitcheryCat" width="40" height="40">
         <span class="logo-text">TheWitcheryCat</span>
       </div>
       <div class="footer-text">
@@ -631,46 +633,22 @@
     });
   </script>
 
-  <!-- Уведомление о cookies -->
-  <div id="cookieNotice" class="cookie-notice">
+  <!-- Уведомление о cookies (логика — в metrika.js) -->
+  <div id="cookieNotice" class="cookie-notice" role="dialog" aria-live="polite" aria-label="Согласие на cookie">
     <div class="cookie-notice-content">
       <p class="cookie-notice-text">
         <i class="fas fa-cookie-bite"></i>
-        Мы используем файлы cookie для улучшения работы сайта и анализа трафика. 
-        Продолжая использовать сайт, вы соглашаетесь с нашей 
-        <a href="privacy-policy.html" class="cookie-notice-link">политикой конфиденциальности</a>.
+        <span>Мы используем cookie и сервис Яндекс.Метрика, чтобы понимать, как посетители пользуются сайтом.
+        Аналитика включится только с вашего согласия. Подробнее — в
+        <a href="privacy-policy.html" class="cookie-notice-link">политике конфиденциальности</a>.</span>
       </p>
-      <button id="cookieAcceptBtn" class="cookie-accept-btn">
-        <i class="fas fa-check"></i> Принять
-      </button>
+      <div class="cookie-notice-buttons">
+        <button id="cookieDeclineBtn" class="cookie-decline-btn" type="button">Только необходимые</button>
+        <button id="cookieAcceptBtn" class="cookie-accept-btn" type="button">
+          <i class="fas fa-check"></i> Принять
+        </button>
+      </div>
     </div>
   </div>
-
-  <script>
-    // Логика уведомления о cookies
-    (function() {
-      const cookieNotice = document.getElementById('cookieNotice');
-      const cookieAcceptBtn = document.getElementById('cookieAcceptBtn');
-      
-      // Проверяем, было ли уже принято согласие
-      if (!localStorage.getItem('cookiesAccepted')) {
-        // Показываем уведомление с небольшой задержкой
-        setTimeout(function() {
-          cookieNotice.classList.add('cookie-notice-visible');
-        }, 1000);
-      }
-      
-      // Обработчик кнопки принятия
-      if (cookieAcceptBtn) {
-        cookieAcceptBtn.addEventListener('click', function() {
-          localStorage.setItem('cookiesAccepted', 'true');
-          cookieNotice.classList.remove('cookie-notice-visible');
-          setTimeout(function() {
-            cookieNotice.style.display = 'none';
-          }, 300);
-        });
-      }
-    })();
-  </script>
 </body>
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#8b5cf6">
+  <title>Нет подключения — TheWitcheryCat</title>
+  <link rel="icon" href="icons/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .offline { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; gap: 16px; }
+    .offline img { width: 120px; height: 120px; border-radius: 50%; background: #fff; }
+    .offline h1 { margin: 0; }
+    .offline p { color: var(--text-light); max-width: 420px; margin: 0; }
+    .offline nav { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+  </style>
+</head>
+<body data-theme="dark">
+  <main class="offline">
+    <img src="icons/logo.png" alt="Логотип TheWitcheryCat">
+    <h1>Нет подключения к интернету</h1>
+    <p>Эта страница ещё не сохранена на вашем устройстве. Проверьте подключение и попробуйте снова — или откройте страницы, которые уже доступны без интернета.</p>
+    <nav>
+      <button class="btn" onclick="location.reload()">Попробовать снова</button>
+      <a class="btn" href="/">Главная</a>
+      <a class="btn" href="/moon.html">Лунный календарь</a>
+    </nav>
+  </main>
+</body>
+</html>

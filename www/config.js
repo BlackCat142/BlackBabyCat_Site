@@ -141,7 +141,21 @@ const CONFIG = {
     "autoplay": true,
     "relatedVideos": false,
     "modestBranding": true
-  }
+  },
+  "stats": [
+    {
+      "number": "15+",
+      "label": "Треков выпущено"
+    },
+    {
+      "number": "300K+",
+      "label": "Прослушиваний"
+    },
+    {
+      "number": "4+",
+      "label": "Коллаборации"
+    }
+  ]
 };
 
 // Экспорт для Node.js (используется админкой)

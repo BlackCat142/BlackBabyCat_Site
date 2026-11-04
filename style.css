@@ -2722,3 +2722,38 @@ body.theme-transition {
   color: var(--text-light);
   opacity: 0.85;
 }
+
+/* Логотип-картинка (кот в шляпе) вместо буквы */
+img.logo-icon {
+  background: #fff;
+  object-fit: cover;
+  display: block;
+}
+
+/* Две кнопки в баннере cookie: «Только необходимые» и «Принять» */
+.cookie-notice-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.cookie-decline-btn {
+  background: transparent;
+  color: var(--text-light);
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  padding: 0.75rem 1.4rem;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+.cookie-decline-btn:hover {
+  border-color: var(--purple);
+  color: var(--text);
+}
+@media (max-width: 768px) {
+  .cookie-notice-buttons { width: 100%; }
+  .cookie-notice-buttons button { flex: 1; justify-content: center; }
+}
+[data-theme="light"] .cookie-decline-btn { color: #444; }
