@@ -111,6 +111,33 @@
     return ZODIAC_SIGNS[Math.floor(moonLongitude(date) / 30) % 12];
   }
 
+  // Рисунок Луны (SVG) по возрасту луны: освещённая часть = полукруг + эллипс терминатора.
+  // Для северного полушария: растущая Луна освещена справа, убывающая — слева.
+  function renderMoonSvg(age) {
+    const R = 100;
+    const p = ((age / SYNODIC_MONTH) % 1 + 1) % 1;           // 0 — новолуние, 0.5 — полнолуние
+    const rx = Math.abs(Math.cos(2 * Math.PI * p)) * R;       // полуширина терминатора
+    const waxing = p < 0.5;
+    const crescent = p < 0.25 || p > 0.75;
+    // Внешний край: правый полукруг для растущей, левый для убывающей
+    const outerSweep = waxing ? 1 : 0;
+    // Терминатор: у серпа выгибается в сторону света, у горбатой Луны — в тень
+    const innerSweep = waxing ? (crescent ? 0 : 1) : (crescent ? 1 : 0);
+    const lit = `M 0 ${-R} A ${R} ${R} 0 0 ${outerSweep} 0 ${R} A ${rx.toFixed(2)} ${R} 0 0 ${innerSweep} 0 ${-R} Z`;
+    return `<svg viewBox="-100 -100 200 200" width="100%" height="100%" aria-hidden="true" style="display:block">
+      <defs>
+        <radialGradient id="moonLit" cx="35%" cy="35%" r="75%">
+          <stop offset="0%" stop-color="#ffffff"/><stop offset="70%" stop-color="#e5e5e5"/><stop offset="100%" stop-color="#bdbdbd"/>
+        </radialGradient>
+        <radialGradient id="moonDark" cx="40%" cy="40%" r="75%">
+          <stop offset="0%" stop-color="#2a2a33"/><stop offset="100%" stop-color="#121216"/>
+        </radialGradient>
+      </defs>
+      <circle r="${R}" fill="url(#moonDark)"/>
+      ${p < 0.005 || p > 0.995 ? '' : `<path d="${lit}" fill="url(#moonLit)"/>`}
+    </svg>`;
+  }
+
   // === ОТОБРАЖЕНИЕ ТЕКУЩЕЙ ФАЗЫ ЛУНЫ ===
   function initMoonDisplay() {
     const today = new Date();
@@ -121,6 +148,9 @@
     const moonVisual = document.getElementById('currentMoonVisual');
     if (moonVisual) {
       moonVisual.className = `moon-phase-visual ${phase}`;
+      moonVisual.innerHTML = renderMoonSvg(getMoonAge(today));
+      moonVisual.setAttribute('role', 'img');
+      moonVisual.setAttribute('aria-label', `${phaseData.name}, освещённость ${getMoonIllumination(today)}%`);
     }
     
     // Обновление названия фазы

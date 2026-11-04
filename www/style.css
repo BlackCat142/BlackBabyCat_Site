@@ -50,6 +50,7 @@
   --card-bg: #ffffff;
   --border: #e9ecef;
   --purple: #6d42c1;
+  --purple-light: #7c3aed;     /* Темнее, чем в тёмной теме: на белом фоне светлый фиолетовый плохо читается */
   --pink: #d63384;
   --vk-color: #2787f5;
   --telegram-color: #0088cc;
@@ -1047,7 +1048,7 @@ body.theme-transition {
   color: var(--purple-light);
 }
 .event-venue {
-  color: white;
+  color: var(--text);
   font-weight: 700;
   font-size: 1.15rem;
 }
@@ -1127,7 +1128,7 @@ body.theme-transition {
   border-color: var(--purple);
 }
 .tab-btn.active {
-  color: white;
+  color: var(--text);
   border-color: var(--purple);
   background: rgba(139, 92, 246, 0.15);
   position: relative;
@@ -2757,3 +2758,44 @@ img.logo-icon {
   .cookie-notice-buttons button { flex: 1; justify-content: center; }
 }
 [data-theme="light"] .cookie-decline-btn { color: #444; }
+
+/* ── Страница «Политика конфиденциальности» ── */
+.privacy-content {
+  max-width: 820px;
+  margin: 2rem auto 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem 2.25rem;
+  line-height: 1.7;
+}
+.privacy-section + .privacy-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.privacy-section h2 {
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+  color: var(--purple-light);
+}
+.privacy-section h3 {
+  font-size: 1.05rem;
+  margin: 1.25rem 0 0.5rem;
+}
+.privacy-section p { margin-bottom: 0.75rem; }
+.privacy-section ul { margin: 0.5rem 0 0.75rem 1.4rem; }
+.privacy-section li { margin-bottom: 0.35rem; }
+.privacy-section a { color: var(--purple-light); text-decoration: underline; text-underline-offset: 2px; }
+.privacy-section a:hover { color: var(--pink); }
+.back-to-home { text-align: center; margin: 2rem 0 1rem; }
+@media (max-width: 600px) {
+  .privacy-content { padding: 1.25rem; border-radius: 12px; }
+}
+
+/* Подвал страницы политики */
+.footer-logo { display: flex; align-items: center; gap: 0.75rem; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+.footer-links a { color: var(--text-light); text-decoration: none; transition: var(--transition-fast); }
+.footer-links a:hover { color: var(--purple-light); }
+.footer-bottom { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-light); font-size: 0.9rem; }
