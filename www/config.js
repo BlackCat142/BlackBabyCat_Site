@@ -20,7 +20,12 @@ const CONFIG = {
     ],
     "otherProfiles": [
       "https://music.yandex.ru/artist/16564725"
-    ]
+    ],
+    "trademark": {
+      "number": "1263667",
+      "application": "2026735773",
+      "url": "https://www.fips.ru/registers-doc-view/fips_servlet?DB=RUTM&DocNumber=1263667&TypeFile=html"
+    }
   },
   "social": {
     "vk": "https://vk.com/TheWitcheryCat",
@@ -592,6 +597,10 @@ const CONFIG = {
     {
       "q": "TheWitcheryCat и BlackBabyCat — это один артист?",
       "a": "Да. С 2022 по 2025 год Данил выпускал музыку под именем BlackBabyCat - например, «Молодой», «Затмение», «Детка», «ИЗО ЛЬДА В NEON» и «ПОСЛЕДНИЙ ДРАЙВ В НИКУДА». Новые релизы выходят под именем TheWitcheryCat."
+    },
+    {
+      "q": "TheWitcheryCat — это зарегистрированный товарный знак?",
+      "a": "Да. TheWitcheryCat® — зарегистрированный в Роспатенте товарный знак, свидетельство № 1263667 (заявка № 2026735773 от 19.03.2026). Правообладатель — Епанчин Данил Владимирович. Знак охраняется для музыки и звукозаписей, концертов и услуг артиста, а также для одежды, обуви и головных уборов."
     },
     {
       "q": "В каком жанре TheWitcheryCat?",

@@ -235,3 +235,7 @@
 .disco-date { font-size: 0.8rem; color: var(--purple-light); }
 @media (max-width: 480px) { .disco-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; } }
 .disco-more { text-align: center; margin-top: 2rem; }
+
+/* Строка о товарном знаке в подвале */
+.tm-note { font-size: 0.8rem; color: var(--text-light); }
+.tm-note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
