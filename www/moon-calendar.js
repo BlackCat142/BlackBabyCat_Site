@@ -1,5 +1,5 @@
 // moon-calendar.js - Лунный Календарь и Дневник Намерений
-// Версия с ТОЧНЫМИ расчётами фаз луны на основе эфемерид NASA
+// Фазы и знак Луны вычисляются астрономическими формулами (см. раздел АСТРОНОМИЧЕСКИЕ РАСЧЁТЫ)
 
 (function() {
   'use strict';
@@ -22,74 +22,47 @@
     '♐ Стрелец', '♑ Козерог', '♒ Водолей', '♓ Рыбы'
   ];
 
-  // Таблица известных новолуний (UTC) для точного расчёта - данные от NASA
-  const KNOWN_NEW_MOONS = [
-    new Date(Date.UTC(2024, 0, 11, 11, 57)),
-    new Date(Date.UTC(2024, 1, 9, 23, 59)),
-    new Date(Date.UTC(2024, 2, 10, 9, 0)),
-    new Date(Date.UTC(2024, 3, 8, 18, 21)),
-    new Date(Date.UTC(2024, 4, 7, 3, 22)),
-    new Date(Date.UTC(2024, 5, 6, 12, 38)),
-    new Date(Date.UTC(2024, 6, 5, 22, 57)),
-    new Date(Date.UTC(2024, 7, 4, 9, 13)),
-    new Date(Date.UTC(2024, 8, 3, 1, 56)),
-    new Date(Date.UTC(2024, 9, 2, 18, 49)),
-    new Date(Date.UTC(2024, 10, 1, 12, 21)),
-    new Date(Date.UTC(2024, 11, 1, 6, 21)),
-    new Date(Date.UTC(2024, 11, 30, 22, 27)),
-    new Date(Date.UTC(2025, 1, 28, 12, 36)),
-    new Date(Date.UTC(2025, 2, 29, 10, 58)),
-    new Date(Date.UTC(2025, 3, 27, 19, 31)),
-    new Date(Date.UTC(2025, 4, 26, 3, 2)),
-    new Date(Date.UTC(2025, 5, 25, 10, 32)),
-    new Date(Date.UTC(2025, 6, 24, 19, 11)),
-    new Date(Date.UTC(2025, 7, 23, 6, 6)),
-    new Date(Date.UTC(2025, 8, 21, 19, 54)),
-    new Date(Date.UTC(2025, 9, 21, 12, 25)),
-    new Date(Date.UTC(2025, 10, 20, 6, 47)),
-    new Date(Date.UTC(2025, 11, 19, 20, 2)),
-    new Date(Date.UTC(2026, 0, 18, 3, 1)),
-    new Date(Date.UTC(2026, 1, 17, 15, 5)),
-    new Date(Date.UTC(2026, 2, 19, 3, 11)),
-    new Date(Date.UTC(2026, 3, 17, 11, 1)),
-    new Date(Date.UTC(2026, 4, 16, 19, 25)),
-    new Date(Date.UTC(2026, 5, 15, 4, 5)),
-    new Date(Date.UTC(2026, 6, 14, 13, 38)),
-    new Date(Date.UTC(2026, 7, 12, 22, 11)),
-    new Date(Date.UTC(2026, 8, 11, 6, 43)),
-    new Date(Date.UTC(2026, 9, 10, 15, 22)),
-    new Date(Date.UTC(2026, 10, 9, 0, 22)),
-    new Date(Date.UTC(2026, 11, 8, 9, 28)),
-    new Date(Date.UTC(2027, 0, 7, 2, 8)),
-    new Date(Date.UTC(2027, 1, 5, 17, 11)),
-    new Date(Date.UTC(2027, 2, 7, 11, 28)),
-    new Date(Date.UTC(2027, 3, 5, 18, 47)),
-    new Date(Date.UTC(2027, 4, 5, 2, 14)),
-    new Date(Date.UTC(2027, 5, 3, 10, 1)),
-    new Date(Date.UTC(2027, 6, 2, 18, 54)),
-    new Date(Date.UTC(2027, 7, 1, 4, 10)),
-    new Date(Date.UTC(2027, 8, 30, 13, 53)),
-    new Date(Date.UTC(2027, 9, 29, 21, 13)),
-    new Date(Date.UTC(2027, 10, 28, 4, 36)),
-    new Date(Date.UTC(2027, 11, 27, 12, 52))
-  ];
-
-  // Долгота Луны в каждом новолунии (градусы эклиптики) - данные на основе астрономических расчётов
-  // 2024: 12 новолуний, 2025: 13 новолуний, 2026: 12 новолуний, 2027: 12 новолуний
-  // Индексы соответствуют KNOWN_NEW_MOONS массиву
-  const NEW_MOON_LONGITUDES = [
-    // 2024 (индексы 0-11): янв=291°, фев=321°, мар=350°, апр=19°, май=47°, июн=75°, 
-    //                     июл=103°, авг=131°, сен=159°, окт=188°, ноя=217°, дек=246°
-    291, 321, 350, 19, 47, 75, 103, 131, 159, 188, 217, 246,
-    // 2025 (индексы 12-24, 13 новолуний!): янв=275°, фев=304°, апр=333°, май=2°, июн=31°, 
-    //                                       июл=59°, авг=87°, сен=115°, окт=143°, ноя=171°, дек=199°, дек2=227°, дек3=255°
-    275, 304, 333, 2, 31, 59, 87, 115, 143, 171, 199, 227, 255,
-    // 2026 (индексы 25-36): янв=283°, фев=311°, мар=339°, апр=27°(конец Овна!), май=35°, июн=63°, 
-    //                       июл=91°, авг=119°, сен=147°, окт=175°, ноя=203°, дек=231°
-    283, 311, 339, 27, 35, 63, 91, 119, 147, 175, 203, 231,
-    // 2027 (индексы 37-48)
-    259, 287, 315, 343, 11, 39, 67, 95, 123, 151, 179, 207
-  ];
+  // === АСТРОНОМИЧЕСКИЕ РАСЧЁТЫ ===
+  // Положения Солнца и Луны по упрощённым формулам Ж. Меёса («Astronomical Algorithms»).
+  // Точность ~0.1°, т.е. время фаз ±1 час. Работает для любого года, таблицы не нужны.
+  const DEG = Math.PI / 180;
+  const SYNODIC_MONTH = 29.530588853;
+  function norm360(x) { return ((x % 360) + 360) % 360; }
+  function julianCenturies(date) { return (date.getTime() / 86400000 + 2440587.5 - 2451545.0) / 36525; }
+  function sunLongitude(date) {
+    const T = julianCenturies(date);
+    const L0 = 280.46646 + 36000.76983 * T + 0.0003032 * T * T;
+    const M = (357.52911 + 35999.05029 * T - 0.0001537 * T * T) * DEG;
+    const C = (1.914602 - 0.004817 * T - 0.000014 * T * T) * Math.sin(M)
+            + (0.019993 - 0.000101 * T) * Math.sin(2 * M)
+            + 0.000289 * Math.sin(3 * M);
+    return norm360(L0 + C - 0.00569);
+  }
+  function moonLongitude(date) {
+    const T = julianCenturies(date);
+    const Lp = 218.3164477 + 481267.88123421 * T;
+    const D = (297.8501921 + 445267.1114034 * T) * DEG;
+    const M = (357.5291092 + 35999.0502909 * T) * DEG;
+    const Mp = (134.9633964 + 477198.8675055 * T) * DEG;
+    const F = (93.2720950 + 483202.0175233 * T) * DEG;
+    const E = 1 - 0.002516 * T;
+    const terms = [
+      [6.288774, 0, 0, 1, 0], [1.274027, 2, 0, -1, 0], [0.658314, 2, 0, 0, 0],
+      [0.213618, 0, 0, 2, 0], [-0.185116, 0, 1, 0, 0], [-0.114332, 0, 0, 0, 2],
+      [0.058793, 2, 0, -2, 0], [0.057066, 2, -1, -1, 0], [0.053322, 2, 0, 1, 0],
+      [0.045758, 2, -1, 0, 0], [-0.040923, 0, 1, -1, 0], [-0.034720, 1, 0, 0, 0],
+      [-0.030383, 0, 1, 1, 0], [0.015327, 2, 0, 0, -2], [-0.012528, 0, 0, 1, 2],
+      [0.010980, 0, 0, 1, -2], [0.010675, 4, 0, -1, 0], [0.010034, 0, 0, 3, 0],
+      [0.008548, 4, 0, -2, 0], [-0.007888, 2, 1, -1, 0], [-0.006766, 2, 1, 0, 0],
+      [-0.005163, 1, 0, -1, 0], [0.004987, 1, 1, 0, 0], [0.004036, 2, -1, 1, 0]
+    ];
+    let sum = 0;
+    for (const [a, d, m, mp, f] of terms) {
+      const k = Math.abs(m) === 1 ? E : 1;
+      sum += a * k * Math.sin(d * D + m * M + mp * Mp + f * F);
+    }
+    return norm360(Lp + sum);
+  }
 
   // === ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ===
   let currentDate = new Date();
@@ -106,23 +79,10 @@
 
   // === ФАЗЫ ЛУНЫ ===
   
-  // Вычисление возраста луны в днях на основе таблицы новолуний
+  // Возраст луны в днях: угол между Луной и Солнцем, переведённый в долю синодического месяца
   function getMoonAge(date) {
-    const time = date.getTime();
-    
-    // Ищем ближайшее предыдущее новолуние
-    let prevNewMoon = KNOWN_NEW_MOONS[0];
-    for (let i = 0; i < KNOWN_NEW_MOONS.length; i++) {
-      if (KNOWN_NEW_MOONS[i].getTime() <= time) {
-        prevNewMoon = KNOWN_NEW_MOONS[i];
-      } else {
-        break;
-      }
-    }
-    
-    const diffTime = time - prevNewMoon.getTime();
-    const diffDays = diffTime / (1000 * 60 * 60 * 24);
-    return diffDays;
+    const elongation = norm360(moonLongitude(date) - sunLongitude(date));
+    return elongation / 360 * SYNODIC_MONTH;
   }
 
   // Вычисление фазы луны на основе возраста
@@ -142,39 +102,13 @@
   // Вычисление освещённости луны (в процентах)
   function getMoonIllumination(date) {
     const age = getMoonAge(date);
-    const synodicMonth = 29.53058867;
-    const illumination = (1 - Math.cos((2 * Math.PI * age) / synodicMonth)) / 2 * 100;
+    const illumination = (1 - Math.cos((2 * Math.PI * age) / SYNODIC_MONTH)) / 2 * 100;
     return Math.round(illumination);
   }
 
-  // Получение знака зодиака для луны с учётом положения в новолуние
+  // Знак зодиака (тропический), в котором находится Луна
   function getMoonSign(date) {
-    const time = date.getTime();
-    
-    // Ищем ближайшее предыдущее новолуние и его долготу
-    let prevNewMoonIndex = 0;
-    for (let i = 0; i < KNOWN_NEW_MOONS.length; i++) {
-      if (KNOWN_NEW_MOONS[i].getTime() <= time) {
-        prevNewMoonIndex = i;
-      } else {
-        break;
-      }
-    }
-    
-    const prevNewMoon = KNOWN_NEW_MOONS[prevNewMoonIndex];
-    const startLongitude = NEW_MOON_LONGITUDES[prevNewMoonIndex % NEW_MOON_LONGITUDES.length];
-    
-    // Вычисляем сколько дней прошло с новолуния
-    const diffTime = time - prevNewMoon.getTime();
-    const diffDays = diffTime / (1000 * 60 * 60 * 24);
-    
-    // Луна движется примерно на 13.176 градусов в день (360 / 27.321661)
-    const dailyMotion = 360 / 27.321661;
-    const currentLongitude = (startLongitude + diffDays * dailyMotion) % 360;
-    
-    // Определяем знак зодиака
-    const signIndex = Math.floor(currentLongitude / 30) % 12;
-    return ZODIAC_SIGNS[signIndex];
+    return ZODIAC_SIGNS[Math.floor(moonLongitude(date) / 30) % 12];
   }
 
   // === ОТОБРАЖЕНИЕ ТЕКУЩЕЙ ФАЗЫ ЛУНЫ ===

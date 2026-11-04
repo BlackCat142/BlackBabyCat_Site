@@ -1,10 +1,8 @@
-// Умный чат-бот для TheWitcheryCat на базе Transformers.js
+// Чат-бот для TheWitcheryCat: отвечает по ключевым словам, без загрузки ИИ-моделей
 // Работает полностью в браузере без API
 
 class WitcheryBot {
   constructor() {
-    this.pipeline = null;
-    this.isModelLoaded = false;
     this.chatHistory = [];
     this.botName = "Виртуальный ассистент TheWitcheryCat";
     
@@ -13,24 +11,13 @@ class WitcheryBot {
       name: "TheWitcheryCat",
       origin: "Норильск, Россия",
       style: "Рэп и хип-хоп в танцевальном стиле",
-      tracks: [
-        {
-          title: "Детка Remix",
-          feat: "CodEK$",
-          link: CONFIG.releases.detkaRemix.link,
-          duration: CONFIG.releases.detkaRemix.duration
-        },
-        {
-          title: "Крик в никуда",
-          link: CONFIG.releases.cryIntoVoid.link,
-          duration: CONFIG.releases.cryIntoVoid.duration
-        },
-        {
-          title: "ПОСЛЕДНИЙ ДРАЙВ В НИКУДА",
-          link: CONFIG.releases.lastDrive.link,
-          duration: CONFIG.releases.lastDrive.duration
-        }
-      ],
+      // Треки берутся из config.js (редактируются в админке)
+      tracks: (CONFIG.releases || []).map(r => ({
+        title: r.shortTitle || r.title,
+        feat: r.feat || '',
+        link: r.link,
+        duration: r.duration
+      })),
       social: {
         vk: CONFIG.social.vk,
         telegram: CONFIG.social.telegram,
@@ -61,29 +48,6 @@ class WitcheryBot {
         "Здорово, что интересуешься! Расскажу подробнее."
       ]
     };
-  }
-
-  // Инициализация модели
-  async init() {
-    try {
-      console.log("Загрузка Transformers.js...");
-      
-      // Используем маленькую модель для быстрого запуска
-      const { pipeline } = await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.14.0');
-      
-      console.log("Загрузка модели для ответов на вопросы...");
-      // Используем небольшую модель для классификации намерений
-      this.classifier = await pipeline('text-classification', 'Xenova/distilbert-base-uncased-finetuned-sst-2-english');
-      
-      this.isModelLoaded = true;
-      console.log("✅ Бот готов к работе!");
-      
-      return true;
-    } catch (error) {
-      console.error("Ошибка загрузки модели:", error);
-      this.isModelLoaded = false;
-      return false;
-    }
   }
 
   // Анализ намерения пользователя
@@ -181,26 +145,18 @@ class WitcheryBot {
       return `Да, ${this.knowledgeBase.name} действительно из Норильска! 🏔️ Этот город вдохновляет на создание мощной музыки.`;
     }
     
-    if (lowerMessage.includes('детка') || lowerMessage.includes('remix')) {
-      const track = this.knowledgeBase.tracks[0];
-      return `🎵 "${track.title}" — один из популярных треков! Длительность: ${track.duration}.\n\n` +
-             `Ссылка: ${track.link}`;
-    }
-    
-    if (lowerMessage.includes('крик') || lowerMessage.includes('никуда')) {
-      const track = this.knowledgeBase.tracks[1];
-      return `🎵 "${track.title}" — глубокий трек о поиске себя. Длительность: ${track.duration}.\n\n` +
-             `Ссылка: ${track.link}`;
-    }
-    
-    if (lowerMessage.includes('драйв') || lowerMessage.includes('последний')) {
-      const track = this.knowledgeBase.tracks[2];
-      return `🎵 "${track.title}" — энергичный трек для драйва! Длительность: ${track.duration}.\n\n` +
-             `Ссылка: ${track.link}`;
+    // Ищем трек, слово из названия которого есть в сообщении
+    const track = this.knowledgeBase.tracks.find(t =>
+      t.title.toLowerCase().split(/[^a-zа-яё0-9]+/i).some(w => w.length > 3 && lowerMessage.includes(w))
+    );
+    if (track) {
+      return `🎵 "${track.title}"${track.feat ? ` feat. ${track.feat}` : ''} — длительность: ${track.duration}.
+
+Слушать: ${track.link}`;
     }
     
     if (lowerMessage.includes('рекоменд') || lowerMessage.includes('совет')) {
-      return `✨ Могу посоветовать начать с "Детка Remix" — это отличный трек для знакомства с творчеством!\n\n` +
+      return `✨ Могу посоветовать начать с "${this.knowledgeBase.tracks[0] ? this.knowledgeBase.tracks[0].title : 'последнего релиза'}" — это отличный трек для знакомства с творчеством!\n\n` +
              `А если хочешь персональные рекомендации по настроению — загляни в лунный календарь! 🌙`;
     }
     
@@ -341,17 +297,17 @@ function initChatWidget() {
     
     const contentDiv = document.createElement('div');
     contentDiv.className = 'message-content';
-    contentDiv.innerHTML = content.replace(/\n/g, '<br>');
+    // Текст пользователя экранируем, чтобы введённый HTML не исполнялся
+    const safe = sender === 'user'
+      ? content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      : content;
+    contentDiv.innerHTML = safe.replace(/\n/g, '<br>');
     
     messageDiv.appendChild(contentDiv);
     messagesContainer.appendChild(messageDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
   
-  // Инициализация бота (фоновая загрузка)
-  bot.init().then(() => {
-    console.log('Чат-бот готов!');
-  });
 }
 
 // Запуск после загрузки страницы

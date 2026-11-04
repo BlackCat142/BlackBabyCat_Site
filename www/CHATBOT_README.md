@@ -112,7 +112,7 @@ this.classifier = await pipeline(
    • ВКонтакте: https://vk.com/TheWitcheryCat
    • Telegram: https://t.me/TheWitcheryCat
    • YouTube: https://www.youtube.com/@TheWitcheryCat
-   • Яндекс.Музыка: https://music.yandex.ru/artist/16564725
+   • Яндекс.Музыка: https://music.yandex.ru/artist/25682569
 
    Буду рад видеть тебя среди подписчиков! 😊
 ```

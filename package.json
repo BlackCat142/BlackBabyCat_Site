@@ -4,13 +4,19 @@
   "description": "TheWitcheryCat - официальное мобильное приложение музыканта",
   "main": "moon-calendar.js",
   "scripts": {
+    "admin": "node admin/server.js",
+    "build": "node admin/build.js",
     "build:android": "cd android && ./gradlew assembleDebug",
     "build:ios": "cd ios/App && xcodebuild -workspace App.xcworkspace -scheme App build",
     "sync": "npx cap sync",
     "open:android": "npx cap open android",
     "open:ios": "npx cap open ios"
   },
-  "keywords": ["music", "mobile-app", "capacitor"],
+  "keywords": [
+    "music",
+    "mobile-app",
+    "capacitor"
+  ],
   "author": "TheWitcheryCat",
   "license": "ISC",
   "dependencies": {

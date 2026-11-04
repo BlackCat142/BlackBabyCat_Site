@@ -1,3 +1,5 @@
+> ⚠️ Структура `config.js` изменилась (релизы, концерты, видео и галерея — списки). Описание ниже частично устарело.
+
 # Инструкция по использованию config.js
 
 ## 🎯 Назначение
@@ -21,7 +23,7 @@ social: {
   vkArtist: 'https://vk.com/artist/TheWitcheryCat',
   telegram: 'https://t.me/TheWitcheryCat',     // Telegram
   youtube: 'https://www.youtube.com/@TheWitcheryCat',
-  yandexMusic: 'https://music.yandex.ru/artist/16564725',
+  yandexMusic: 'https://music.yandex.ru/artist/25682569',
   genius: 'https://genius.com/TheWitcheryCat'
 }
 ```
@@ -29,7 +31,7 @@ social: {
 #### Стриминговые платформы
 ```javascript
 streaming: {
-  yandex: 'https://music.yandex.ru/artist/16564725',
+  yandex: 'https://music.yandex.ru/artist/25682569',
   vk: 'https://vk.com/artist/TheWitcheryCat',
   youtube: 'https://www.youtube.com/@TheWitcheryCat'
 }

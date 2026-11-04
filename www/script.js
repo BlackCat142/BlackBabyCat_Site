@@ -1,4 +1,9 @@
 // script.js
+// Проверка наличия CONFIG (из config.js)
+if (typeof CONFIG === 'undefined') {
+  console.warn('CONFIG не найден. Убедитесь, что config.js подключен перед script.js');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Автоматическое обновление года в футере
     const currentYearSpan = document.getElementById('currentYear');
@@ -104,10 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
             button.classList.add('active');
             document.getElementById(target).classList.add('active');
             
-            // Если переключились на видео, инициализируем плеер
-            if (target === 'video') {
-                initVideoPreviews();
-            }
         });
     });
     
@@ -134,6 +135,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Плавная прокрутка к якорям
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+            const currentHref = this.getAttribute('href');
+            // Не обрабатываем ссылки, которые были обновлены на внешние URL
+            if (currentHref && !currentHref.startsWith('#')) {
+                return; // Позволяем обычному переходу работать
+            }
+            
             e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
@@ -162,45 +169,59 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация ленивой загрузки изображений
     initLazyLoading();
     
-    // Обработка видео превью
+    // Обработка видео превью (вызывается один раз)
     function initVideoPreviews() {
         const videoPreviews = document.querySelectorAll('.video-preview');
         const videoPlayerContainer = document.getElementById('videoPlayerContainer');
-        
+        if (!videoPlayerContainer) return;
+        const placeholderHTML = '<div class="video-player-placeholder"><p>Выберите видео для воспроизведения</p></div>';
+        let validCount = 0;
+
         videoPreviews.forEach(preview => {
+            const videoId = (preview.getAttribute('data-video-id') || '').trim();
+            const item = preview.closest('.video-item') || preview;
+
+            // ID ролика YouTube — 11 символов; без него карточку не показываем
+            if (!/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
+                item.style.display = 'none';
+                return;
+            }
+            validCount++;
+
+            const thumb = preview.querySelector('.video-thumbnail');
+            if (thumb && !/^https?:/.test(thumb.getAttribute('src') || '')) {
+                thumb.src = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+            }
+
             preview.addEventListener('click', function() {
-                const videoId = this.getAttribute('data-video-id');
                 const title = this.querySelector('h3').textContent;
-                
-                // Создаем YouTube iframe
+
+                const header = document.createElement('div');
+                header.className = 'video-player-header';
+                const h3 = document.createElement('h3');
+                h3.textContent = 'Сейчас играет: ' + title;
+                const closeBtn = document.createElement('button');
+                closeBtn.className = 'close-video-btn';
+                closeBtn.innerHTML = '<i class="fas fa-times"></i> Закрыть';
+                closeBtn.addEventListener('click', () => { videoPlayerContainer.innerHTML = placeholderHTML; });
+
                 const iframe = document.createElement('iframe');
                 iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+                iframe.title = title;
                 iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
                 iframe.allowFullscreen = true;
                 iframe.frameBorder = '0';
-                
-                // Очищаем контейнер и добавляем плеер
-                videoPlayerContainer.innerHTML = '';
-                videoPlayerContainer.innerHTML = `
-                    <div class="video-player-header">
-                        <h3>Сейчас играет: ${title}</h3>
-                        <button class="close-video-btn" id="closeVideoBtn">
-                            <i class="fas fa-times"></i> Закрыть
-                        </button>
-                    </div>
-                `;
-                videoPlayerContainer.querySelector('.video-player-header').appendChild(iframe);
-                
-                // Добавляем обработчик для кнопки закрытия
-                document.getElementById('closeVideoBtn').addEventListener('click', function() {
-                    videoPlayerContainer.innerHTML = `
-                        <div class="video-player-placeholder">
-                            <p>Выберите видео для воспроизведения</p>
-                        </div>
-                    `;
-                });
+
+                header.append(h3, closeBtn, iframe);
+                videoPlayerContainer.replaceChildren(header);
             });
         });
+
+        // Если ни одного видео не задано — ведём на канал YouTube
+        if (validCount === 0) {
+            const channel = (typeof CONFIG !== 'undefined' && CONFIG.social.youtube) || 'https://www.youtube.com/@TheWitcheryCat';
+            videoPlayerContainer.innerHTML = `<div class="video-player-placeholder"><p>Видео скоро появятся здесь</p><a href="${channel}" target="_blank" rel="noopener" class="btn"><i class="fab fa-youtube"></i> Смотреть на YouTube</a></div>`;
+        }
     }
     
     // Анимация при скролле
@@ -298,28 +319,11 @@ function updateMetaThemeColor(theme) {
 function openTickets(url) {
     window.open(url, '_blank');
     // Отправляем событие в Яндекс.Метрику
-    if (typeof ym !== 'undefined') {
-        ym(99999999, 'reachGoal', 'tickets_click');
+    if (typeof ym !== 'undefined' && typeof CONFIG !== 'undefined') {
+        ym(Number(CONFIG.analytics.yandexMetrika.counterId), 'reachGoal', 'tickets_click');
     }
 }
 
-// Предзагрузка изображений
-function preloadImages() {
-    const imagesToPreload = [
-        'https://sun9-67.userapi.com/s/v1/ig2/E_25I6AaaBX6H8Q8M88bbftus-JkSYy3VZjrdHEPyGRuIya4jdxaQO8fIMKJepnrhteKP9SNwWEKU6xWtQyUy7NL.jpg',
-        'https://sun9-59.userapi.com/s/v1/ig2/hI6RndpG5SNtGXVn6FeFyqB0YUFoEUiecdRbApTbweGcE5N-8pS1Uvil9mSB1Yz7BTg8e4-OYIyH3bcJjZ15qpAw.jpg',
-        'https://sun9-47.userapi.com/s/v1/ig2/CCQF2pAUuf3BN31-Pswkx3ih9FmZR9kNjUKiWVGA6E8O5Mtb_mPO6yx_WpeqKv9evHQK7BfSa7qTHJfwLT2iLJuu.jpg',
-        'https://sun9-60.userapi.com/s/v1/ig2/P_o0takqAuN8glR3g_5NyH7igPK8q0aC-eSpvrqf4RIeP-or2xXFIkyEiirg39LW6JwnLzJofoxgz2cbc1A7d4Me.jpg'
-    ];
-    
-    imagesToPreload.forEach(src => {
-        const img = new Image();
-        img.src = src;
-    });
-}
-
-// Запускаем предзагрузку при загрузке страницы
-window.addEventListener('load', preloadImages);
 
 // Проверка поддержки service workers для PWA
 if ('serviceWorker' in navigator) {
@@ -412,4 +416,71 @@ function showNotification(message) {
         notification.style.animation = 'slideUp 0.3s ease-out reverse';
         setTimeout(() => notification.remove(), 300);
     }, 2000);
+}
+
+// === Инициализация ссылок из CONFIG ===
+function initConfigLinks() {
+    if (typeof CONFIG === 'undefined') {
+        console.warn('CONFIG не найден. Пропускаем инициализацию ссылок.');
+        return;
+    }
+    
+    // Функция для получения вложенного значения из объекта по пути (например, "social.vk")
+    function getConfigValue(path) {
+        return path.split('.').reduce((obj, key) => obj && obj[key] !== undefined ? obj[key] : null, CONFIG);
+    }
+    
+    // Обновляем все ссылки с атрибутом data-config-link
+    document.querySelectorAll('[data-config-link]').forEach(el => {
+        const path = el.getAttribute('data-config-link');
+        const value = getConfigValue(path);
+        if (value) {
+            el.href = value;
+        }
+    });
+    
+    // Обновляем все тексты с атрибутом data-config-text
+    document.querySelectorAll('[data-config-text]').forEach(el => {
+        const path = el.getAttribute('data-config-text');
+        const value = getConfigValue(path);
+        if (value) {
+            el.textContent = value;
+        }
+    });
+    
+    // Обновляем все изображения с атрибутом data-config-image
+    document.querySelectorAll('[data-config-image]').forEach(el => {
+        const path = el.getAttribute('data-config-image');
+        const value = getConfigValue(path);
+        if (value) {
+            el.src = value;
+        }
+    });
+    
+    // Обновляем ссылки с текстом и длительностью (для медиа-треков)
+    document.querySelectorAll('[data-config-text-append][data-config-duration]').forEach(el => {
+        const titlePath = el.getAttribute('data-config-text-append');
+        const durationPath = el.getAttribute('data-config-duration');
+        const linkPath = el.getAttribute('data-config-link');
+        
+        const title = getConfigValue(titlePath);
+        const duration = getConfigValue(durationPath);
+        const link = getConfigValue(linkPath);
+        
+        if (title && duration) {
+            el.textContent = `${title} — ${duration}`;
+        }
+        if (link) {
+            el.href = link;
+        }
+    });
+    
+    console.log('✅ Конфигурационные ссылки и данные загружены из config.js');
+}
+
+// Запускаем инициализацию после загрузки DOM
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initConfigLinks);
+} else {
+    initConfigLinks();
 }
