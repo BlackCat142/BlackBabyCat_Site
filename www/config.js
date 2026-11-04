@@ -6,6 +6,15 @@ const CONFIG = {
   "site": {
     "baseUrl": "https://thewitcherycat.ru/"
   },
+  "artist": {
+    "pseudonym": "TheWitcheryCat",
+    "realName": "Данил Епанчин",
+    "fullName": "Епанчин Данил Владимирович",
+    "fullNameDirect": "Данил Владимирович Епанчин",
+    "givenName": "Данил",
+    "familyName": "Епанчин",
+    "patronymic": "Владимирович"
+  },
   "social": {
     "vk": "https://vk.com/TheWitcheryCat",
     "vkArtist": "https://vk.com/artist/thewitcherycat",

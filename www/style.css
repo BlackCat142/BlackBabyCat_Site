@@ -2713,3 +2713,12 @@ body.theme-transition {
     font-size: 1.3rem;
   }
 }
+
+/* Настоящее имя артиста под заголовком на главном экране */
+.hero-realname {
+  margin: -0.5rem auto 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+  opacity: 0.85;
+}
