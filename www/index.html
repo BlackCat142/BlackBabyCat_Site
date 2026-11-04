@@ -536,29 +536,8 @@
 }
   </script>
 <!-- /ADMIN:jsonld -->
-  <!-- Yandex.Metrica counter -->
-  <!-- Номер счётчика задаётся в config.js (analytics.yandexMetrika.counterId). Пока там заглушка, счётчик не запускается. -->
-  <script>
-    (function() {
-      var id = window.CONFIG && CONFIG.analytics && CONFIG.analytics.yandexMetrika && Number(CONFIG.analytics.yandexMetrika.counterId);
-      if (!id || id === 99999999) {
-        console.warn("Яндекс.Метрика не подключена: укажите номер счётчика в config.js");
-        return;
-      }
-      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-      m[i].l=1*new Date();
-      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-      ym(id, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
-      });
-    })();
-  </script>
-  <!-- /Yandex.Metrica counter -->
+  <!-- Яндекс.Метрика (номер счётчика — в config.js) -->
+  <script src="metrika.js"></script>
 
   <!-- Инициализация VK Bridge для мини-приложений ВКонтакте -->
   <script>
