@@ -20,8 +20,8 @@ const CONFIG = {
     "youtube": "https://www.youtube.com/@TheWitcheryCat"
   },
   "hero": {
-    "avatar": "images/avatar.jpg",
-    "badge": "НОВЫЙ ТРЕК: \"Психолог 23.10.2026\""
+    "avatar": "images/avatar2-jpg-mw1wscu6.jpg",
+    "badge": "НОВЫЙ ТРЕК: \"Любовь как яд 27.11.2026\""
   },
   "images": {
     "aboutPhoto": "images/about-studio.jpg",
@@ -46,34 +46,34 @@ const CONFIG = {
   },
   "releases": [
     {
-      "title": "TheWitcheryCat feat. CodEK$ - Детка Remix",
-      "shortTitle": "Детка Remix",
-      "feat": "CodEK$",
-      "year": "2025",
-      "description": "Совместный трек с CodEK$, выпущенный в 2025 году",
-      "link": "https://band.link/detka_remix",
-      "image": "images/cover-detka-remix.jpg",
-      "duration": "3:58"
+      "title": "TheWitcheryCat, MIKKY - Любовь как яд",
+      "shortTitle": " Любовь как яд",
+      "feat": "MIKKY",
+      "year": "2026",
+      "description": "Совместный трек с MIKKY , выпущенный в 2026 году",
+      "link": "https://band.link/lv6bP",
+      "image": "images/love-mw1wtsi1.jpg",
+      "duration": ""
     },
     {
-      "title": "Крик в никуда",
-      "shortTitle": "Крик в никуда",
+      "title": "TheWitcheryCat - Психолог",
+      "shortTitle": "Психолог",
       "feat": "",
-      "year": "2025",
-      "description": "Эмоциональный трек, исследующий темы внутренних переживаний",
-      "link": "https://vk.cc/cPycij",
-      "image": "images/cover-krik-v-nikuda.jpg",
-      "duration": "4:12"
+      "year": "2026",
+      "description": "Трек «Психолог» от TheWitcheryCat. Мрачный альтернативный хип-хоп о выгорании, личной драме и пустоте за фасадом успеха.",
+      "link": "https://band.link/k5YR8",
+      "image": "images/photo-mw1x4uj4.jpg",
+      "duration": "3:02"
     },
     {
-      "title": "ПОСЛЕДНИЙ ДРАЙВ В НИКУДА",
-      "shortTitle": "ПОСЛЕДНИЙ ДРАЙВ В НИКУДА",
+      "title": "TheWitcheryCat - Норильск",
+      "shortTitle": "Норильск",
       "feat": "",
-      "year": "2025",
-      "description": "Последний релиз от SQAZLY Music в жанре Electronic",
+      "year": "2026",
+      "description": "Мрачный индустриальный хип-хоп о выгорании, северной вьюге и внутреннем преодолении. Трек-манифест человека, который находит силы забрать контроль над собственной судьбой. ",
       "link": "https://band.link/tldtn",
-      "image": "images/cover-posledniy-drayv.jpg",
-      "duration": "3:45"
+      "image": "images/thewitcherycat-mw1x6g31.jpg",
+      "duration": "2:46"
     }
   ],
   "events": [
@@ -99,10 +99,16 @@ const CONFIG = {
       "ticketsLink": "https://vk.com/TheWitcheryCat"
     }
   ],
-  "videos": [],
+  "videos": [
+    {
+      "youtubeId": "gxgsn3TbuGM",
+      "title": "TheWitcheryCat - Психолог",
+      "duration": "3:01"
+    }
+  ],
   "analytics": {
     "yandexMetrika": {
-      "counterId": "99999999"
+      "counterId": "44147844"
     }
   },
   "cdn": {
