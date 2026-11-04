@@ -239,3 +239,88 @@
 /* Строка о товарном знаке в подвале */
 .tm-note { font-size: 0.8rem; color: var(--text-light); }
 .tm-note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+/* ── Небо Норильска: полярная ночь и северное сияние ── */
+.sky { padding-top: calc(80px + 2rem); padding-bottom: 3rem; max-width: 960px; }
+.sky h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); color: var(--purple-light); margin: 0.25rem 0 0.75rem; line-height: 1.2; }
+.sky h2 { font-size: 1.4rem; color: var(--purple-light); margin-bottom: 1rem; }
+.sky-lead { color: var(--text-light); line-height: 1.7; max-width: 70ch; margin-bottom: 1.5rem; }
+.sky-block { margin-top: 2.5rem; }
+.sky-note { color: var(--text-light); font-size: 0.9rem; line-height: 1.6; margin-top: 0.75rem; }
+.sky-note a, .sky-crosslinks a { color: var(--purple-light); }
+.sky-hero, .aurora-now {
+  display: grid; grid-template-columns: minmax(220px, 1fr) 2fr; gap: 1.25rem; align-items: stretch;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.14), rgba(30, 64, 175, 0.14));
+  border: 1px solid var(--border); border-radius: 20px; padding: 1.5rem;
+}
+.sky-count, .aurora-verdict {
+  background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem;
+  display: flex; flex-direction: column; justify-content: center; text-align: center;
+}
+.sky-count-label, .aurora-label { color: var(--text-light); font-size: 0.95rem; }
+.sky-count-value { font-size: 3.4rem; font-weight: 800; line-height: 1.1; color: var(--purple-light); font-variant-numeric: tabular-nums; }
+.sky-count-value small { font-size: 1.2rem; font-weight: 600; }
+.sky-count-date { font-weight: 600; }
+.sky-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+.sky-facts div, .sky-dates div {
+  background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 0.9rem 1rem;
+  display: flex; flex-direction: column; gap: 0.25rem;
+}
+.sky-facts small, .sky-dates small { color: var(--text-light); font-size: 0.85rem; }
+.sky-facts strong, .sky-dates strong { font-size: 1.15rem; color: var(--text); }
+.sky-dates { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0.75rem; }
+.sky-chart { width: 100%; height: auto; background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 0.5rem; }
+.sky-chart .g { stroke: var(--border); stroke-width: 1; }
+.sky-chart text { fill: var(--text-light); font-size: 11px; font-family: inherit; }
+.sky-chart .a { fill: rgba(251, 191, 36, 0.25); }
+.sky-chart .l { fill: none; stroke: #f59e0b; stroke-width: 2; }
+.sky-chart .t { stroke: var(--pink); stroke-width: 2; stroke-dasharray: 4 3; }
+.sky-months { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.5rem; }
+.sky-months a {
+  padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 10px; background: var(--card-bg);
+  color: var(--text); text-decoration: none; text-transform: capitalize; text-align: center; min-height: 44px;
+  display: flex; align-items: center; justify-content: center;
+}
+.sky-months a:hover { border-color: var(--purple); }
+.sky-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; }
+.sky-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.sky-table th, .sky-table td { padding: 0.6rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.sky-table th { color: var(--text-light); font-weight: 600; background: var(--card-bg); }
+.sky-table td small { color: var(--text-light); }
+.sky-table tr.today td { background: rgba(139, 92, 246, 0.15); font-weight: 700; }
+.sky-table td:last-child { color: var(--text-light); font-size: 0.9rem; }
+.sky-music {
+  display: flex; gap: 1rem; align-items: center; margin-top: 2.5rem; padding: 1.25rem;
+  background: var(--card-bg); border: 1px solid var(--purple); border-radius: 16px;
+}
+.sky-music img { width: 96px; height: 96px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
+.sky-music-kicker { color: var(--pink); font-weight: 600; font-size: 0.85rem; }
+.sky-music-title { font-weight: 700; font-size: 1.1rem; margin: 0.2rem 0; }
+.sky-music-text { color: var(--text-light); font-size: 0.95rem; margin-bottom: 0.75rem; }
+.sky-music .btn { margin: 0 0.5rem 0.5rem 0; }
+.sky-list { margin: 0 0 1rem 1.2rem; line-height: 1.9; }
+
+/* Уровни шанса сияния */
+.aurora-value { font-size: 2.2rem; font-weight: 800; margin: 0.25rem 0; }
+.aurora-hint { color: var(--text-light); font-size: 0.95rem; line-height: 1.5; }
+.lvl0 { --lvl: #64748b; } .lvl1 { --lvl: #0ea5e9; } .lvl2 { --lvl: #22c55e; } .lvl3 { --lvl: #a3e635; } .lvl4 { --lvl: #f472b6; }
+.aurora-verdict.lvl0, .aurora-verdict.lvl1, .aurora-verdict.lvl2, .aurora-verdict.lvl3, .aurora-verdict.lvl4 { border-color: var(--lvl); box-shadow: 0 0 30px color-mix(in srgb, var(--lvl) 35%, transparent); }
+.aurora-verdict[class*="lvl"] .aurora-value { color: var(--lvl); }
+.aurora-nights { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; }
+.aurora-night { background: var(--card-bg); border: 1px solid var(--border); border-left: 5px solid var(--lvl, var(--border)); border-radius: 14px; padding: 1rem; }
+.an-date { color: var(--text-light); font-size: 0.9rem; }
+.an-level { font-size: 1.3rem; font-weight: 800; color: var(--lvl); margin: 0.2rem 0; }
+.an-meta { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
+.aurora-bars { display: flex; gap: 4px; align-items: flex-end; height: 170px; margin-top: 1.25rem; overflow-x: auto; padding-bottom: 4px; }
+.ab { flex: 1 0 26px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 4px; }
+.ab-bar { width: 100%; height: var(--h); background: var(--lvl); border-radius: 6px 6px 2px 2px; min-height: 6px; }
+.ab.light .ab-bar { opacity: 0.35; }
+.ab-kp { font-size: 0.75rem; color: var(--text); font-weight: 700; }
+.ab-time { font-size: 0.7rem; color: var(--text-light); white-space: nowrap; }
+[data-theme="light"] .lvl0 { --lvl: #475569; } [data-theme="light"] .lvl1 { --lvl: #0369a1; } [data-theme="light"] .lvl2 { --lvl: #15803d; }
+[data-theme="light"] .lvl3 { --lvl: #4d7c0f; } [data-theme="light"] .lvl4 { --lvl: #be185d; }
+@media (max-width: 720px) {
+  .sky-hero, .aurora-now { grid-template-columns: 1fr; padding: 1rem; }
+  .sky-count-value { font-size: 2.8rem; }
+  .sky-music { flex-direction: column; text-align: center; }
+}
