@@ -8,13 +8,13 @@
 //
 // VERSION обновляется админкой при каждом сохранении — так посетители получают новую версию.
 
-const VERSION = '2026-11-04T11:19:57.204Z';
+const VERSION = '2026-11-04T11:54:37.507Z';
 const CACHE = `twc-${VERSION}`;
 
 const PRECACHE = [
   '/', '/index.html', '/moon.html', '/textpesen.html', '/privacy-policy.html', '/offline.html',
-  '/style.css', '/style-moon-rec.css', '/icons.css', '/404.html',
-  '/config.js', '/script.js', '/metrika.js', '/chatbot.js', '/moon-calendar.js', '/recommendations-engine.js',
+  '/style.css', '/style-moon-rec.css', '/icons.css', '/pages.css', '/404.html',
+  '/config.js', '/script.js', '/metrika.js', '/chatbot.js', '/moon-astro.js', '/moon-calendar.js', '/recommendations-engine.js',
   '/manifest.json', '/icons/logo.png', '/icons/favicon-32x32.png', '/icons/android-chrome-192x192.png'
 ];
 const CDN_CACHEABLE = ['https://cdnjs.cloudflare.com/'];

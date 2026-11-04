@@ -274,6 +274,17 @@
       position: relative;
     }
     
+    a.calendar-day { text-decoration: none; color: inherit; }
+    /* Колонки не растягиваются от длинных названий фаз */
+    .calendar-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+    .calendar-day { min-width: 0; overflow: hidden; }
+    .calendar-day-phase { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    @media (max-width: 600px) {
+      .calendar-section { padding-left: 10px; padding-right: 10px; }
+      .calendar-day-phase { display: none; }   /* на телефоне — только значок фазы и число */
+    }
+    .calendar-hint { margin-top: 16px; text-align: center; color: var(--text-light); font-size: 0.95rem; }
+
     .calendar-day:hover {
       border-color: var(--purple);
       transform: translateY(-2px);
@@ -630,7 +641,7 @@
   <!-- Hero секция -->
   <section class="moon-hero">
     <h1>🌙 Лунный Календарь</h1>
-    <p>Узнайте фазу Луны сегодня, в каком она знаке и что благоприятно в этот день</p>
+    <p>Фаза Луны сегодня и на любой день: знак зодиака, освещённость и рекомендации</p>
   </section>
 
   <!-- Текущая фаза луны -->
@@ -660,6 +671,20 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- Календарь на месяц (заполняется moon-calendar.js) -->
+  <section class="calendar-section" aria-labelledby="calendarMonthYear">
+    <div class="calendar-header">
+      <h2 class="calendar-title" id="calendarMonthYear">Календарь</h2>
+      <div class="calendar-nav">
+        <button type="button" id="prevMonth" aria-label="Предыдущий месяц"><i class="fas fa-arrow-left"></i></button>
+        <button type="button" id="todayBtn">Сегодня</button>
+        <button type="button" id="nextMonth" aria-label="Следующий месяц"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="calendar-grid" id="calendarGrid"></div>
+    <p class="calendar-hint">Нажмите на день, чтобы открыть фазу Луны и рекомендации на эту дату.</p>
   </section>
 
   <!-- Навигация назад -->
@@ -702,6 +727,7 @@
   <!-- Яндекс.Метрика (номер счётчика — в config.js) -->
   <script src="metrika.js"></script>
   <script src="recommendations-engine.js"></script>
+  <script src="moon-astro.js"></script>
   <script src="moon-calendar.js"></script>
 
   <!-- Уведомление о cookies (логика — в metrika.js) -->
