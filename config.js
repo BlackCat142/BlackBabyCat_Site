@@ -100,7 +100,7 @@ const CONFIG = {
   ],
   "analytics": {
     "yandexMetrika": {
-      "counterId": "44147844"
+      "counterId": "108204562"
     }
   },
   "cdn": {
