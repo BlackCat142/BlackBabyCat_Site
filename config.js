@@ -24,23 +24,15 @@ const CONFIG = {
     "badge": "НОВЫЙ ТРЕК: \"Любовь как яд 27.11.2026\""
   },
   "images": {
-    "aboutPhoto": "images/about-studio.jpg",
+    "aboutPhoto": "images/photo-mw1xg5g2.jpg",
     "gallery": [
       {
-        "src": "images/avatar.jpg",
+        "src": "images/jpg-mw1xguv4.jpg",
         "alt": "Живой сет TheWitcheryCat"
       },
       {
-        "src": "images/cover-posledniy-drayv.jpg",
+        "src": "images/1-mw1xjws3.jpg",
         "alt": "Студийная работа"
-      },
-      {
-        "src": "images/cover-krik-v-nikuda.jpg",
-        "alt": "Фестивальное выступление"
-      },
-      {
-        "src": "images/cover-detka-remix.jpg",
-        "alt": "Аудитория на концерте"
       }
     ]
   },
