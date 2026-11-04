@@ -12,21 +12,22 @@
   <!-- Open Graph (для соцсетей) -->
   <meta property="og:title" content="Тексты песен — TheWitcheryCat">
   <meta property="og:description" content="Все тексты песен TheWitcheryCat. Погрузитесь в смысл и поэзию треков артиста из Норильска.">
-  <meta property="og:image" content="https://thewitcherycat.ru/images/avatar2-jpg-mw1wscu6.jpg">
+  <meta property="og:image" content="https://thewitcherycat.ru/images/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TheWitcheryCat — Данил Епанчин, музыкант из Норильска">
   <meta property="og:url" content="https://thewitcherycat.ru/textpesen.html">
   <meta property="og:type" content="website">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Тексты песен — TheWitcheryCat">
   <meta name="twitter:description" content="Все тексты песен TheWitcheryCat. Погрузитесь в смысл и поэзию треков.">
-  <meta name="twitter:image" content="https://thewitcherycat.ru/images/avatar2-jpg-mw1wscu6.jpg">
+  <meta name="twitter:image" content="https://thewitcherycat.ru/images/og-card.jpg">
   <!-- Канонический URL -->
   <link rel="canonical" href="https://thewitcherycat.ru/textpesen.html" />
   <!-- Верификация для Google Search Console -->
   <meta name="google-site-verification" content="qsA6Z21Z5kgi3PDUkFSWiWTIUa_R27Tj9m3a5OVs2N4" />
   <!-- Предзагрузка ресурсов -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
   <!-- Favicon -->
   <link rel="icon" href="icons/favicon.ico" sizes="any">
   <link rel="icon" href="icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -34,7 +35,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
   <!-- Подключение стилей -->
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="icons.css" />
   <!-- Безопасность -->
   <meta name="referrer" content="no-referrer">
 </head>
@@ -65,13 +66,13 @@
             </div>
           </li>
           <li class="theme-toggle-li">
-            <button id="themeToggle" class="theme-toggle-btn">
+            <button id="themeToggle" class="theme-toggle-btn" aria-label="Переключить тему">
               <i class="fas fa-moon" id="themeIcon"></i>
             </button>
           </li>
         </ul>
       </nav>
-      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Открыть меню" aria-controls="mobileMenu">
         <i class="fas fa-bars"></i>
       </button>
     </div>

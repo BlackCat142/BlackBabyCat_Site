@@ -2799,3 +2799,48 @@ img.logo-icon {
 .footer-links a { color: var(--text-light); text-decoration: none; transition: var(--transition-fast); }
 .footer-links a:hover { color: var(--purple-light); }
 .footer-bottom { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-light); font-size: 0.9rem; }
+
+/* Атрибут hidden всегда скрывает элемент (админка скрывает им пустые разделы) */
+[hidden] { display: none !important; }
+
+/* ── Мобильная версия: правки после проверки на экране 375 px ── */
+@media (max-width: 768px) {
+  /* Цифры портфолио: две карточки в ряд, число и подпись не вылезают за край */
+  .portfolio-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+  .stat-item { min-width: 0; padding: 1.25rem 0.75rem; }
+  .stat-number { font-size: clamp(1.6rem, 8vw, 2.2rem); white-space: nowrap; }
+  .stat-label { font-size: 1rem; overflow-wrap: anywhere; hyphens: auto; }
+
+  /* Иконки соцсетей в подвале и крестик чата — удобная для пальца зона 44×44 */
+  .footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .chat-close-btn { min-width: 44px; min-height: 44px; }
+
+  /* Ссылки в подвале страницы политики — выше зона нажатия */
+  .footer-links a { display: inline-flex; align-items: center; min-height: 44px; }
+}
+
+/* Первый блок после фиксированной шапки не должен заезжать под неё
+   (главная не трогаем — у её первого экрана свой большой отступ) */
+header.header + section:not(.hero) {
+  padding-top: calc(80px + 2.5rem);
+}
+@media (max-width: 480px) {
+  header.header + section:not(.hero) { padding-top: calc(80px + 1.75rem); }
+}
+
+/* Мобильное меню: без маркеров списка и с отступами от краёв */
+.mobile-menu ul { list-style: none; }
+@media (max-width: 768px) {
+  .mobile-menu-toggle { min-width: 44px; min-height: 44px; }
+  .contact-card a { display: inline-block; padding: 0.5rem 0; }
+}

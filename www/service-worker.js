@@ -4,17 +4,16 @@
 // • страницы (HTML) — сначала из сети, если сети нет — из кэша, иначе страница «Нет подключения»;
 // • скрипты и стили — тоже сначала из сети (чтобы не смешались старые и новые файлы);
 // • картинки и иконки — сразу из кэша, а в фоне обновляются из сети;
-// • Font Awesome с CDN — из кэша (адрес с версией, не меняется);
 // • Яндекс.Метрика, YouTube и прочие внешние сервисы не кэшируются.
 //
 // VERSION обновляется админкой при каждом сохранении — так посетители получают новую версию.
 
-const VERSION = '2026-11-04T10:49:56.368Z';
+const VERSION = '2026-11-04T11:19:57.204Z';
 const CACHE = `twc-${VERSION}`;
 
 const PRECACHE = [
   '/', '/index.html', '/moon.html', '/textpesen.html', '/privacy-policy.html', '/offline.html',
-  '/style.css', '/style-moon-rec.css',
+  '/style.css', '/style-moon-rec.css', '/icons.css', '/404.html',
   '/config.js', '/script.js', '/metrika.js', '/chatbot.js', '/moon-calendar.js', '/recommendations-engine.js',
   '/manifest.json', '/icons/logo.png', '/icons/favicon-32x32.png', '/icons/android-chrome-192x192.png'
 ];

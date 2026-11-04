@@ -6,19 +6,22 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#8b5cf6" id="themeColorMeta">
   <title>Лунный Календарь — TheWitcheryCat</title>
-  <meta name="description" content="Интерактивный лунный календарь с фазами луны и дневник намерений. Планируйте ритуалы и цели по лунным циклам.">
-  <meta name="keywords" content="лунный календарь, фазы луны, дневник намерений, ритуалы, магия луны">
+  <meta name="description" content="Фаза Луны сегодня: освещённость, возраст Луны, знак зодиака и рекомендации на день. Точный расчёт по астрономическим формулам.">
+  <meta name="keywords" content="лунный календарь, фаза луны сегодня, луна в знаке, освещённость луны, рекомендации на день">
   <!-- Open Graph (для соцсетей) -->
   <meta property="og:title" content="Лунный Календарь — TheWitcheryCat">
-  <meta property="og:description" content="Интерактивный лунный календарь с фазами луны и дневник намерений. Планируйте ритуалы и цели по лунным циклам.">
-  <meta property="og:image" content="https://thewitcherycat.ru/images/avatar2-jpg-mw1wscu6.jpg">
+  <meta property="og:description" content="Фаза Луны сегодня: освещённость, возраст Луны, знак зодиака и рекомендации на день. Точный расчёт по астрономическим формулам.">
+  <meta property="og:image" content="https://thewitcherycat.ru/images/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TheWitcheryCat — Данил Епанчин, музыкант из Норильска">
   <meta property="og:url" content="https://thewitcherycat.ru/moon.html">
   <meta property="og:type" content="website">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Лунный Календарь — TheWitcheryCat">
-  <meta name="twitter:description" content="Интерактивный лунный календарь с фазами луны и дневник намерений.">
-  <meta name="twitter:image" content="https://thewitcherycat.ru/images/avatar2-jpg-mw1wscu6.jpg">
+  <meta name="twitter:description" content="Фаза Луны сегодня, её знак зодиака и рекомендации на день.">
+  <meta name="twitter:image" content="https://thewitcherycat.ru/images/og-card.jpg">
   <link rel="canonical" href="https://thewitcherycat.ru/moon.html" />
   <link rel="icon" href="icons/favicon.ico" sizes="any">
   <link rel="icon" href="icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -26,7 +29,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="style-moon-rec.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="icons.css" />
   <style>
     /* Стили для страницы Лунного Календаря */
     .moon-hero {
@@ -593,13 +596,13 @@
             </div>
           </li>
           <li class="theme-toggle-li">
-            <button id="themeToggle" class="theme-toggle-btn">
+            <button id="themeToggle" class="theme-toggle-btn" aria-label="Переключить тему">
               <i class="fas fa-moon" id="themeIcon"></i>
             </button>
           </li>
         </ul>
       </nav>
-      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Открыть меню" aria-controls="mobileMenu">
         <i class="fas fa-bars"></i>
       </button>
     </div>
@@ -627,7 +630,7 @@
   <!-- Hero секция -->
   <section class="moon-hero">
     <h1>🌙 Лунный Календарь</h1>
-    <p>Отслеживайте фазы луны и записывайте свои намерения в правильные лунные дни</p>
+    <p>Узнайте фазу Луны сегодня, в каком она знаке и что благоприятно в этот день</p>
   </section>
 
   <!-- Текущая фаза луны -->

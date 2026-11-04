@@ -12,23 +12,24 @@
   <!-- Open Graph (для соцсетей) -->
   <meta property="og:title" content="TheWitcheryCat (Данил Епанчин) — музыкант из Норильска">
   <meta property="og:description" content="Официальный сайт артиста из Норильска. Слушайте треки 'Детка Remix', 'Крик в никуда', 'ПОСЛЕДНИЙ ДРАЙВ В НИКУДА' и следите за выступлениями.">
-  <meta property="og:image" content="https://thewitcherycat.ru/images/avatar2-jpg-mw1wscu6.jpg">
+  <meta property="og:image" content="https://thewitcherycat.ru/images/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TheWitcheryCat — Данил Епанчин, музыкант из Норильска">
   <meta property="og:url" content="https://thewitcherycat.ru/">
   <meta property="og:type" content="website">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="TheWitcheryCat (Данил Епанчин) — музыкант из Норильска">
   <meta name="twitter:description" content="Официальный сайт артиста из Норильска. Уникальный звук — рэп и хип-хоп в танцевальном стиле">
-  <meta name="twitter:image" content="https://thewitcherycat.ru/images/avatar2-jpg-mw1wscu6.jpg">
+  <meta name="twitter:image" content="https://thewitcherycat.ru/images/og-card.jpg">
   <!-- Канонический URL -->
   <link rel="canonical" href="https://thewitcherycat.ru/" />
   <!-- Верификация для Google Search Console -->
   <meta name="google-site-verification" content="qsA6Z21Z5kgi3PDUkFSWiWTIUa_R27Tj9m3a5OVs2N4" />
   <!-- Предзагрузка ресурсов -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://www.youtube.com">
   <link rel="preconnect" href="https://i.ytimg.com">
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style">
   <!-- Favicon -->
   <link rel="icon" href="icons/favicon.ico" sizes="any">
   <link rel="icon" href="icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -36,7 +37,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
   <!-- Подключение стилей -->
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="icons.css" />
   <!-- Безопасность -->
   <meta name="referrer" content="no-referrer">
   <!-- VK Bridge для мини-приложений ВКонтакте -->
@@ -73,13 +74,13 @@
             </div>
           </li>
           <li class="theme-toggle-li">
-            <button id="themeToggle" class="theme-toggle-btn">
+            <button id="themeToggle" class="theme-toggle-btn" aria-label="Переключить тему">
               <i class="fas fa-moon" id="themeIcon"></i>
             </button>
           </li>
         </ul>
       </nav>
-      <button class="mobile-menu-toggle" id="mobileMenuToggle">
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Открыть меню" aria-controls="mobileMenu">
         <i class="fas fa-bars"></i>
       </button>
     </div>
@@ -381,36 +382,40 @@
       <h2 class="section-title">Отзывы и признание</h2>
       <p class="section-subtitle">Что пишут о творчестве TheWitcheryCat</p>
       <div class="press-grid">
+<!-- ADMIN:press -->
         <blockquote class="press-item">
-          <p>"TheWitcheryCat создает уникальный звук, объединяющий рэп и хип-хоп в танцевальном стиле. Его музыка находит отклик у слушателей благодаря честному самовыражению."</p>
+          <p>«TheWitcheryCat создает уникальный звук, объединяющий рэп и хип-хоп в танцевальном стиле. Его музыка находит отклик у слушателей благодаря честному самовыражению.»</p>
           <div class="press-source">Музыкальный портал • ★★★★☆</div>
         </blockquote>
         <blockquote class="press-item">
-          <p>"Артист из Норильска доказывает, что даже в удаленных регионах можно создавать актуальную музыку, которая будет слышна по всему миру."</p>
-          <div class="press-source">Культурный журнал • ★★★★</div>
+          <p>«Артист из Норильска доказывает, что даже в удаленных регионах можно создавать актуальную музыку, которая будет слышна по всему миру.»</p>
+          <div class="press-source">Культурный журнал • ★★★★☆</div>
         </blockquote>
         <blockquote class="press-item">
-          <p>"Каждый релиз TheWitcheryCat — это новое путешествие в мир эмоций и переживаний, где артист исследует темы личного роста и социальных реалий."</p>
+          <p>«Каждый релиз TheWitcheryCat — это новое путешествие в мир эмоций и переживаний, где артист исследует темы личного роста и социальных реалий.»</p>
           <div class="press-source">Музыкальный блог • ★★★★★</div>
         </blockquote>
+<!-- /ADMIN:press -->
       </div>
       <div class="press-articles">
         <h3>Статьи и интервью</h3>
         <div class="articles-grid">
-          <a href="https://vk.com/TheWitcheryCat" target="_blank" class="article-item" data-config-link="social.vk">
+<!-- ADMIN:articles -->
+          <a href="https://vk.com/TheWitcheryCat" target="_blank" rel="noopener" class="article-item">
             <div class="article-icon"><i class="fas fa-microphone-alt"></i></div>
             <div class="article-content">
               <h4>Эксклюзивное интервью для музыкального портала</h4>
               <p>О творческом пути и новых проектах</p>
             </div>
           </a>
-          <a href="https://vk.com/TheWitcheryCat" target="_blank" class="article-item" data-config-link="social.vk">
+          <a href="https://vk.com/TheWitcheryCat" target="_blank" rel="noopener" class="article-item">
             <div class="article-icon"><i class="fas fa-newspaper"></i></div>
             <div class="article-content">
               <h4>Статья о северных артистах в культурном журнале</h4>
               <p>Как TheWitcheryCat представляет Норильск на музыкальной сцене</p>
             </div>
           </a>
+<!-- /ADMIN:articles -->
         </div>
       </div>
     </div>

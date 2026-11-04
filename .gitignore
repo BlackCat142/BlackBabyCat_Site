@@ -81,3 +81,6 @@ android/local.properties
 admin/
 admin.bat
 ADMIN_README.md
+
+# Оригиналы картинок до сжатия (хранятся только на этом компьютере)
+images/_originals/
