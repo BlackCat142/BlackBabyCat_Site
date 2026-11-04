@@ -12,7 +12,7 @@ class WitcheryBot {
       origin: "Норильск, Россия",
       style: "Рэп и хип-хоп в танцевальном стиле",
       // Треки берутся из config.js (редактируются в админке)
-      tracks: (CONFIG.releases || []).map(r => ({
+      tracks: (CONFIG.releases || []).filter(r => r.showOnHome !== false).map(r => ({
         title: r.shortTitle || r.title,
         feat: r.feat || '',
         link: r.link,

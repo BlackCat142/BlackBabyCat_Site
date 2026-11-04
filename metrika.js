@@ -37,6 +37,43 @@
   }
 
   var metrikaStarted = false;
+  var counterId = 0;
+
+  // ── Цели Метрики ──
+  // В кабинете Метрики: Цели → Добавить цель → «JavaScript-событие» с идентификатором из списка:
+  //   listen       — «Слушать» / ссылки на площадки и треки
+  //   presave      — «Пре-сейв»
+  //   lyrics_copy  — «Скопировать» текст песни
+  //   social       — переход в VK, Telegram, YouTube, Genius
+  //   email        — нажатие на почту
+  //   tickets      — «Билеты»
+  //   chat_open    — открыли чат-бота
+  // Цели отправляются только если посетитель согласился на аналитику.
+  var GOALS = [
+    ['presave', '.release-presave'],
+    ['lyrics_copy', '#copyLyricsBtn'],
+    ['tickets', '.tickets-btn'],
+    ['chat_open', '.chat-toggle-btn, #chat-toggle-btn'],
+    ['email', 'a[href^="mailto:"]'],
+    ['listen', '.release-listen, .release-platforms a, .portfolio-content a[target="_blank"], .media-link, .streaming-btn,' +
+               ' a[href*="band.link"], a[href*="music.yandex"], a[href*="vk.com/artist"], a[href*="vk.cc"]'],
+    ['social', '.social-links a, .footer-social a, a[href*="vk.com/"], a[href*="t.me/"], a[href*="youtube.com"], a[href*="genius.com"]']
+  ];
+  function reachGoal(name, params) {
+    if (metrikaStarted && counterId && typeof window.ym === 'function') window.ym(counterId, 'reachGoal', name, params);
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || !t.closest) return;
+    for (var i = 0; i < GOALS.length; i++) {
+      var hit = t.closest(GOALS[i][1]);
+      if (hit) {
+        reachGoal(GOALS[i][0], { page: location.pathname, link: hit.href || hit.id || hit.className });
+        return;   // одна цель на клик — первая подходящая по списку
+      }
+    }
+  }, true);
+  window.TWCGoal = reachGoal;   // для ручного вызова из других скриптов
   function startMetrika() {
     if (metrikaStarted) return;
     // CONFIG объявлен через const, поэтому его нет в window — проверяем через typeof
@@ -48,6 +85,7 @@
       return;
     }
     metrikaStarted = true;
+    counterId = id;
 
     (function (m, e, t, r, i, k, a) {
       m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments); };
@@ -66,7 +104,7 @@
 
   // Удаляет cookie Метрики (_ym_*), если посетитель отказался или отозвал согласие
   function deleteMetrikaCookies() {
-    var host = location.hostname.replace(/^www./, '');
+    var host = location.hostname.replace(/^www\./, '');
     document.cookie.split(';').forEach(function (c) {
       var name = c.split('=')[0].trim();
       if (name.indexOf('_ym') !== 0) return;
