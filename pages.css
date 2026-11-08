@@ -324,3 +324,65 @@
   .sky-count-value { font-size: 2.8rem; }
   .sky-music { flex-direction: column; text-align: center; }
 }
+
+/* ── Приложение MSA Recorder ── */
+.app-hero {
+  display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start;
+  background: linear-gradient(135deg, rgba(254, 44, 85, 0.14), rgba(37, 244, 238, 0.10));
+  border: 1px solid var(--border); border-radius: 20px; padding: 1.5rem;
+}
+.app-icon { width: 120px; height: 120px; border-radius: 26px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); }
+.app-kicker { color: var(--pink); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.02em; }
+.app-page h1 { margin-top: 0.25rem; }
+.app-page h2 svg { width: 1.1em; height: 1.1em; vertical-align: -0.15em; margin-right: 0.2rem; }
+.app-dl { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 0.5rem; }
+.app-btn {
+  display: inline-flex; align-items: center; gap: 0.7rem; min-height: 56px; padding: 0.55rem 1.2rem;
+  border-radius: 14px; background: var(--card-bg); color: var(--text); border: 1px solid var(--border);
+  text-decoration: none; font-weight: 700; font-size: 1.15rem; line-height: 1.15; transition: transform 0.15s, border-color 0.15s;
+}
+.app-btn svg { width: 26px; height: 26px; flex-shrink: 0; }
+.app-btn small { display: block; font-size: 0.72rem; font-weight: 500; color: var(--text-light); }
+.app-btn:hover { transform: translateY(-2px); border-color: var(--purple); }
+.app-btn-main { background: linear-gradient(135deg, #fe2c55, #c81d4b); color: #fff; border-color: transparent; }
+.app-btn-main small { color: rgba(255, 255, 255, 0.85); }
+.app-btn-soon { opacity: 0.55; cursor: default; }
+.app-btn-soon:hover { transform: none; border-color: var(--border); }
+.app-meta { color: var(--text-light); font-size: 0.9rem; }
+.app-shots {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(170px, 210px); gap: 0.9rem;
+  overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 0.75rem;
+}
+.app-shots figure, .app-pc figure { margin: 0; scroll-snap-align: start; }
+.app-shots img, .app-pc img { width: 100%; height: auto; display: block; border-radius: 16px; border: 1px solid var(--border); }
+.app-shots figcaption, .app-pc figcaption { color: var(--text-light); font-size: 0.85rem; margin-top: 0.4rem; line-height: 1.4; }
+.app-pc { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.9rem; margin-bottom: 1.25rem; }
+.app-steps { counter-reset: st; list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; }
+.app-steps li {
+  counter-increment: st; background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px;
+  padding: 1rem; line-height: 1.55; color: var(--text-light);
+}
+.app-steps li::before { content: counter(st); display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--pink); color: #fff; font-weight: 800; margin-bottom: 0.5rem; }
+.app-steps strong { color: var(--text); display: block; }
+.app-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.9rem; }
+.app-feature { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.1rem 1.2rem; }
+.app-feature h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.app-feature ul { margin: 0 0 0 1.1rem; color: var(--text-light); line-height: 1.6; font-size: 0.95rem; }
+.app-feature a, .app-legal a, .app-page .sky-lead a { color: var(--purple-light); }
+.app-legal h2 { font-size: 1.2rem; margin: 1.75rem 0 0.6rem; }
+.app-legal p { color: var(--text-light); line-height: 1.7; margin-bottom: 0.75rem; }
+/* Блок на главной */
+.app-promo .container > div {
+  display: flex; gap: 1.5rem; align-items: center; padding: 1.5rem; border-radius: 20px; border: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(254, 44, 85, 0.14), rgba(37, 244, 238, 0.10));
+}
+.app-promo img { width: 96px; height: 96px; border-radius: 22px; flex-shrink: 0; }
+.app-promo h2 { font-size: 1.5rem; margin: 0.2rem 0 0.4rem; }
+.app-promo p { color: var(--text-light); line-height: 1.6; }
+.app-promo .btn { margin-top: 0.9rem; }
+@media (max-width: 720px) {
+  .app-hero { grid-template-columns: 1fr; padding: 1.1rem; }
+  .app-icon { width: 88px; height: 88px; border-radius: 20px; }
+  .app-btn { flex: 1 1 100%; }
+  .app-promo .container > div { flex-direction: column; text-align: center; }
+}

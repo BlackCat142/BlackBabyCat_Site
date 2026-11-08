@@ -508,6 +508,14 @@ const CONFIG = {
       "duration": "3:01"
     }
   ],
+  "apps": {
+    "msaRecorder": {
+      "rustore": "https://www.rustore.ru/catalog/app/com.MsaRecorder",
+      "windows": "",
+      "googlePlay": "",
+      "version": ""
+    }
+  },
   "analytics": {
     "yandexMetrika": {
       "counterId": "108204562"

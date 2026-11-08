@@ -49,8 +49,10 @@
   //   tickets      — «Билеты»
   //   chat_open    — открыли чат-бота
   //   aurora_view  — открыли прогноз северного сияния (отправляет norilsk-sky.js)
+  //   app_download — кнопки «Скачать» MSA Recorder (RuStore, Windows, Google Play)
   // Цели отправляются только если посетитель согласился на аналитику.
   var GOALS = [
+    ['app_download', 'a.app-btn'],
     ['presave', '.release-presave'],
     ['lyrics_copy', '#copyLyricsBtn'],
     ['tickets', '.tickets-btn'],
