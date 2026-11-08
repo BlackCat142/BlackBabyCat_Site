@@ -278,7 +278,7 @@
     const dayEl = document.createElement(linked ? 'a' : 'div');
     dayEl.className = `calendar-day ${isOtherMonth ? 'other-month' : ''}`;
     if (linked) {
-      dayEl.href = `/moon/${dateKey(date)}.html`;
+      dayEl.href = `/moon/${dateKey(date)}`;
       dayEl.title = `Луна ${date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}: ${phaseData.name}`;
     }
     dayEl.innerHTML = `

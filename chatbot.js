@@ -24,7 +24,7 @@ class WitcheryBot {
         youtube: CONFIG.social.youtube,
         yandexMusic: CONFIG.social.yandexMusic
       },
-      moonCalendar: "moon.html"
+      moonCalendar: "/moon/"
     };
 
     // Дружеские ответы на частые вопросы
