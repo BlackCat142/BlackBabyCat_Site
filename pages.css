@@ -352,6 +352,14 @@
 .app-shots {
   display: grid; grid-auto-flow: column; grid-auto-columns: minmax(170px, 210px); gap: 0.9rem;
   overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 0.75rem;
+  scrollbar-width: thin; scrollbar-color: var(--purple) transparent;
+}
+.app-shots::-webkit-scrollbar { height: 6px; }
+.app-shots::-webkit-scrollbar-track { background: transparent; }
+.app-shots::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+/* На компьютере все скриншоты в один ряд, без прокрутки */
+@media (min-width: 900px) {
+  .app-shots { grid-auto-flow: row; grid-template-columns: repeat(6, minmax(0, 1fr)); overflow: visible; padding-bottom: 0; }
 }
 .app-shots figure, .app-pc figure { margin: 0; scroll-snap-align: start; }
 .app-shots img, .app-pc img { width: 100%; height: auto; display: block; border-radius: 16px; border: 1px solid var(--border); }
