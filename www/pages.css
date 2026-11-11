@@ -380,17 +380,33 @@
 .app-legal h2 { font-size: 1.2rem; margin: 1.75rem 0 0.6rem; }
 .app-legal p { color: var(--text-light); line-height: 1.7; margin-bottom: 0.75rem; }
 /* Блок на главной */
-.app-promo .container > div {
+.app-promo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+.app-promo-grid > div {
   display: flex; gap: 1.5rem; align-items: center; padding: 1.5rem; border-radius: 20px; border: 1px solid var(--border);
   background: linear-gradient(135deg, rgba(254, 44, 85, 0.14), rgba(37, 244, 238, 0.10));
 }
 .app-promo img { width: 96px; height: 96px; border-radius: 22px; flex-shrink: 0; }
-.app-promo h2 { font-size: 1.5rem; margin: 0.2rem 0 0.4rem; }
+.app-promo h3 { font-size: 1.4rem; margin: 0.2rem 0 0.4rem; }
 .app-promo p { color: var(--text-light); line-height: 1.6; }
 .app-promo .btn { margin-top: 0.9rem; }
 @media (max-width: 720px) {
   .app-hero { grid-template-columns: 1fr; padding: 1.1rem; }
   .app-icon { width: 88px; height: 88px; border-radius: 20px; }
   .app-btn { flex: 1 1 100%; }
-  .app-promo .container > div { flex-direction: column; text-align: center; }
+  .app-promo-grid { grid-template-columns: 1fr; }
+  .app-promo-grid > div { flex-direction: column; text-align: center; }
 }
+
+/* Раздел «Приложения» */
+.app-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+.app-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; }
+.app-card-cover img { width: 100%; height: auto; display: block; }
+.app-card-body { padding: 1.25rem; display: flex; flex-direction: column; flex: 1; }
+.app-card-head { display: flex; gap: 0.9rem; align-items: center; margin-bottom: 0.75rem; }
+.app-card-head img { width: 64px; height: 64px; border-radius: 16px; flex-shrink: 0; }
+.app-card-head h2 { font-size: 1.35rem; margin: 0; }
+.app-card-head h2 a { color: var(--text); text-decoration: none; }
+.app-card-head p { color: var(--text-light); }
+.app-card .app-dl { margin-top: auto; }
+.app-hero-cal { background: linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(37, 99, 235, 0.14)); }
+.app-page .app-pc img { background: #f4f3ef; }

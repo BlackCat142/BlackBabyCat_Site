@@ -509,11 +509,17 @@ const CONFIG = {
     }
   ],
   "apps": {
+    "msaCalendar": {
+      "rustore": "https://www.rustore.ru/catalog/app/ru.thewitcherycat.msacalendar",
+      "windows": "",
+      "googlePlay": "",
+      "version": "1.0.0"
+    },
     "msaRecorder": {
       "rustore": "https://www.rustore.ru/catalog/app/com.MsaRecorder",
       "windows": "",
       "googlePlay": "",
-      "version": ""
+      "version": "1.0.0"
     }
   },
   "analytics": {
