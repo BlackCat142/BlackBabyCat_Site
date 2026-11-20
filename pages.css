@@ -413,7 +413,7 @@
 
 /* Отсчёт до выхода приложения и прямое скачивание */
 .app-release { margin: 1rem 0 0.5rem; }
-.app-release-before {
+.app-release .app-release-before {
   background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1rem 1.1rem; max-width: 560px;
 }
 .app-release-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
@@ -427,3 +427,6 @@
   font-size: 0.8rem; line-height: 1.8; overflow-x: auto; white-space: pre; color: var(--text-light);
 }
 @media (max-width: 720px) { .app-release .release-countdown { justify-content: center; } }
+
+/* Кнопка «скоро» в карточке приложения: обёртки не влияют на раскладку */
+.app-dl > [data-release-at], .app-dl > [data-release-at] > span { display: contents; }
