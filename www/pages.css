@@ -430,3 +430,15 @@
 
 /* Кнопка «скоро» в карточке приложения: обёртки не влияют на раскладку */
 .app-dl > [data-release-at], .app-dl > [data-release-at] > span { display: contents; }
+
+/* Кнопка доната на главной */
+.hero-donate { margin-top: 1rem; }
+.donate-btn {
+  display: inline-flex; align-items: center; gap: 0.55rem; min-height: 48px; padding: 0.65rem 1.4rem;
+  border-radius: 999px; font-weight: 700; text-decoration: none; color: #fff;
+  background: linear-gradient(135deg, #f59e0b, #ef4444); box-shadow: 0 4px 20px rgba(239, 68, 68, 0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.donate-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(239, 68, 68, 0.45); }
+.donate-btn .fa-heart { color: #fff; }
+.donate-link { font-weight: 600; }

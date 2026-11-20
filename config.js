@@ -33,7 +33,8 @@ const CONFIG = {
     "telegram": "https://t.me/TheWitcheryCat",
     "youtube": "https://www.youtube.com/@TheWitcheryCat",
     "yandexMusic": "https://music.yandex.ru/artist/25682569",
-    "genius": "https://genius.com/TheWitcheryCat"
+    "genius": "https://genius.com/TheWitcheryCat",
+    "donate": "https://tips.yandex.ru/guest/payment/5913710"
   },
   "streaming": {
     "yandex": "https://music.yandex.ru/artist/25682569",
