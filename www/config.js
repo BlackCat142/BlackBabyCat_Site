@@ -511,9 +511,12 @@ const CONFIG = {
   "apps": {
     "msaCalendar": {
       "rustore": "https://www.rustore.ru/catalog/app/ru.thewitcherycat.msacalendar",
-      "windows": "",
+      "windows": "https://github.com/BlackCat142/BlackBabyCat_Site/releases/download/msa-smart-calendar-v1.3.0/MSA-Smart-Calendar-Setup-1.3.0.exe",
+      "windowsSize": "79 МБ",
+      "releaseDate": "2026-12-05",
+      "checksums": "MSA-Smart-Calendar-Setup-1.3.0.exe: 0263B8CE6B053B05CF563A1C7908802136E7FD53C1D47D6F759D7DD3791C5E06",
       "googlePlay": "",
-      "version": "1.0.0"
+      "version": "1.3.0"
     },
     "msaRecorder": {
       "rustore": "https://www.rustore.ru/catalog/app/com.MsaRecorder",

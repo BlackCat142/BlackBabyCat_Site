@@ -410,3 +410,20 @@
 .app-card .app-dl { margin-top: auto; }
 .app-hero-cal { background: linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(37, 99, 235, 0.14)); }
 .app-page .app-pc img { background: #f4f3ef; }
+
+/* Отсчёт до выхода приложения и прямое скачивание */
+.app-release { margin: 1rem 0 0.5rem; }
+.app-release-before {
+  background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1rem 1.1rem; max-width: 560px;
+}
+.app-release-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+.app-release-title svg { width: 1.2em; height: 1.2em; flex-shrink: 0; }
+.app-release .release-countdown { margin: 0 0 0.6rem; justify-content: flex-start; }
+.app-btn-alt { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; border-color: transparent; }
+.app-btn-alt small { color: rgba(255, 255, 255, 0.85); }
+.app-meta a { color: var(--purple-light); }
+.app-hashes {
+  background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 0.9rem 1rem;
+  font-size: 0.8rem; line-height: 1.8; overflow-x: auto; white-space: pre; color: var(--text-light);
+}
+@media (max-width: 720px) { .app-release .release-countdown { justify-content: center; } }
