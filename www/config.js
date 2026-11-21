@@ -65,7 +65,7 @@ const CONFIG = {
       "shortTitle": " Любовь как яд",
       "feat": "MIKKY",
       "year": "2026",
-      "description": "Совместный трек с MIKKY , выпущенный в 2026 году",
+      "description": "Совместный трек с MIKKY, выпущенный в 2026 году",
       "link": "https://band.link/lv6bP",
       "image": "images/love-mw1wtsi1.jpg",
       "duration": "3:00",

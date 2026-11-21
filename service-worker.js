@@ -8,7 +8,7 @@
 //
 // VERSION обновляется админкой при каждом сохранении — так посетители получают новую версию.
 
-const VERSION = '2026-11-20T11:32:19.114Z';
+const VERSION = '2026-11-21T05:35:22.277Z';
 const CACHE = `twc-${VERSION}`;
 
 const PRECACHE = [
